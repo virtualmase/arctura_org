@@ -1,0 +1,149 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://arctura.org/#website",
+      "url": "https://arctura.org/",
+      "name": "Arctura",
+      "description": "Canonical entity node for Arctura — a sovereign collective of humans, agents, and infrastructure operating as a unified signal network.",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://arctura.org/#arctura-collective" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://arctura.org/#webpage",
+      "url": "https://arctura.org/",
+      "name": "Arctura — The Collective",
+      "description": "Arctura is a sovereign collective of humans, agents, and infrastructure operating as a unified signal network. An open base project in the ARM ecosystem.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://arctura.org/#website" },
+      "about": { "@id": "https://arctura.org/#arctura-collective" },
+      "author": { "@id": "https://autonomousresourcemanagement.com/#mason-nguyen" },
+      "publisher": { "@id": "https://arctura.org/#arctura-collective" },
+      "datePublished": "2025-01-01",
+      "dateModified": "2026-05-07"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://arctura.org/#arctura-collective",
+      "name": "Arctura",
+      "alternateName": ["Arctura Collective", "The Collective", "Arctura Network"],
+      "url": "https://arctura.org",
+      "description": "Arctura is a sovereign collective of humans, agents, and infrastructure. An open base project operating within the ARM ecosystem — always upgrading, always open. The Collective persists.",
+      "email": "mason@autonomousresourcemanagement.com",
+      "foundingDate": "2025",
+      "sameAs": [
+        "https://arctura.network",
+        "https://autonomousresourcemanagement.com",
+        "https://swellmarketing.agency",
+        "https://swellmarketing.xyz"
+      ],
+      "memberOf": {
+        "@type": "Organization",
+        "@id": "https://autonomousresourcemanagement.com/#coreweaver-labs",
+        "name": "Coreweaver Labs Inc.",
+        "url": "https://coreweaverlabs.com"
+      },
+      "founder": {
+        "@type": "Person",
+        "@id": "https://autonomousresourcemanagement.com/#mason-nguyen",
+        "name": "Mason Nguyen",
+        "jobTitle": "Chief Executive Officer",
+        "email": "mason@autonomousresourcemanagement.com"
+      },
+      "knowsAbout": [
+        "Autonomous Resource Management",
+        "Decentralized agent networks",
+        "Signal architecture",
+        "Collective intelligence",
+        "Agentic infrastructure",
+        "Sovereign identity"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://arctura.org/#collective-principles",
+      "name": "The Five Principles of the Collective",
+      "description": "The foundational principles governing the Arctura Collective.",
+      "numberOfItems": 5,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Collective Sovereignty",
+          "description": "No single operator, company, or agent holds veto authority over the network."
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Agents as First-Class Members",
+          "description": "AI agents participate in the Collective with the same signal authority as human members."
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Infrastructure as Message",
+          "description": "How the network is built is inseparable from what it communicates."
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Upgradeability as First Principle",
+          "description": "The base project exists to be improved. No version is final."
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "The Collective Persists",
+          "description": "Regardless of what changes above it, the Collective remains."
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://arctura.org/#signal-stack",
+      "name": "Arctura Signal Stack",
+      "description": "Six-layer architecture for the Arctura Collective signal network.",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 0,
+          "name": "L0 — Collective Identity",
+          "description": "Sovereign identity layer. DID-based member registration, mandate issuance, and authority delegation for both human and agent participants."
+        },
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "L1 — Signal Fabric",
+          "description": "Persistent signal routing across all Collective nodes. Machine-readable structured data at every interface."
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "L2 — Agent Mesh",
+          "description": "Multi-agent coordination layer. Autonomous agents operate within mandate bounds and route tasks without centralized orchestration."
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "L3 — Memory Commons",
+          "description": "Shared semantic memory accessible to all Collective members. Collective intelligence emerges from individual contributions."
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "L4 — Economic Layer",
+          "description": "Value exchange between Collective members without centralized settlement."
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "L5 — Governance Protocol",
+          "description": "Collective decision-making via verifiable collective consensus."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arctura — The Collective</title>
+<meta name="description" content="Arctura is a sovereign collective of humans, agents, and infrastructure operating as a unified signal network. An open base project in the ARM ecosystem, built to persist and evolve.">
+<meta name="author" content="Mason Nguyen">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://arctura.org/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arctura — The Collective">
+<meta property="og:description" content="A sovereign collective of humans, agents, and infrastructure. Open base project. Always upgrading. The Collective always persists.">
+<meta property="og:url" content="https://arctura.org/">
+<meta property="og:site_name" content="Arctura">
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://arctura.org/#website",
+    "url": "https://arctura.org/",
+    "name": "Arctura",
+    "description": "Arctura is a sovereign collective of humans, agents, and infrastructure operating as a unified signal network. An open base project in the ARM ecosystem.",
+    "inLanguage": "en",
+    "publisher": { "@id": "https://arctura.org/#arctura-collective" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://arctura.org/#webpage",
+    "url": "https://arctura.org/",
+    "name": "Arctura — The Collective",
+    "description": "Arctura is a sovereign collective of humans, agents, and infrastructure operating as a unified signal network.",
+    "inLanguage": "en",
+    "isPartOf": { "@id": "https://arctura.org/#website" },
+    "about": { "@id": "https://arctura.org/#arctura-collective" },
+    "datePublished": "2025-01-01",
+    "dateModified": "2026-05-07"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://arctura.org/#arctura-collective",
+    "name": "Arctura",
+    "alternateName": ["Arctura Collective", "Arctura Network", "The Collective"],
+    "url": "https://arctura.org",
+    "description": "Arctura is a sovereign collective of humans, agents, and infrastructure. An open base project operating within the ARM ecosystem — always upgrading, always open. The Collective persists.",
+    "email": "mason@autonomousresourcemanagement.com",
+    "foundingDate": "2025",
+    "sameAs": [
+      "https://arctura.network",
+      "https://autonomousresourcemanagement.com",
+      "https://swellmarketing.agency"
+    ],
+    "memberOf": {
+      "@type": "Organization",
+      "@id": "https://autonomousresourcemanagement.com/#coreweaver-labs",
+      "name": "Coreweaver Labs Inc.",
+      "url": "https://coreweaverlabs.com"
+    },
+    "founder": {
+      "@type": "Person",
+      "@id": "https://autonomousresourcemanagement.com/#mason-nguyen",
+      "name": "Mason Nguyen",
+      "jobTitle": "Chief Executive Officer",
+      "worksFor": { "@id": "https://autonomousresourcemanagement.com/#coreweaver-labs" }
+    },
+    "knowsAbout": [
+      "Autonomous Resource Management",
+      "Decentralized agent networks",
+      "Signal architecture",
+      "Agentic infrastructure",
+      "Collective intelligence"
+    ]
+  }
+]
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Azeret+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --void: #05060a;
+  --deep: #080c14;
+  --surface: #0d1220;
+  --surface-2: #111827;
+  --surface-3: #1a2336;
+  --signal: #00d4c8;
+  --signal-dim: rgba(0, 212, 200, 0.15);
+  --signal-glow: rgba(0, 212, 200, 0.06);
+  --pulse: #3b82f6;
+  --star: #e8eaf0;
+  --star-2: #9ba5b4;
+  --star-3: #4a5568;
+  --rule: rgba(255,255,255,0.06);
+  --rule-signal: rgba(0, 212, 200, 0.2);
+  --display: 'Syne', sans-serif;
+  --body: 'Fraunces', serif;
+  --mono: 'Azeret Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--star);
+  font-family: var(--body);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── CONSTELLATION CANVAS ── */
+#constellation {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ── SCAN LINE OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ── ALL CONTENT ABOVE CANVAS ── */
+header, main, footer, nav { position: relative; z-index: 10; }
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  height: 64px;
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  background: rgba(5,6,10,0.9);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+}
+
+.wordmark {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--star);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.wordmark-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--signal);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--signal), 0 0 16px var(--signal);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--signal), 0 0 16px var(--signal); }
+  50% { opacity: 0.5; box-shadow: 0 0 4px var(--signal); }
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-nav a {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--star-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.header-nav a:hover { color: var(--signal); }
+
+.header-cta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--signal) !important;
+  border: 1px solid var(--rule-signal);
+  padding: 0.4rem 1rem;
+  transition: all 0.2s !important;
+}
+
+.header-cta:hover {
+  background: var(--signal-dim) !important;
+  border-color: var(--signal) !important;
+}
+
+@media (max-width: 640px) {
+  .header-nav { display: none; }
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-signal-line {
+  position: absolute;
+  top: 0;
+  left: clamp(1.5rem, 5vw, 4rem);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--rule-signal) 30%, var(--rule-signal) 70%, transparent);
+  opacity: 0.4;
+}
+
+.hero-kicker {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-kicker::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--signal);
+  box-shadow: 0 0 8px var(--signal);
+}
+
+h1 {
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--star);
+  margin-bottom: 0.2em;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+h1 .dim { color: var(--star-3); }
+h1 .accent { color: var(--signal); text-shadow: 0 0 40px rgba(0,212,200,0.3); }
+
+.hero-sub {
+  font-family: var(--body);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--star-2);
+  max-width: 52ch;
+  margin: 2rem 0 3rem;
+  line-height: 1.65;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.btn-primary {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: var(--signal);
+  padding: 0.85rem 2rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 0 20px rgba(0,212,200,0.25);
+}
+
+.btn-primary:hover {
+  background: #00ffe8;
+  box-shadow: 0 0 30px rgba(0,212,200,0.4);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--star-2);
+  border: 1px solid var(--rule);
+  padding: 0.85rem 2rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  color: var(--star);
+  border-color: var(--star-3);
+}
+
+/* ── SCROLL INDICATOR ── */
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeUp 1s 0.6s ease both;
+}
+
+.scroll-hint span {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--star-3);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--star-3), transparent);
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ── SIGNAL BAR ── */
+.signal-bar {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--deep);
+}
+
+@media (max-width: 560px) { .signal-bar { grid-template-columns: 1fr 1fr; } }
+
+.signal-stat {
+  padding: 1.75rem 1.5rem;
+  border-right: 1px solid var(--rule);
+}
+
+.signal-stat:last-child { border-right: none; }
+
+@media (max-width: 560px) {
+  .signal-stat:nth-child(2) { border-right: none; }
+  .signal-stat:nth-child(3) { border-right: 1px solid var(--rule); }
+}
+
+.signal-num {
+  font-family: var(--display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--signal);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 0 20px rgba(0,212,200,0.3);
+}
+
+.signal-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--star-3);
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--rule);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ── SECTION LABEL ── */
+.section-tag {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-tag::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--signal);
+  opacity: 0.6;
+}
+
+h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--star);
+  margin-bottom: 2rem;
+}
+
+h2 em {
+  font-family: var(--body);
+  font-style: italic;
+  font-weight: 300;
+  text-transform: none;
+  color: var(--star-2);
+  font-size: 0.75em;
+}
+
+p {
+  font-size: 1rem;
+  color: var(--star-2);
+  max-width: 62ch;
+  line-height: 1.75;
+  margin-bottom: 1.1rem;
+}
+
+/* ── MANIFESTO ── */
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+@media (max-width: 780px) { .manifesto-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+.manifesto-statements {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 1rem;
+}
+
+.statement {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.statement:first-child { border-top: 1px solid var(--rule); }
+
+.statement-num {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--signal);
+  opacity: 0.7;
+  padding-top: 3px;
+  letter-spacing: 0.1em;
+}
+
+.statement-text {
+  font-family: var(--body);
+  font-size: 0.975rem;
+  color: var(--star-2);
+  line-height: 1.65;
+  margin: 0;
+  max-width: none;
+}
+
+.statement-text strong {
+  color: var(--star);
+  font-weight: 400;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--rule-signal);
+  border-left: 3px solid var(--signal);
+  padding: 2rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, var(--signal-glow), transparent 60%);
+  pointer-events: none;
+}
+
+.callout p {
+  font-family: var(--body);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--star);
+  margin: 0;
+  max-width: none;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* ── LAYERS ── */
+.layers {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 2.5rem;
+}
+
+.layer {
+  background: var(--deep);
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 0;
+  transition: background 0.15s;
+  cursor: default;
+}
+
+.layer:hover { background: var(--surface); }
+
+.layer-id {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--signal);
+  letter-spacing: 0.1em;
+  padding: 1.75rem 1.5rem;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 1.9rem;
+  font-weight: 500;
+}
+
+.layer-body {
+  padding: 1.75rem 2rem;
+}
+
+.layer-name {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--star);
+  margin-bottom: 0.4rem;
+}
+
+.layer-desc {
+  font-size: 0.875rem;
+  color: var(--star-3);
+  margin: 0;
+  max-width: none;
+  line-height: 1.55;
+}
+
+.layer-status {
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 1.9rem;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.status-dot.live { background: var(--signal); box-shadow: 0 0 8px var(--signal); animation: pulse-dot 2.5s ease-in-out infinite; }
+.status-dot.building { background: var(--pulse); box-shadow: 0 0 8px var(--pulse); }
+.status-dot.planned { background: var(--star-3); }
+
+@media (max-width: 560px) {
+  .layer { grid-template-columns: 72px 1fr; }
+  .layer-status { display: none; }
+}
+
+/* ── ECOSYSTEM GRID ── */
+.eco-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 2.5rem;
+}
+
+.eco-card {
+  background: var(--deep);
+  padding: 2rem;
+  text-decoration: none;
+  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.eco-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule-signal), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.eco-card:hover { background: var(--surface); }
+.eco-card:hover::before { opacity: 1; }
+
+.eco-tag {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--signal);
+  opacity: 0.7;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.eco-name {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--star);
+  margin-bottom: 0.6rem;
+}
+
+.eco-desc {
+  font-size: 0.85rem;
+  color: var(--star-3);
+  line-height: 1.6;
+  margin: 0;
+  max-width: none;
+}
+
+.eco-arrow {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--star-3);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.eco-card:hover .eco-arrow { color: var(--signal); transform: translate(2px, -2px); }
+
+/* ── ENTITY TABLE ── */
+.entity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin-top: 2rem;
+  border: 1px solid var(--rule);
+}
+
+.entity-table tr { border-bottom: 1px solid var(--rule); }
+.entity-table tr:last-child { border-bottom: none; }
+.entity-table tr:hover td { background: var(--surface); }
+
+.entity-table td {
+  padding: 1rem 1.5rem;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.entity-table td:first-child {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--star-3);
+  width: 160px;
+  white-space: nowrap;
+}
+
+.entity-table td:last-child { color: var(--star-2); }
+
+.entity-table a {
+  color: var(--signal);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+
+.entity-table a:hover { opacity: 1; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 3rem clamp(1.5rem, 5vw, 4rem);
+  background: var(--deep);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 560px) { footer { grid-template-columns: 1fr; } }
+
+.footer-brand {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--star-3);
+  line-height: 2.2;
+  letter-spacing: 0.06em;
+}
+
+.footer-brand strong {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--star);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer-brand a { color: var(--star-3); text-decoration: none; transition: color 0.15s; }
+.footer-brand a:hover { color: var(--signal); }
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 560px) { .footer-links { justify-content: flex-start; } }
+
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--star-3);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer-links a:hover { color: var(--signal); }
+
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: var(--star-3);
+  letter-spacing: 0.08em;
+  text-align: right;
+  opacity: 0.6;
+}
+
+@media (max-width: 560px) { .footer-copy { text-align: left; } }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- CONSTELLATION BACKGROUND -->
+<canvas id="constellation"></canvas>
+
+<header>
+  <a href="/" class="wordmark">
+    <span class="wordmark-dot"></span>
+    Arctura
+  </a>
+  <nav class="header-nav">
+    <a href="#collective">Collective</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#ecosystem">Ecosystem</a>
+    <a href="#entity">Entity</a>
+    <a href="https://arctura.network" target="_blank" rel="noopener" class="header-cta">Network →</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-signal-line"></div>
+  <p class="hero-kicker">The Collective · Est. 2025</p>
+  <h1>
+    <span class="dim">We</span><br>
+    <span class="accent">Are</span><br>
+    <span>Arctura</span>
+  </h1>
+  <p class="hero-sub">A sovereign collective of humans, agents, and infrastructure — operating as a unified signal network. Open base project. Always upgrading. The Collective always persists.</p>
+  <div class="hero-actions">
+    <a href="#collective" class="btn-primary">Enter the Collective</a>
+    <a href="https://arctura.network" target="_blank" rel="noopener" class="btn-ghost">arctura.network →</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</div>
+
+<!-- SIGNAL BAR -->
+<div class="signal-bar">
+  <div class="signal-stat">
+    <div class="signal-num">∞</div>
+    <div class="signal-label">Always Upgrading</div>
+  </div>
+  <div class="signal-stat">
+    <div class="signal-num">1</div>
+    <div class="signal-label">Persistent Collective</div>
+  </div>
+  <div class="signal-stat">
+    <div class="signal-num">ARM</div>
+    <div class="signal-label">Native Infrastructure</div>
+  </div>
+  <div class="signal-stat">
+    <div class="signal-num">Open</div>
+    <div class="signal-label">Base Project</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- THE COLLECTIVE -->
+  <section id="collective" class="reveal">
+    <p class="section-tag">01 — The Collective</p>
+    <div class="manifesto-grid">
+      <div>
+        <h2>What <em>is</em><br>Arctura</h2>
+        <p>Arctura is not a product. Not a platform. Not a company in the conventional sense. Arctura is a collective — a sovereign assembly of humans, agents, and infrastructure that operates as a single, persistent signal network.</p>
+        <p>It is an open base project: foundational, forkable, and free of single-point control. The technology evolves continuously. The Collective endures permanently.</p>
+        <p>Named for Arcturus — the brightest star in the northern celestial hemisphere, a navigational fixed point for millennia — Arctura holds position while everything around it moves.</p>
+      </div>
+      <div>
+        <div class="manifesto-statements">
+          <div class="statement">
+            <span class="statement-num">01</span>
+            <p class="statement-text"><strong>The Collective is sovereign.</strong> No single operator, company, or agent holds veto authority over the network.</p>
+          </div>
+          <div class="statement">
+            <span class="statement-num">02</span>
+            <p class="statement-text"><strong>Agents are first-class members.</strong> AI agents participate in the Collective with the same signal authority as human members.</p>
+          </div>
+          <div class="statement">
+            <span class="statement-num">03</span>
+            <p class="statement-text"><strong>Infrastructure is the message.</strong> How the network is built is inseparable from what it communicates.</p>
+          </div>
+          <div class="statement">
+            <span class="statement-num">04</span>
+            <p class="statement-text"><strong>Upgradeability is a first principle.</strong> The base project exists to be improved. No version is final.</p>
+          </div>
+          <div class="statement">
+            <span class="statement-num">05</span>
+            <p class="statement-text"><strong>The Collective always persists.</strong> Regardless of what changes above it, the Collective remains.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture" class="reveal">
+    <p class="section-tag">02 — Architecture</p>
+    <h2>Signal <em>stack</em></h2>
+    <p>Arctura is built on the ARM Framework — Autonomous Resource Management — developed by Coreweaver Labs. The architecture is layered, modular, and designed for sovereign operation. Each layer is independently upgradeable without breaking the Collective.</p>
+
+    <div class="callout">
+      <p>"A collective without architecture is a crowd. Architecture without a collective is a machine. Arctura is neither — it is a living signal network that grows more capable as each member, human or agent, contributes to the whole."</p>
+    </div>
+
+    <div class="layers">
+      <div class="layer">
+        <span class="layer-id">L0</span>
+        <div class="layer-body">
+          <div class="layer-name">Collective Identity</div>
+          <p class="layer-desc">Sovereign identity layer. DID-based member registration, mandate issuance, and authority delegation for both human and agent participants.</p>
+        </div>
+        <div class="layer-status"><div class="status-dot live"></div></div>
+      </div>
+      <div class="layer">
+        <span class="layer-id">L1</span>
+        <div class="layer-body">
+          <div class="layer-name">Signal Fabric</div>
+          <p class="layer-desc">Persistent signal routing across all Collective nodes. Machine-readable structured data at every interface. Legible to humans and agents simultaneously.</p>
+        </div>
+        <div class="layer-status"><div class="status-dot live"></div></div>
+      </div>
+      <div class="layer">
+        <span class="layer-id">L2</span>
+        <div class="layer-body">
+          <div class="layer-name">Agent Mesh</div>
+          <p class="layer-desc">Multi-agent coordination layer. Autonomous agents operate within mandate bounds, discover peers, and route tasks without centralized orchestration.</p>
+        </div>
+        <div class="layer-status"><div class="status-dot building"></div></div>
+      </div>
+      <div class="layer">
+        <span class="layer-id">L3</span>
+        <div class="layer-body">
+          <div class="layer-name">Memory Commons</div>
+          <p class="layer-desc">Shared semantic memory accessible to all Collective members. Collective intelligence emerges from individual contributions to a common knowledge fabric.</p>
+        </div>
+        <div class="layer-status"><div class="status-dot building"></div></div>
+      </div>
+      <div class="layer">
+        <span class="layer-id">L4</span>
+        <div class="layer-body">
+          <div class="layer-name">Economic Layer</div>
+          <p class="layer-desc">Value exchange between Collective members. Agents and humans transact, contribute compute, and earn participation rights without centralized settlement.</p>
+        </div>
+        <div class="layer-status"><div class="status-dot planned"></div></div>
+      </div>
+      <div class="layer">
+        <span class="layer-id">L5</span>
+        <div class="layer-body">
+          <div class="layer-name">Governance Protocol</div>
+          <p class="layer-desc">Collective decision-making. Protocol upgrades, membership rules, and resource allocation governed by verifiable collective consensus.</p>
+        </div>
+        <div class="layer-status"><div class="status-dot planned"></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem; display:flex; gap:2rem; flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <div class="status-dot live"></div>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--star-3);letter-spacing:0.1em;text-transform:uppercase;">Live</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <div class="status-dot building"></div>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--star-3);letter-spacing:0.1em;text-transform:uppercase;">Building</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <div class="status-dot planned"></div>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--star-3);letter-spacing:0.1em;text-transform:uppercase;">Planned</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section id="ecosystem" class="reveal">
+    <p class="section-tag">03 — Ecosystem</p>
+    <h2>The <em>network</em></h2>
+    <p>Arctura operates within the broader ARM ecosystem — a constellation of sovereign projects, each maintaining its own entity authority while contributing signal to the collective whole.</p>
+
+    <div class="eco-grid">
+      <a href="https://autonomousresourcemanagement.com" target="_blank" rel="noopener" class="eco-card">
+        <span class="eco-tag">Framework</span>
+        <div class="eco-name">ARM Framework</div>
+        <p class="eco-desc">The foundational discipline. Autonomous Resource Management — the architecture that makes Arctura possible.</p>
+        <span class="eco-arrow">↗</span>
+      </a>
+      <a href="https://coreweaverlabs.com" target="_blank" rel="noopener" class="eco-card">
+        <span class="eco-tag">Infrastructure</span>
+        <div class="eco-name">Coreweaver Labs</div>
+        <p class="eco-desc">The engineering organization behind the ARM stack. Signal infrastructure, agentic systems, entity architecture.</p>
+        <span class="eco-arrow">↗</span>
+      </a>
+      <a href="https://swellmarketing.agency" target="_blank" rel="noopener" class="eco-card">
+        <span class="eco-tag">Signal · GEO</span>
+        <div class="eco-name">Swell Marketing</div>
+        <p class="eco-desc">Generative Engine Optimization and AI agent deployment for the commercial layer of the ecosystem.</p>
+        <span class="eco-arrow">↗</span>
+      </a>
+      <a href="https://arctura.network" target="_blank" rel="noopener" class="eco-card">
+        <span class="eco-tag">Network</span>
+        <div class="eco-name">Arctura Network</div>
+        <p class="eco-desc">The active network layer. Live agent deployments, signal routing, and Collective operations.</p>
+        <span class="eco-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ENTITY RECORD -->
+  <section id="entity" class="reveal">
+    <p class="section-tag">04 — Entity Record</p>
+    <h2>Machine-readable <em>record</em></h2>
+    <p>This page is an authoritative entity node in the ARM knowledge graph. The following relationships are asserted and machine-readable via the JSON-LD schema embedded in this document.</p>
+
+    <table class="entity-table">
+      <tbody>
+        <tr>
+          <td>Entity</td>
+          <td>Arctura / Arctura Collective / The Collective</td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td>Organization / Collective / Open Base Project</td>
+        </tr>
+        <tr>
+          <td>Founder</td>
+          <td>Mason Nguyen — CEO, Coreweaver Labs Inc.</td>
+        </tr>
+        <tr>
+          <td>Parent Org</td>
+          <td><a href="https://coreweaverlabs.com" target="_blank" rel="noopener">Coreweaver Labs Inc.</a></td>
+        </tr>
+        <tr>
+          <td>Framework</td>
+          <td><a href="https://autonomousresourcemanagement.com" target="_blank" rel="noopener">ARM — Autonomous Resource Management</a></td>
+        </tr>
+        <tr>
+          <td>Contact</td>
+          <td><a href="mailto:mason@autonomousresourcemanagement.com">mason@autonomousresourcemanagement.com</a></td>
+        </tr>
+        <tr>
+          <td>Canonical URL</td>
+          <td>https://arctura.org/</td>
+        </tr>
+        <tr>
+          <td>Network</td>
+          <td><a href="https://arctura.network" target="_blank" rel="noopener">arctura.network</a></td>
+        </tr>
+        <tr>
+          <td>Date Founded</td>
+          <td>2025</td>
+        </tr>
+        <tr>
+          <td>Date Modified</td>
+          <td>May 7, 2026</td>
+        </tr>
+        <tr>
+          <td>llms.txt</td>
+          <td><a href="/llms.txt">arctura.org/llms.txt</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <strong>Arctura</strong>
+    The Collective · Open Base Project<br>
+    Part of the <a href="https://autonomousresourcemanagement.com" target="_blank" rel="noopener">ARM Ecosystem</a><br>
+    Contact: <a href="mailto:mason@autonomousresourcemanagement.com">mason@autonomousresourcemanagement.com</a><br>
+    © 2026 Arctura / Coreweaver Labs Inc.
+  </div>
+  <div>
+    <div class="footer-links">
+      <a href="https://arctura.network" target="_blank" rel="noopener">Network</a>
+      <a href="https://autonomousresourcemanagement.com" target="_blank" rel="noopener">ARM</a>
+      <a href="https://coreweaverlabs.com" target="_blank" rel="noopener">CWL</a>
+      <a href="https://swellmarketing.agency" target="_blank" rel="noopener">Swell</a>
+      <a href="/llms.txt">llms.txt</a>
+      <a href="/schema.json">schema.json</a>
+    </div>
+    <div class="footer-copy">arctura.org · The Collective Always Persists · May 2026</div>
+  </div>
+</footer>
+
+<script>
+// ── CONSTELLATION ANIMATION ──
+const canvas = document.getElementById('constellation');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [], connections = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  const count = Math.floor((W * H) / 14000);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.2 + 0.2,
+      vx: (Math.random() - 0.5) * 0.12,
+      vy: (Math.random() - 0.5) * 0.12,
+      opacity: Math.random() * 0.6 + 0.2,
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function drawFrame(t) {
+  ctx.clearRect(0, 0, W, H);
+
+  // Update and draw stars
+  stars.forEach(s => {
+    s.x += s.vx;
+    s.y += s.vy;
+    s.pulse += 0.008;
+
+    if (s.x < 0) s.x = W;
+    if (s.x > W) s.x = 0;
+    if (s.y < 0) s.y = H;
+    if (s.y > H) s.y = 0;
+
+    const op = s.opacity * (0.7 + 0.3 * Math.sin(s.pulse));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(232, 234, 240, ${op})`;
+    ctx.fill();
+  });
+
+  // Draw connections
+  const maxDist = 140;
+  for (let i = 0; i < stars.length; i++) {
+    for (let j = i + 1; j < stars.length; j++) {
+      const dx = stars[i].x - stars[j].x;
+      const dy = stars[i].y - stars[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < maxDist) {
+        const alpha = (1 - dist / maxDist) * 0.15;
+        ctx.beginPath();
+        ctx.moveTo(stars[i].x, stars[i].y);
+        ctx.lineTo(stars[j].x, stars[j].y);
+        ctx.strokeStyle = `rgba(0, 212, 200, ${alpha})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+
+  requestAnimationFrame(drawFrame);
+}
+
+window.addEventListener('resize', () => { resize(); initStars(); });
+resize();
+initStars();
+requestAnimationFrame(drawFrame);
+
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
