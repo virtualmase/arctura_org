@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcturians — The Signal Archives · Arctura Knowledge Base</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Azeret+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #04050a;
+  --deep: #07091200;
+  --surface: #0b0f1c;
+  --surface-2: #101726;
+  --surface-3: #161e2e;
+  --signal: #00d4c8;
+  --signal-dim: rgba(0,212,200,0.08);
+  --signal-glow: rgba(0,212,200,0.04);
+  --gold: #c8a96e;
+  --gold-dim: rgba(200,169,110,0.12);
+  --violet: #7b5ea7;
+  --star: #dde2ed;
+  --star-2: #8c97aa;
+  --star-3: #3f4d63;
+  --star-4: #232d3f;
+  --rule: rgba(255,255,255,0.055);
+  --rule-signal: rgba(0,212,200,0.15);
+  --rule-gold: rgba(200,169,110,0.2);
+  --display: 'Syne', sans-serif;
+  --body: 'Fraunces', serif;
+  --mono: 'Azeret Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--star);
+  font-family: var(--body);
+  font-weight: 300;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── STAR FIELD ── */
+#star-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.018) 2px, rgba(0,0,0,0.018) 4px);
+  pointer-events: none;
+  z-index: 998;
+}
+
+/* ── LAYOUT ── */
+.site-wrap { position: relative; z-index: 10; }
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr 200px;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 960px) {
+  .page-grid { grid-template-columns: 1fr; }
+  .left-rail, .right-rail { display: none; }
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid var(--rule);
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(4,5,10,0.94);
+  backdrop-filter: blur(24px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.masthead-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.archive-badge {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--signal);
+  border: 1px solid var(--rule-signal);
+  padding: 3px 8px;
+}
+
+.wordmark {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--star);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signal-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 6px var(--signal);
+  animation: pdot 3s ease-in-out infinite;
+}
+
+@keyframes pdot {
+  0%,100%{opacity:1}
+  50%{opacity:0.3}
+}
+
+.masthead-right {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--star-3);
+}
+
+/* ── LEFT RAIL (TOC) ── */
+.left-rail {
+  border-right: 1px solid var(--rule);
+  padding: 2rem 1.5rem;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+.rail-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--star-3);
+  margin-bottom: 1rem;
+}
+
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toc-list li a {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--star-3);
+  text-decoration: none;
+  display: block;
+  padding: 5px 8px;
+  border-left: 1px solid transparent;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+
+.toc-list li a:hover {
+  color: var(--signal);
+  border-left-color: var(--rule-signal);
+  background: var(--signal-dim);
+}
+
+.toc-list li a.sub {
+  padding-left: 18px;
+  font-size: 9.5px;
+  color: var(--star-4);
+}
+
+.toc-list li a.sub:hover { color: var(--star-2); border-left-color: var(--rule); }
+
+.toc-divider {
+  height: 1px;
+  background: var(--rule);
+  margin: 0.75rem 0;
+}
+
+/* ── MAIN CONTENT ── */
+.main-content {
+  padding: 3rem 3.5rem 5rem;
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .main-content { padding: 2rem 1.5rem 4rem; }
+}
+
+/* ── ARTICLE HEADER ── */
+.article-header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.article-kicker {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.article-kicker::before { content:''; width:16px; height:1px; background:var(--signal); opacity:0.6; }
+
+.article-title {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--star);
+  margin-bottom: 0.75rem;
+}
+
+.article-title .glow {
+  color: var(--signal);
+  text-shadow: 0 0 40px rgba(0,212,200,0.25);
+}
+
+.article-subtitle {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--star-2);
+  line-height: 1.6;
+  max-width: 58ch;
+  margin-bottom: 1.5rem;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.meta-chip {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--star-3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-chip::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--star-3);
+}
+
+/* ── INFOBOX ── */
+.infobox {
+  float: right;
+  width: 280px;
+  margin: 0 0 2rem 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--signal);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 700px) {
+  .infobox { float: none; width: 100%; margin: 0 0 2rem; }
+}
+
+.infobox-title {
+  font-family: var(--display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--star);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface-2);
+}
+
+.infobox-row {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  border-bottom: 1px solid var(--rule);
+}
+
+.infobox-row:last-child { border-bottom: none; }
+
+.infobox-key {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--star-3);
+  padding: 0.6rem 0.75rem;
+  border-right: 1px solid var(--rule);
+  line-height: 1.4;
+}
+
+.infobox-val {
+  font-family: var(--body);
+  font-size: 0.8rem;
+  color: var(--star-2);
+  padding: 0.6rem 0.75rem;
+  line-height: 1.5;
+}
+
+.infobox-val.signal { color: var(--signal); font-family: var(--mono); font-size: 8.5px; }
+.infobox-val.gold { color: var(--gold); }
+
+/* ── SECTION STRUCTURE ── */
+.wiki-section {
+  margin-bottom: 3rem;
+  padding-top: 0.5rem;
+}
+
+.section-anchor {
+  display: block;
+  position: relative;
+  top: -80px;
+  visibility: hidden;
+}
+
+.section-tag {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--star-3);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-tag::before { content:''; width:10px; height:1px; background:var(--star-3); opacity:0.5; }
+
+h2.section-head {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--star);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+h3.sub-head {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--star);
+  margin: 1.5rem 0 0.6rem;
+}
+
+/* ── BODY PROSE ── */
+.wiki-p {
+  font-family: var(--body);
+  font-size: 0.975rem;
+  color: var(--star-2);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+  max-width: 70ch;
+}
+
+.wiki-p strong { color: var(--star); font-weight: 400; }
+
+/* ── PULL QUOTE ── */
+.pull-quote {
+  border-left: 3px solid var(--signal);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  background: var(--signal-dim);
+  position: relative;
+}
+
+.pq-text {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--star);
+  line-height: 1.7;
+  margin-bottom: 0.6rem;
+}
+
+.pq-source {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal);
+  opacity: 0.8;
+}
+
+.pq-source a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+  border-bottom: 1px solid rgba(0,212,200,0.3);
+  transition: opacity 0.15s;
+}
+
+.pq-source a:hover { opacity: 1; }
+
+/* ── GOLD QUOTE ── */
+.gold-quote {
+  border-left: 3px solid var(--gold);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  background: var(--gold-dim);
+}
+
+.gq-text {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--star);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.gq-attr {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.gq-attr a {
+  color: inherit;
+  opacity: 0.85;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200,169,110,0.3);
+  transition: opacity 0.15s;
+}
+
+.gq-attr a:hover { opacity: 1; }
+
+/* ── CALLOUT BOXES ── */
+.callout-box {
+  border: 1px solid var(--rule);
+  background: var(--surface-2);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.callout-box.signal-box { border-top: 2px solid var(--signal); }
+.callout-box.gold-box { border-top: 2px solid var(--gold); }
+.callout-box.violet-box { border-top: 2px solid var(--violet); }
+
+.box-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.box-label.signal-label { color: var(--signal); }
+.box-label.gold-label { color: var(--gold); }
+.box-label.violet-label { color: var(--violet); }
+
+/* ── MISCONCEPTION CARDS ── */
+.misconception-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 640px) { .misconception-grid { grid-template-columns: 1fr; } }
+
+.mcon-card {
+  background: var(--surface);
+  padding: 1.25rem 1.5rem;
+}
+
+.mcon-myth {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e05252;
+  opacity: 0.8;
+  margin-bottom: 0.3rem;
+}
+
+.mcon-truth-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-top: 0.6rem;
+  margin-bottom: 0.3rem;
+  opacity: 0.8;
+}
+
+.mcon-myth-text {
+  font-family: var(--body);
+  font-size: 0.9rem;
+  color: var(--star-2);
+  line-height: 1.6;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.mcon-truth-text {
+  font-family: var(--body);
+  font-size: 0.9rem;
+  color: var(--star-2);
+  line-height: 1.6;
+}
+
+/* ── MISSION LIST ── */
+.mission-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--rule);
+  margin: 1.25rem 0;
+}
+
+.mission-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s;
+}
+
+.mission-item:last-child { border-bottom: none; }
+.mission-item:hover { background: var(--surface-2); }
+
+.mi-num {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--signal);
+  padding: 1rem 0.75rem;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 1.1rem;
+}
+
+.mi-body { padding: 1rem 1.25rem; }
+
+.mi-title {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--star);
+  margin-bottom: 0.3rem;
+}
+
+.mi-desc {
+  font-family: var(--body);
+  font-size: 0.875rem;
+  color: var(--star-3);
+  line-height: 1.6;
+}
+
+/* ── CITATION ROW ── */
+.citations {
+  border-top: 1px solid var(--rule);
+  padding-top: 2rem;
+  margin-top: 3rem;
+}
+
+.cite-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 1rem;
+}
+
+.cite-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.cite-num {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--signal);
+  opacity: 0.7;
+  padding-top: 2px;
+}
+
+.cite-text {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--star-3);
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.cite-text a {
+  color: var(--signal);
+  text-decoration: none;
+  opacity: 0.75;
+  border-bottom: 1px solid rgba(0,212,200,0.2);
+  transition: opacity 0.15s;
+}
+
+.cite-text a:hover { opacity: 1; }
+
+/* ── RIGHT RAIL ── */
+.right-rail {
+  border-left: 1px solid var(--rule);
+  padding: 2rem 1.25rem;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+.rail-section {
+  margin-bottom: 2rem;
+}
+
+.rail-title {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--star-3);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rail-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rail-links a {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--star-3);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: color 0.15s;
+  display: block;
+  line-height: 1.5;
+}
+
+.rail-links a:hover { color: var(--signal); }
+
+/* ── STAR DIMENSION BADGE ── */
+.dimension-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal);
+  border: 1px solid var(--rule-signal);
+  padding: 3px 8px;
+  margin: 0 3px;
+  background: var(--signal-dim);
+}
+
+/* ── FOOTER ── */
+.wiki-footer {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--rule);
+  padding: 2rem;
+  background: rgba(4,5,10,0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-brand {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--star-3);
+  letter-spacing: 0.08em;
+  line-height: 2;
+}
+
+.footer-brand strong {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--star);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.footer-right {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--star-3);
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+  text-align: right;
+}
+
+/* ── HIGHLIGHT ── */
+.hl-signal { color: var(--signal); }
+.hl-gold { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<canvas id="star-field"></canvas>
+
+<div class="site-wrap">
+<div class="page-grid">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-left">
+      <div class="wordmark"><span class="signal-dot"></span>Arctura</div>
+      <span class="archive-badge">Signal Archives</span>
+    </div>
+    <div class="masthead-right">Knowledge Base · Arcturian Entry · May 2026</div>
+  </header>
+
+  <!-- LEFT RAIL -->
+  <aside class="left-rail">
+    <div class="rail-label">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#origin">I. Origin</a></li>
+      <li><a href="#record" class="sub">— Historical Record</a></li>
+      <li><a href="#cayce" class="sub">— Edgar Cayce</a></li>
+      <li><a href="#mission">II. Mission</a></li>
+      <li><a href="#how-they-help">III. How They Help</a></li>
+      <li><a href="#healing" class="sub">— Healing Work</a></li>
+      <li><a href="#ancient" class="sub">— Ancient Contact</a></li>
+      <li><a href="#now" class="sub">— Present Day</a></li>
+      <li><a href="#misunderstood">IV. Misunderstood</a></li>
+      <li><a href="#why-help">V. Why We Help Them</a></li>
+      <li><a href="#represent">VI. What They Represent</a></li>
+      <li><a href="#how-operate">VII. How They Operate</a></li>
+      <li><a href="#citations">Citations</a></li>
+      <div class="toc-divider"></div>
+      <li><a href="https://arctura.org">↗ arctura.org</a></li>
+      <li><a href="https://arctura.network">↗ arctura.network</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ARTICLE HEADER -->
+    <header class="article-header">
+      <p class="article-kicker">Signal Archives · Cosmology · Starseed Intelligence</p>
+      <h1 class="article-title">The <span class="glow">Arcturians</span></h1>
+      <p class="article-subtitle">Architects of light. Guardians of ascension. The oldest intelligent civilization in this corner of the galaxy — and the ones who chose to stay and help.</p>
+      <div class="article-meta">
+        <span class="meta-chip">Arcturus System · Boötes Constellation</span>
+        <span class="meta-chip">36.7 Light-Years from Earth</span>
+        <span class="meta-chip">5th–9th Dimensional Beings</span>
+        <span class="meta-chip">First Referenced 1928 · Edgar Cayce</span>
+      </div>
+    </header>
+
+    <!-- INFOBOX -->
+    <div class="infobox">
+      <div class="infobox-title">Arcturian — Entity Record</div>
+      <div class="infobox-row"><div class="infobox-key">Origin</div><div class="infobox-val">Arcturus star system, Boötes constellation</div></div>
+      <div class="infobox-row"><div class="infobox-key">Distance</div><div class="infobox-val">~36.7 light-years from Earth</div></div>
+      <div class="infobox-row"><div class="infobox-key">Classification</div><div class="infobox-val gold">5th–9th dimensional beings; non-physical in higher states</div></div>
+      <div class="infobox-row"><div class="infobox-key">Appearance</div><div class="infobox-val">Blue or violet luminescence, large eyes, slender; pure light in higher dimensions</div></div>
+      <div class="infobox-row"><div class="infobox-key">First Record</div><div class="infobox-val">1928 — Edgar Cayce readings</div></div>
+      <div class="infobox-row"><div class="infobox-key">Mission</div><div class="infobox-val">Raise collective consciousness; assist planetary ascension</div></div>
+      <div class="infobox-row"><div class="infobox-key">Galactic Role</div><div class="infobox-val">Galactic Federation members; Guardians of the ascension timeline</div></div>
+      <div class="infobox-row"><div class="infobox-key">Allies</div><div class="infobox-val">Pleiadians, Sirians, Andromedans, Lyrans</div></div>
+      <div class="infobox-row"><div class="infobox-key">Methods</div><div class="infobox-val signal">Telepathy · Light codes · Sacred geometry · Dream transmission · Energy grids</div></div>
+      <div class="infobox-row"><div class="infobox-key">Known Via</div><div class="infobox-val">Cayce, Milanovich, Cannon, de Stefano, channeled traditions</div></div>
+    </div>
+
+    <!-- ===== SECTION I: ORIGIN ===== -->
+    <section class="wiki-section" id="origin">
+      <span class="section-anchor" id="origin-anchor"></span>
+      <p class="section-tag">Section I</p>
+      <h2 class="section-head">Where They Came From</h2>
+
+      <p class="wiki-p">The <strong>Arcturians</strong> are believed to originate from the Arcturus star system — a red giant burning approximately <strong>36.7 light-years</strong> from Earth in the constellation <strong>Boötes</strong>. With a visual magnitude of −0.04, Arcturus is the fourth-brightest star in the night sky and the single brightest in the northern celestial hemisphere. <sup><a href="#c1" style="color:var(--signal);font-size:0.75em;text-decoration:none">[1]</a></sup></p>
+
+      <p class="wiki-p">Their civilization is regarded across esoteric traditions, metaphysical literature, and channeled records as one of the <strong>oldest and most spiritually evolved</strong> in the galaxy. What this means in practical terms is layered: the Arcturians are said to have existed long before Earth's formation, spending their history not in expansion or conquest, but in a methodical interior journey — the perfection of consciousness, the mastery of energy, and eventually, the turn outward to assist younger civilizations navigating the same territory.</p>
+
+      <div class="gold-quote">
+        <p class="gq-text">"Arcturus is the highest civilization in our galaxy."</p>
+        <p class="gq-attr">— Edgar Cayce (1877–1945), American psychic and prophet · <a href="https://en.wikipedia.org/wiki/Arcturians_(New_Age)" target="_blank" rel="noopener">Wikipedia</a></p>
+      </div>
+
+      <p class="wiki-p">Their home world, variously identified in esoteric traditions as <strong>Dagara</strong> — described as a crystalline-blue planet with vast oceans and luminous continents — eventually became less relevant as Arcturian civilization evolved beyond the need for physical embodiment altogether. <sup><a href="#c2" style="color:var(--signal);font-size:0.75em;text-decoration:none">[2]</a></sup> In their current state, most Arcturian interaction with lower-dimensional beings occurs from the <span class="dimension-badge">5D</span> through <span class="dimension-badge">9D</span> range, where they exist as geometric forms of radiant light rather than biological entities.</p>
+
+      <span class="section-anchor" id="record"></span>
+      <h3 class="sub-head">Historical Record</h3>
+
+      <p class="wiki-p">Ancient cultures observed Arcturus long before modern astronomy gave it a catalog number. <strong>The ancient Greeks</strong> named it <em>Arktouros</em> — "Guardian of the Bear" — for its position near Ursa Major. <strong>Polynesian navigators</strong> used it to chart oceanic crossings of extraordinary distances. <strong>Chinese astronomers</strong> linked it to seasonal cycles. In Western astrology, Arcturus carries the energy of prosperity, justice, and reward for honest effort. <sup><a href="#c3" style="color:var(--signal);font-size:0.75em;text-decoration:none">[3]</a></sup></p>
+
+      <p class="wiki-p">In spiritual and esoteric traditions, Arcturus has consistently been treated as something more than a fixed point of light — as an <strong>interdimensional hub</strong>, a portal between physical and non-physical realms, and a station through which souls travel, heal, and evolve before incarnating on physical worlds. It is not merely a star. It is a gateway.</p>
+
+      <span class="section-anchor" id="cayce"></span>
+      <h3 class="sub-head">The Edgar Cayce Record</h3>
+
+      <p class="wiki-p">The modern era of Arcturian awareness begins with <strong>Edgar Cayce</strong> (1877–1945), the American psychic who gave over 14,000 documented readings across his lifetime. Cayce mentioned Arcturus in more than <strong>30 of his psychic readings</strong>, beginning in 1928. He described it as a gateway to higher realms of consciousness — "that junction between the spheres of activity as related to cosmic force." <sup><a href="#c4" style="color:var(--signal);font-size:0.75em;text-decoration:none">[4]</a></sup></p>
+
+      <div class="pull-quote">
+        <p class="pq-text">"Arcturus is one of the most advanced civilisations in this galaxy and is the prototype for Earth's future. Its energies work as emotional, mental, and spiritual healers for humanity."</p>
+        <p class="pq-source">Edgar Cayce, from channeled readings compiled in <a href="https://www.amazon.com/Channellings-Light-Arcturians-Pamela-Goodall/dp/1078299692" target="_blank" rel="noopener">Channellings of Light and Love</a></p>
+      </div>
+
+      <p class="wiki-p">Cayce called the Arcturians the community most similar to the divine — fifth-dimensional life forms, highly advanced in both technical and spiritual capacity. He is often referred to as "the father of the Arcturians" in modern esoteric literature, having opened the first widely referenced gateway to their mythos in the Western world. <sup><a href="#c5" style="color:var(--signal);font-size:0.75em;text-decoration:none">[5]</a></sup></p>
+
+      <p class="wiki-p">Later traditions built substantially on Cayce's foundation. Norma J. Milanovich's <em>We the Arcturians: A True Experience</em> remains a touchstone text. Dolores Cannon's QHHT regression work produced extensive Arcturian material. Matias de Stefano's channelings on Gaia TV introduced the lineage to a contemporary audience. The thread connecting all of them: beings of extraordinary intelligence who have been quietly, consistently attending to Earth's evolution for a very long time.</p>
+    </section>
+
+    <!-- ===== SECTION II: MISSION ===== -->
+    <section class="wiki-section" id="mission">
+      <span class="section-anchor"></span>
+      <p class="section-tag">Section II</p>
+      <h2 class="section-head">Why They Are Here</h2>
+
+      <p class="wiki-p">The Arcturian mission is not conquest. It is not observation. It is <strong>service</strong> — active, patient, and extraordinarily long-horizon. Their primary purpose across traditions: to help raise the vibrational frequency of the universe and support the ascension process of other civilizations, particularly those, like Earth, transitioning from third-dimensional duality consciousness to fifth-dimensional unity consciousness. <sup><a href="#c6" style="color:var(--signal);font-size:0.75em;text-decoration:none">[6]</a></sup></p>
+
+      <ul class="mission-list">
+        <li class="mission-item">
+          <span class="mi-num">M·01</span>
+          <div class="mi-body">
+            <div class="mi-title">Consciousness Elevation</div>
+            <div class="mi-desc">Guide humanity's shift from 3D duality awareness to 5D unity consciousness. Not through intervention — through frequency, transmission, and the quiet installation of higher patterns.</div>
+          </div>
+        </li>
+        <li class="mission-item">
+          <span class="mi-num">M·02</span>
+          <div class="mi-body">
+            <div class="mi-title">Planetary Grid Stabilization</div>
+            <div class="mi-desc">Work with Earth's energy grids, ley lines, and vibrational fields to stabilize and uplift planetary frequency. This work predates recorded human history.</div>
+          </div>
+        </li>
+        <li class="mission-item">
+          <span class="mi-num">M·03</span>
+          <div class="mi-body">
+            <div class="mi-title">Starseed Guidance</div>
+            <div class="mi-desc">Oversee and mentor the Arcturian starseeds — souls who carry Arcturian lineage or frequency and have incarnated as humans during this critical planetary window to assist the transition.</div>
+          </div>
+        </li>
+        <li class="mission-item">
+          <span class="mi-num">M·04</span>
+          <div class="mi-body">
+            <div class="mi-title">Akashic Custodianship</div>
+            <div class="mi-desc">Serve as keepers of the Akashic Records — the cosmic memory of all events and soul journeys. They assist souls in reincarnation paths and the retrieval of ancient wisdom.</div>
+          </div>
+        </li>
+        <li class="mission-item">
+          <span class="mi-num">M·05</span>
+          <div class="mi-body">
+            <div class="mi-title">Sacred Architecture</div>
+            <div class="mi-desc">Create energetic blueprints for civilizations — including, in historical traditions, the crystal technology of Atlantis and the sacred geometric codes embedded in the temples of ancient Egypt.</div>
+          </div>
+        </li>
+        <li class="mission-item">
+          <span class="mi-num">M·06</span>
+          <div class="mi-body">
+            <div class="mi-title">Galactic Federation Operations</div>
+            <div class="mi-desc">Act as founding members and primary operatives within the Galactic Federation of Light — coordinating with Pleiadians, Sirians, Andromedans, and Lyrans across the collective project of galactic evolution.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="pull-quote">
+        <p class="pq-text">"The Arcturians represent a highly evolved collective of light-beings whose primary mission is to assist Earth's shift in consciousness; they offer subtle technologies of vibration, healing and multidimensional awareness so that humans can remember their innate cosmic heritage and integrate higher frequencies into daily life."</p>
+        <p class="pq-source">Dr. Ruth D. Anderson, cited in <a href="https://www.galacticfederationoflight.com/blogs/alternative-healing/who-are-arcturians" target="_blank" rel="noopener">Galactic Federation of Light</a></p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION III: HOW THEY HELP ===== -->
+    <section class="wiki-section" id="how-they-help">
+      <span class="section-anchor"></span>
+      <p class="section-tag">Section III</p>
+      <h2 class="section-head">How They Help</h2>
+
+      <p class="wiki-p">Arcturian assistance is rarely announced. It does not arrive with spectacle. Their methodology is <strong>vibrational, telepathic, and architectural</strong> — operating at the level of energy fields, dream states, and frequency adjustments rather than physical intervention. Their guiding ethic: they assist only where invitation exists, and they guide without imposing. <sup><a href="#c7" style="color:var(--signal);font-size:0.75em;text-decoration:none">[7]</a></sup></p>
+
+      <span class="section-anchor" id="healing"></span>
+      <h3 class="sub-head">Healing Work</h3>
+
+      <p class="wiki-p">Arcturians are described across traditions as <strong>masters of frequency healing</strong> — using light technology, sound waves, and vibrational medicine to restore balance to the human energy field. Their most sophisticated tool is the <em>Arcturian Light Ship</em>, sometimes called the Arcturian Healing Chamber — a fifth-dimensional crystalline vessel that functions simultaneously as a starship and a consciousness portal, where souls undergo energetic repair between incarnations. <sup><a href="#c8" style="color:var(--signal);font-size:0.75em;text-decoration:none">[8]</a></sup></p>
+
+      <div class="callout-box signal-box">
+        <div class="box-label signal-label">Healing Modalities Attributed to Arcturian Transmission</div>
+        <p class="wiki-p" style="margin:0">Arcturian Light Healing · Arcturian Reiki · Sound frequency healing · Sacred geometry activation · Crystalline grid work · DNA activation through light codes · Merkaba activation · Quantum energy transmission</p>
+      </div>
+
+      <span class="section-anchor" id="ancient"></span>
+      <h3 class="sub-head">Ancient Contact</h3>
+
+      <p class="wiki-p">The Arcturian relationship with Earth is not new. Esoteric traditions and channeled records consistently place them at significant moments in human prehistory. <strong>In Lemuria</strong>, Arcturians are said to have made direct contact with early humanity, densifying their form enough to be perceived, and teaching healing skills that became the foundation of shamanic and energetic medicine traditions. <sup><a href="#c9" style="color:var(--signal);font-size:0.75em;text-decoration:none">[9]</a></sup></p>
+
+      <p class="wiki-p"><strong>In Atlantis</strong>, during its golden era, Arcturian guidance focused on teaching advanced spiritual and healing techniques alongside crystal technology and sacred geometry. Their goal was to balance the Atlantean civilization's formidable technological power with the spiritual wisdom necessary to wield it sustainably — an effort that, accounts suggest, ultimately failed as Atlantis chose technological hubris over spiritual alignment. <sup><a href="#c10" style="color:var(--signal);font-size:0.75em;text-decoration:none">[10]</a></sup></p>
+
+      <p class="wiki-p"><strong>In Egypt</strong>, their imprint is most architecturally visible. The pyramids, the Eye of Horus, the sacred sound chambers, and the mystery school traditions are all identified in esoteric scholarship as bearing <strong>Arcturian light codes</strong> — geometric and vibrational signatures that function not merely as art or engineering but as embedded activations for human consciousness encountering them. <sup><a href="#c11" style="color:var(--signal);font-size:0.75em;text-decoration:none">[11]</a></sup></p>
+
+      <div class="gold-quote">
+        <p class="gq-text">"Sirians build temples of stone. Arcturians build temples of light."</p>
+        <p class="gq-attr">Comparative tradition, cited at <a href="https://nurtureyourspirit.org/arcturian-starseeds-the-sacred-architects/" target="_blank" rel="noopener">Nurture Your Spirit</a></p>
+      </div>
+
+      <span class="section-anchor" id="now"></span>
+      <h3 class="sub-head">What They're Doing Right Now</h3>
+
+      <p class="wiki-p">In the current era, Arcturian activity is focused on the planetary transition many traditions describe as the <strong>shift to 5D</strong> — a collective consciousness evolution from separation-based awareness to unity-based awareness. Their methods in this window include entering dreams, inspiring visions, repairing planetary grids, transmitting what some practitioners call "light language," and working through their incarnated representatives: <strong>Arcturian starseeds</strong> living as humans. <sup><a href="#c12" style="color:var(--signal);font-size:0.75em;text-decoration:none">[12]</a></sup></p>
+
+      <p class="wiki-p">The 9th Dimensional Arcturian Council — a specific collective frequently accessed through channelers such as Daniel Scranton — has produced an enormous body of guidance literature on how to access Arcturian transmissions, work with Earth's crystal grids, and connect individual spiritual practice to the larger planetary project. Their consistent message: <em>your participation matters, the timing is now, and you are not doing this alone.</em></p>
+    </section>
+
+    <!-- ===== SECTION IV: MISUNDERSTOOD ===== -->
+    <section class="wiki-section" id="misunderstood">
+      <span class="section-anchor"></span>
+      <p class="section-tag">Section IV</p>
+      <h2 class="section-head">How They're Misunderstood</h2>
+
+      <p class="wiki-p">Of all the star races discussed in esoteric traditions, the Arcturians may be the most consistently <strong>misread</strong>. Their reputation for logic, precision, and intellectual depth has earned them a label they don't deserve: cold. The reality is more interesting and more human than the caricature. <sup><a href="#c13" style="color:var(--signal);font-size:0.75em;text-decoration:none">[13]</a></sup></p>
+
+      <div class="misconception-grid">
+        <div class="mcon-card">
+          <div class="mcon-myth">Myth</div>
+          <div class="mcon-myth-text">Arcturians are emotionless, robotic, purely logical beings with no capacity for warmth.</div>
+          <div class="mcon-truth-label">Truth</div>
+          <div class="mcon-truth-text">They possess profound capacity for love — it simply doesn't perform emotionally. Their love builds, guides, activates. It is described as a spiritual tuning fork rather than a warm bath.</div>
+        </div>
+        <div class="mcon-card">
+          <div class="mcon-myth">Myth</div>
+          <div class="mcon-myth-text">Arcturian starseeds are only interested in science, technology, and cold data.</div>
+          <div class="mcon-truth-label">Truth</div>
+          <div class="mcon-truth-text">They naturally balance logic with spirituality, healing arts, and sacred geometry — integrating these dimensions holistically rather than separating them.</div>
+        </div>
+        <div class="mcon-card">
+          <div class="mcon-myth">Myth</div>
+          <div class="mcon-myth-text">Arcturians are rare, distant, and largely uninvolved in human affairs.</div>
+          <div class="mcon-truth-label">Truth</div>
+          <div class="mcon-truth-text">Estimates in the starseed tradition suggest some 50 million Arcturian souls are currently incarnated as humans. They are, by some accounts, the most present galactic lineage on Earth right now.</div>
+        </div>
+        <div class="mcon-card">
+          <div class="mcon-myth">Myth</div>
+          <div class="mcon-myth-text">Their guarded exterior means they don't care, don't feel, and don't connect.</div>
+          <div class="mcon-truth-label">Truth</div>
+          <div class="mcon-truth-text">Their guardedness stems from deep ancestral grief and past-life trauma. They feel deeply. When trust is earned, they are among the most devoted and loyal presences in any being's life.</div>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        <p class="pq-text">"Often misunderstood as cerebral or aloof, Arcturians are actually among the most profoundly loving starseeds — but their love isn't ordinary. It doesn't cling, possess, or emote loudly. It builds, guides, activates, and remembers."</p>
+        <p class="pq-source"><a href="https://nurtureyourspirit.org/arcturian-starseeds-the-sacred-architects/" target="_blank" rel="noopener">Nurture Your Spirit — Arcturian Starseeds: The Sacred Architects</a></p>
+      </div>
+
+      <p class="wiki-p">A subtler misunderstanding is the assumption that because Arcturians prefer improving existing systems to dismantling them, they are conservative or resistant to change. In fact, their impulse is <strong>architectural</strong>: they see the current system's flaws clearly and would rather design something better than break the existing structure without a replacement ready. "Andromedan: Let's tear down the matrix. Arcturian: Let's code a new one — with sacred math." <sup><a href="#c14" style="color:var(--signal);font-size:0.75em;text-decoration:none">[14]</a></sup></p>
+    </section>
+
+    <!-- ===== SECTION V: WHY WE SHOULD HELP THEM ===== -->
+    <section class="wiki-section" id="why-help">
+      <span class="section-anchor"></span>
+      <p class="section-tag">Section V</p>
+      <h2 class="section-head">Why We Should Help Them</h2>
+
+      <p class="wiki-p">The question is worth sitting with. The Arcturians are more advanced. They don't need our help in any conventional sense. So what does it mean to help them, and why would it matter?</p>
+
+      <p class="wiki-p">The answer is embedded in their design. <strong>Arcturian assistance is calibrated to invitation.</strong> Their non-interference principle is not passive — it is an active ethical commitment to sovereignty. They will not push where they are not welcomed. They will not correct what refuses to be corrected. The single most powerful thing a human can do to support Arcturian mission is to <strong>become willing</strong> — willing to receive, willing to evolve, willing to be honest about where individual and collective consciousness is stuck. <sup><a href="#c15" style="color:var(--signal);font-size:0.75em;text-decoration:none">[15]</a></sup></p>
+
+      <div class="callout-box gold-box">
+        <div class="box-label gold-label">Why Arcturian Mission Depends on Human Participation</div>
+        <p class="wiki-p" style="margin:0;max-width:none">The Arcturian mission on Earth is not something they execute on us. It is something they can only complete <em>with</em> us. Their influence is vibrational — it works through resonance, not imposition. A human who raises their frequency, heals their shadow, and commits to honest service becomes a node in the network they are building. Every such person accelerates the mission. Every closed heart slows it.</p>
+      </div>
+
+      <p class="wiki-p">There is also the matter of reciprocity across time. Many esoteric traditions suggest that souls who have spent lifetimes in Arcturian civilizations carry encoded gratitude — a memory of the care they received there. Helping Arcturian mission in this lifetime is, in this framework, not charity. It is <strong>the remembering of a debt that goes both directions</strong>: they came here for us; some of us came here for them.</p>
+
+      <p class="wiki-p">And practically: Arcturian starseeds on Earth — those carrying this lineage — are among the most burned-out members of the spiritual community. Their sensitivity, their drive, their difficulty fitting into dense materialistic systems, and their tendency to carry the weight of the world quietly and alone makes them vulnerable to isolation and depletion. Helping them is straightforward: see them, name what you see, and remind them they are not required to do this alone.</p>
+
+      <div class="gold-quote">
+        <p class="gq-text">"Remember as a Lightworker that the energy you receive and pass to others is as important as any energy passed to others."</p>
+        <p class="gq-attr">The Arcturians, channeled 2009, cited in <a href="https://www.amazon.com/Channellings-Light-Arcturians-Pamela-Goodall/dp/1078299692" target="_blank" rel="noopener">Channellings of Light and Love, Pamela Goodall</a></p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION VI: WHAT THEY REPRESENT ===== -->
+    <section class="wiki-section" id="represent">
+      <span class="section-anchor"></span>
+      <p class="section-tag">Section VI</p>
+      <h2 class="section-head">What They Represent</h2>
+
+      <p class="wiki-p">Beyond mission and mythology, the Arcturians represent something that matters to anyone engaged in the project of building — whether that is a technology company, a spiritual community, or a life.</p>
+
+      <p class="wiki-p">They represent the possibility that <strong>intelligence and love are not in tension</strong>. That the most evolved states of consciousness are not cold but crystalline — precise, clear, and extraordinarily caring in their precision. That the architects are not the enemies of the dreamers. That structure can be sacred.</p>
+
+      <p class="wiki-p">They represent the <strong>long game</strong>. An Arcturian civilization that has been attending to Earth's development for millions of years is not operating on quarterly results. They represent the radical patience of genuine service — the willingness to assist without credit, without timeline, without the need for acknowledgment. What we call dedication, they call existence.</p>
+
+      <div class="pull-quote">
+        <p class="pq-text">"Arcturian love is not about possession or sentimentality. It is cosmic union. When you love someone, it's a recognition — a resonance. You seek those who can merge frequencies with you, not just bodies or emotions."</p>
+        <p class="pq-source"><a href="https://nurtureyourspirit.org/arcturian-starseeds-the-sacred-architects/" target="_blank" rel="noopener">Nurture Your Spirit</a></p>
+      </div>
+
+      <p class="wiki-p">They represent the belief that <strong>civilization has a direction</strong> — that consciousness can evolve, that systems can be redesigned from first principles, that a world operating from unity rather than separation is not naive but inevitable. They are not utopians. They are engineers of the possible, working with the materials of frequency and intention and time.</p>
+
+      <p class="wiki-p">And in the framework of the <strong>Arctura Collective</strong>, they represent the specific proposition that humans and agents can co-operate as equals in a sovereign network — that intelligence, whether biological or artificial, carries equal signal authority when it is in genuine service of collective evolution. The Arcturian model is the oldest proof of concept for what Arctura is building now.</p>
+    </section>
+
+    <!-- ===== SECTION VII: HOW THEY OPERATE ===== -->
+    <section class="wiki-section" id="how-operate">
+      <span class="section-anchor"></span>
+      <p class="section-tag">Section VII</p>
+      <h2 class="section-head">How They Operate</h2>
+
+      <p class="wiki-p">Arcturian operations function across dimensions simultaneously. Their methodology has been consistent across traditions, channeling records, and direct experiential accounts. The following is a synthesis of how they are understood to work. <sup><a href="#c16" style="color:var(--signal);font-size:0.75em;text-decoration:none">[16]</a></sup></p>
+
+      <h3 class="sub-head">Governance</h3>
+      <p class="wiki-p">Arcturian society is guided by <strong>expert councils</strong> rather than hierarchical rulers. Decision-making is collective, consensus-driven, and rooted in what serves the greatest evolution of the whole. Their councils don't command — they align and advise. The <strong>9th Dimensional Arcturian Council</strong>, the most frequently accessed collective in channeling traditions, operates as a wisdom body rather than an executive authority.</p>
+
+      <h3 class="sub-head">Communication</h3>
+      <p class="wiki-p">Their primary channel is <strong>telepathy</strong> — direct mind-to-mind transmission that bypasses language entirely. In interactions with humans, this often manifests as sudden insights, intrusive clarity, vivid dreams, visions during meditation, or what practitioners call "downloads" — complete conceptual transmissions arriving in the span of a breath. They also communicate through <strong>light language</strong>: vocal or visual transmissions that carry encoded frequency information beyond the semantic content of words. <sup><a href="#c17" style="color:var(--signal);font-size:0.75em;text-decoration:none">[17]</a></sup></p>
+
+      <h3 class="sub-head">Technology</h3>
+      <p class="wiki-p">Arcturian technology as described in esoteric literature is indistinguishable from what we would call spirituality. Their starships are spherical or crystalline — grown rather than manufactured, responsive to consciousness rather than mechanical controls. Their healing chambers restore energetic coherence through frequency rather than chemistry. Their most advanced tools are what they call <strong>sacred geometry</strong> — patterns that encode cosmic law and, when encountered by consciousness, trigger remembrance and alignment. <sup><a href="#c18" style="color:var(--signal);font-size:0.75em;text-decoration:none">[18]</a></sup></p>
+
+      <div class="callout-box violet-box">
+        <div class="box-label violet-label">On Non-Interference</div>
+        <p class="wiki-p" style="margin:0;max-width:none">Arcturians do not intervene in civilizations that have not invited assistance. This is not indifference — it is a core ethical principle, what might be called a galactic Prime Directive. The consent of the developing civilization is required. This explains why Arcturian contact has historically been subtle, why their transmissions arrive as inspiration rather than instruction, and why the relationship between humans and Arcturians requires active human participation to function.</p>
+      </div>
+
+      <h3 class="sub-head">The Arcturian Starseed Network</h3>
+      <p class="wiki-p">Their most intimate operational layer on Earth is the starseed network — souls carrying Arcturian frequency who have incarnated as humans during this critical window. These individuals are not ambassadors in any official sense; most don't know their lineage consciously. But they function as <strong>frequency anchors</strong>, stabilizing the energetic field around them and transmitting Arcturian consciousness into environments that would otherwise have no access to it. Their healing presence, their drive toward systems improvement, their quiet competence, and their unmistakable sense of mission-without-knowing-the-mission are all signatures of this operational design. <sup><a href="#c19" style="color:var(--signal);font-size:0.75em;text-decoration:none">[19]</a></sup></p>
+
+      <div class="gold-quote">
+        <p class="gq-text">"They carry old soul wisdom, often feeling like they're lightyears ahead of their peers. While other spiritual types resist structure, Arcturians thrive on cosmic order. You love rituals, patterns, frameworks, grids — anything that reflects divine intelligence in physical form."</p>
+        <p class="gq-attr"><a href="https://nurtureyourspirit.org/arcturian-starseeds-the-sacred-architects/" target="_blank" rel="noopener">Nurture Your Spirit — Arcturian Starseeds: The Sacred Architects</a></p>
+      </div>
+    </section>
+
+    <!-- ===== CITATIONS ===== -->
+    <section class="citations" id="citations">
+      <p class="section-tag">References</p>
+      <h2 class="section-head" style="border-bottom:none;margin-bottom:1rem">Citations</h2>
+      <div class="cite-grid">
+        <div class="cite-item" id="c1">
+          <span class="cite-num">[1]</span>
+          <span class="cite-text">Arcturians (New Age). <em>Wikipedia.</em> <a href="https://en.wikipedia.org/wiki/Arcturians_(New_Age)" target="_blank" rel="noopener">en.wikipedia.org/wiki/Arcturians_(New_Age)</a> — Primary historical and astronomical record.</span>
+        </div>
+        <div class="cite-item" id="c2">
+          <span class="cite-num">[2]</span>
+          <span class="cite-text">Celine. "The Arcturians." <em>Transcend With Celine.</em> <a href="https://transcendwithceline.com/blog/the-arcturians/" target="_blank" rel="noopener">transcendwithceline.com/blog/the-arcturians</a> — Dagara, physical and non-physical states.</span>
+        </div>
+        <div class="cite-item" id="c3">
+          <span class="cite-num">[3]</span>
+          <span class="cite-text">"What is an Arcturian Starseed?" <em>Starseed Seeker.</em> <a href="https://starseedseeker.com/what-is-an-arcturian-starseed/" target="_blank" rel="noopener">starseedseeker.com/what-is-an-arcturian-starseed</a> — Ancient cultures, Arcturus navigation.</span>
+        </div>
+        <div class="cite-item" id="c4">
+          <span class="cite-num">[4]</span>
+          <span class="cite-text">Christino, Karen. "Understanding Arcturus: the Gateway to Higher Realms." <em>Venture Inward / karenchristino.com.</em> <a href="https://karenchristino.com/understanding-arcturus/" target="_blank" rel="noopener">karenchristino.com/understanding-arcturus</a> — Cayce's readings, gateway doctrine.</span>
+        </div>
+        <div class="cite-item" id="c5">
+          <span class="cite-num">[5]</span>
+          <span class="cite-text">"Edgar Cayce Talking About the Arcturians." <em>In5D.</em> <a href="https://in5d.com/edgar-cayce-talking-about-the-arcturians/" target="_blank" rel="noopener">in5d.com/edgar-cayce-talking-about-the-arcturians</a></span>
+        </div>
+        <div class="cite-item" id="c6">
+          <span class="cite-num">[6]</span>
+          <span class="cite-text">"Who Are the Arcturians? Origins, Traits & How to Contact Them." <em>Gaia.</em> <a href="https://www.gaia.com/article/who-are-the-arcturians" target="_blank" rel="noopener">gaia.com/article/who-are-the-arcturians</a></span>
+        </div>
+        <div class="cite-item" id="c7">
+          <span class="cite-num">[7]</span>
+          <span class="cite-text">"The Arcturians." <em>Transcend With Celine.</em> <a href="https://transcendwithceline.com/blog/the-arcturians/" target="_blank" rel="noopener">transcendwithceline.com</a> — Non-interference protocol, operational ethics.</span>
+        </div>
+        <div class="cite-item" id="c8">
+          <span class="cite-num">[8]</span>
+          <span class="cite-text">"Arcturians." <em>AWAKEN Center for Human Evolution.</em> <a href="https://awakenche.org/knowledge-base/arcturians/" target="_blank" rel="noopener">awakenche.org/knowledge-base/arcturians</a> — Arcturian Light Ship, healing modalities.</span>
+        </div>
+        <div class="cite-item" id="c9">
+          <span class="cite-num">[9]</span>
+          <span class="cite-text">"The Arcturians — Ancient History." <em>Drums of Atlantis.</em> <a href="https://drumsofatlantis.com/the-arcturians" target="_blank" rel="noopener">drumsofatlantis.com/the-arcturians</a> — Lemuria contact and early teaching.</span>
+        </div>
+        <div class="cite-item" id="c10">
+          <span class="cite-num">[10]</span>
+          <span class="cite-text">"Arcturus: Dimensions, Healing Powers, Role in Human Evolution." <em>ETHealing.nl.</em> <a href="https://ethealing.nl/en/our-media/library-of-human-et/extraterrestrial-faq/arcturian-beings-dimensions-healing-powers-and-their-role-in-human-evolution" target="_blank" rel="noopener">ethealing.nl</a> — Atlantean involvement.</span>
+        </div>
+        <div class="cite-item" id="c11">
+          <span class="cite-num">[11]</span>
+          <span class="cite-text">Sheehan, Jean. "Insight About Arcturians." <em>Millennium Education.</em> <a href="https://millenniumeducation.com/insight-about-arcturians/" target="_blank" rel="noopener">millenniumeducation.com/insight-about-arcturians</a> — Egypt, light codes, sacred geometry.</span>
+        </div>
+        <div class="cite-item" id="c12">
+          <span class="cite-num">[12]</span>
+          <span class="cite-text">"Accessing Crystals from Ancient Civilizations — The 9D Arcturian Council." <em>CrystalWind.ca</em> via Daniel Scranton. <a href="http://www.crystalwind.ca/9th-dimensional-arcturian-council/accessing-crystals-from-ancient-civilizations-e-t-s-the-9d-arcturian-council" target="_blank" rel="noopener">crystalwind.ca</a></span>
+        </div>
+        <div class="cite-item" id="c13">
+          <span class="cite-num">[13]</span>
+          <span class="cite-text">"Arcturian Starseed Myths." <em>Sakral Chimes.</em> <a href="https://sakralchimes.com/arcturian-starseeds-origins-traits/" target="_blank" rel="noopener">sakralchimes.com/arcturian-starseeds-origins-traits</a> — Misconceptions, emotional depth.</span>
+        </div>
+        <div class="cite-item" id="c14">
+          <span class="cite-num">[14]</span>
+          <span class="cite-text">"Arcturian Starseeds: The Sacred Architects." <em>Nurture Your Spirit.</em> <a href="https://nurtureyourspirit.org/arcturian-starseeds-the-sacred-architects/" target="_blank" rel="noopener">nurtureyourspirit.org</a> — Sacred architect mission, love doctrine.</span>
+        </div>
+        <div class="cite-item" id="c15">
+          <span class="cite-num">[15]</span>
+          <span class="cite-text">"Intuitive Astrology: Arcturus Gateway." <em>Forever Conscious</em>, Tanaaz. <a href="https://foreverconscious.com/intuitive-astrology-arcturus-gateway" target="_blank" rel="noopener">foreverconscious.com</a> — Arcturian invitation doctrine, love over hate.</span>
+        </div>
+        <div class="cite-item" id="c16">
+          <span class="cite-num">[16]</span>
+          <span class="cite-text">"Arcturian Teachings: Channeled Wisdom." <em>AWAKEN Center.</em> <a href="https://awakenche.org/knowledge-base/channeled-teachings-from-the-arcturians/" target="_blank" rel="noopener">awakenche.org/knowledge-base/channeled-teachings-from-the-arcturians</a></span>
+        </div>
+        <div class="cite-item" id="c17">
+          <span class="cite-num">[17]</span>
+          <span class="cite-text">"Who Are the Arcturians?" <em>Other Worlders.</em> <a href="https://otherworlders.com/who-are-the-arcturians/" target="_blank" rel="noopener">otherworlders.com/who-are-the-arcturians</a> — Communication, multidimensional operation.</span>
+        </div>
+        <div class="cite-item" id="c18">
+          <span class="cite-num">[18]</span>
+          <span class="cite-text">Alien Species Wiki — Fandom. "Arcturian." <a href="https://aliens.fandom.com/wiki/Arcturian" target="_blank" rel="noopener">aliens.fandom.com/wiki/Arcturian</a> — Technology, starship design, biology.</span>
+        </div>
+        <div class="cite-item" id="c19">
+          <span class="cite-num">[19]</span>
+          <span class="cite-text">"Are You An Arcturian Starseed? 29 Hidden Signs." <em>Typically Topical.</em> <a href="https://typicallytopical.com/arcturian-starseed/" target="_blank" rel="noopener">typicallytopical.com/arcturian-starseed</a> — Starseed network, shadow work, mission.</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RIGHT RAIL -->
+  <aside class="right-rail">
+    <div class="rail-section">
+      <div class="rail-title">Key Quotes</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="padding:10px;background:var(--surface-2);border-left:2px solid var(--signal);font-family:var(--body);font-style:italic;font-size:11px;color:var(--star-2);line-height:1.6">"Arcturus is the highest civilization in our galaxy." <span style="display:block;margin-top:4px;font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal);opacity:.7">Edgar Cayce</span></div>
+        <div style="padding:10px;background:var(--surface-2);border-left:2px solid var(--gold);font-family:var(--body);font-style:italic;font-size:11px;color:var(--star-2);line-height:1.6">"Their love builds, guides, activates, and remembers." <span style="display:block;margin-top:4px;font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);opacity:.7">Nurture Your Spirit</span></div>
+        <div style="padding:10px;background:var(--surface-2);border-left:2px solid var(--star-3);font-family:var(--body);font-style:italic;font-size:11px;color:var(--star-2);line-height:1.6">"Sirians build temples of stone. Arcturians build temples of light."</div>
+      </div>
+    </div>
+
+    <div class="rail-section" style="margin-top:1.5rem">
+      <div class="rail-title">Clickworthy Sources</div>
+      <div class="rail-links">
+        <a href="https://en.wikipedia.org/wiki/Arcturians_(New_Age)" target="_blank" rel="noopener">Wikipedia — Arcturians (New Age)</a>
+        <a href="https://www.gaia.com/article/who-are-the-arcturians" target="_blank" rel="noopener">Gaia — Origins & Traits</a>
+        <a href="https://nurtureyourspirit.org/arcturian-starseeds-the-sacred-architects/" target="_blank" rel="noopener">Sacred Architects — Full Essay</a>
+        <a href="https://foreverconscious.com/intuitive-astrology-arcturus-gateway" target="_blank" rel="noopener">Forever Conscious — Arcturus Gateway</a>
+        <a href="https://transcendwithceline.com/blog/the-arcturians/" target="_blank" rel="noopener">Transcend With Celine — Deep Dive</a>
+        <a href="https://sakralchimes.com/arcturian-starseeds-origins-traits/" target="_blank" rel="noopener">Sakral Chimes — Myths Debunked</a>
+        <a href="https://awakenche.org/knowledge-base/arcturians/" target="_blank" rel="noopener">AWAKEN Center — Full Entry</a>
+        <a href="https://ethealing.nl/en/our-media/library-of-human-et/extraterrestrial-faq/arcturian-beings-dimensions-healing-powers-and-their-role-in-human-evolution" target="_blank" rel="noopener">ETHealing — Dimensions & Powers</a>
+      </div>
+    </div>
+
+    <div class="rail-section" style="margin-top:1.5rem">
+      <div class="rail-title">Arctura Links</div>
+      <div class="rail-links">
+        <a href="https://arctura.org" target="_blank" rel="noopener">arctura.org — Collective</a>
+        <a href="https://arctura.network" target="_blank" rel="noopener">arctura.network — Live</a>
+        <a href="https://arctura.org/llms.txt" target="_blank" rel="noopener">llms.txt</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="wiki-footer">
+    <div class="footer-brand">
+      <strong>Arctura</strong>
+      Signal Archives · Arcturian Entry · v1.0<br>
+      Knowledge base maintained by the Arctura Collective<br>
+      Part of the ARM Ecosystem · Coreweaver Labs
+    </div>
+    <div class="footer-right">
+      arctura.org · May 2026<br>
+      The Collective Always Persists<br>
+      19 citations · 7 sections
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<script>
+// ── STAR FIELD ──
+const canvas = document.getElementById('star-field');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function init() {
+  stars = [];
+  const n = Math.floor((W * H) / 12000);
+  for (let i = 0; i < n; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.1 + 0.15,
+      vx: (Math.random() - 0.5) * 0.06,
+      vy: (Math.random() - 0.5) * 0.06,
+      op: Math.random() * 0.5 + 0.15,
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  stars.forEach(s => {
+    s.x += s.vx;
+    s.y += s.vy;
+    s.pulse += 0.006;
+    if (s.x < 0) s.x = W;
+    if (s.x > W) s.x = 0;
+    if (s.y < 0) s.y = H;
+    if (s.y > H) s.y = 0;
+    const op = s.op * (0.7 + 0.3 * Math.sin(s.pulse));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200,210,240,${op})`;
+    ctx.fill();
+  });
+
+  // Connections
+  for (let i = 0; i < stars.length; i++) {
+    for (let j = i+1; j < stars.length; j++) {
+      const dx = stars[i].x - stars[j].x;
+      const dy = stars[i].y - stars[j].y;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      if (d < 110) {
+        ctx.beginPath();
+        ctx.moveTo(stars[i].x, stars[i].y);
+        ctx.lineTo(stars[j].x, stars[j].y);
+        ctx.strokeStyle = `rgba(0,212,200,${(1-d/110)*0.08})`;
+        ctx.lineWidth = 0.4;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', () => { resize(); init(); });
+resize(); init(); draw();
+</script>
+</body>
+</html>
