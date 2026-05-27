@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arctura Academy</title>
+<meta name="description" content="Sovereign intelligence, on-chain. The Arctura Academy trains operators, builders, and network contributors in the full ARM framework.">
+<meta property="og:title" content="Arctura Academy">
+<meta property="og:description" content="Sovereign intelligence, on-chain. The Arctura Academy trains operators, builders, and network contributors in the full ARM framework.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://arctura.org/academy">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #03040a;
+  --void-2: #080b14;
+  --signal: #00d4c8;
+  --signal-dim: rgba(0,212,200,0.12);
+  --signal-mid: rgba(0,212,200,0.35);
+  --gold: #c9a86c;
+  --gold-dim: rgba(201,168,108,0.15);
+  --gold-mid: rgba(201,168,108,0.35);
+  --star: #dce3f0;
+  --muted: #6b7591;
+  --border: rgba(220,227,240,0.08);
+  --track: #1a1e2e;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--void);
+  color: var(--star);
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CURSOR */
+.cursor-ring { position:fixed; width:32px; height:32px; border:1.5px solid var(--signal); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .2s,height .2s,border-color .3s; }
+.cursor-dot  { position:fixed; width:5px; height:5px; background:var(--signal); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:background .3s; }
+
+/* SCROLL BAR */
+.scroll-bar { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--signal),var(--gold)); z-index:1000; width:0%; transition:width .1s; box-shadow:0 0 8px var(--signal); }
+
+/* STAR CANVAS */
+#star-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.55; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 48px;
+  background:rgba(3,4,10,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand { font-family:'Syne',sans-serif; font-weight:800; font-size:13px; letter-spacing:.2em; color:var(--signal); text-decoration:none; text-transform:uppercase; }
+.nav-links { display:flex; align-items:center; gap:28px; }
+.nav-links a { font-family:'Azeret Mono',monospace; font-size:11px; color:var(--muted); text-decoration:none; letter-spacing:.08em; text-transform:uppercase; transition:color .2s; }
+.nav-links a:hover { color:var(--star); }
+.nav-cta { font-family:'Azeret Mono',monospace; font-size:11px; color:var(--signal); text-decoration:none; letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--signal-mid); padding:7px 16px; transition:all .2s; }
+.nav-cta:hover { background:var(--signal-dim); }
+
+/* HERO */
+.hero {
+  position:relative; z-index:1;
+  min-height:100vh; display:flex; align-items:center;
+  padding:140px 48px 80px;
+  max-width:1200px; margin:0 auto;
+}
+.hero-inner { max-width:700px; }
+.hero-eyebrow {
+  font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.25em;
+  color:var(--signal); text-transform:uppercase; margin-bottom:28px;
+  display:flex; align-items:center; gap:12px;
+  opacity:0; animation:fadeUp .7s .1s forwards;
+}
+.hero-eyebrow::before { content:''; display:block; width:32px; height:1px; background:linear-gradient(90deg,var(--signal),var(--gold)); }
+.hero h1 {
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:clamp(52px,8vw,96px); line-height:.96;
+  letter-spacing:-.03em; margin-bottom:32px;
+  opacity:0; animation:fadeUp .7s .25s forwards;
+}
+.hero h1 em {
+  font-style:normal;
+  background:linear-gradient(90deg,var(--signal),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  display:block;
+}
+.hero-sub {
+  font-size:18px; font-weight:300; color:rgba(220,227,240,.72);
+  max-width:480px; margin-bottom:52px; line-height:1.65; font-style:italic;
+  opacity:0; animation:fadeUp .7s .4s forwards;
+}
+.hero-actions { display:flex; flex-wrap:wrap; gap:16px; opacity:0; animation:fadeUp .7s .55s forwards; }
+.btn-enter {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--signal); color:var(--void);
+  font-family:'Syne',sans-serif; font-weight:700;
+  font-size:12px; letter-spacing:.15em; text-transform:uppercase;
+  padding:15px 32px; text-decoration:none;
+  transition:all .25s; position:relative; overflow:hidden;
+}
+.btn-enter::after { content:''; position:absolute; inset:0; background:rgba(255,255,255,.15); transform:translateX(-100%); transition:transform .3s; }
+.btn-enter:hover::after { transform:translateX(0); }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:10px;
+  border:1px solid var(--signal-mid); color:var(--signal);
+  font-family:'Syne',sans-serif; font-weight:600;
+  font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  padding:15px 28px; text-decoration:none; background:transparent;
+  transition:all .25s;
+}
+.btn-ghost:hover { background:var(--signal-dim); }
+
+/* LARGE GHOST TEXT */
+.hero-ghost-text {
+  position:absolute; right:-20px; top:50%; transform:translateY(-50%);
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:clamp(80px,14vw,200px); line-height:1;
+  color:transparent; -webkit-text-stroke:1px rgba(0,212,200,.07);
+  pointer-events:none; user-select:none; letter-spacing:-.04em;
+  white-space:nowrap;
+}
+
+/* SIGNAL DIVIDER */
+.signal-divider { width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--signal-mid),transparent); }
+
+/* SECTION */
+section { position:relative; z-index:1; }
+.section-frame { max-width:1200px; margin:0 auto; padding:96px 48px; }
+.section-label {
+  font-family:'Azeret Mono',monospace; font-size:10px; letter-spacing:.3em;
+  color:var(--signal); text-transform:uppercase; margin-bottom:56px;
+  display:flex; align-items:center; gap:16px;
+}
+.section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.section-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(28px,4vw,46px); letter-spacing:-.02em; margin-bottom:16px; line-height:1.05; }
+.section-intro { font-size:17px; color:rgba(220,227,240,.68); max-width:600px; font-style:italic; margin-bottom:64px; line-height:1.65; }
+
+/* COURSE GRID */
+.courses-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:2px;
+}
+.course-card {
+  display:flex; flex-direction:column;
+  background:var(--void-2);
+  border:1px solid var(--border);
+  padding:40px 36px 36px;
+  text-decoration:none; color:var(--star);
+  position:relative; overflow:hidden;
+  transition:border-color .25s, background .25s;
+  group:true;
+}
+.course-card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:2px;
+  background:var(--card-accent, var(--signal));
+  transform:scaleY(0); transform-origin:bottom; transition:transform .35s;
+}
+.course-card::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at top left, var(--card-glow, rgba(0,212,200,.04)) 0%, transparent 70%);
+  opacity:0; transition:opacity .35s;
+}
+.course-card:hover { border-color:var(--card-border-hover, var(--signal-mid)); background:rgba(8,11,20,.95); }
+.course-card:hover::before { transform:scaleY(1); }
+.course-card:hover::after { opacity:1; }
+.course-tag {
+  font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--card-accent, var(--signal));
+  margin-bottom:20px; display:flex; align-items:center; gap:8px;
+}
+.course-tag::before { content:''; width:16px; height:1px; background:var(--card-accent, var(--signal)); }
+.course-num {
+  font-family:'Azeret Mono',monospace; font-size:80px; font-weight:500;
+  color:transparent; -webkit-text-stroke:1px rgba(220,227,240,.05);
+  line-height:1; margin-bottom:12px; pointer-events:none;
+}
+.course-title {
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:22px; letter-spacing:-.01em; margin-bottom:12px; line-height:1.15;
+}
+.course-desc {
+  font-size:13.5px; color:var(--muted); line-height:1.65;
+  font-family:'Fraunces',serif; font-weight:300; flex:1; margin-bottom:28px;
+}
+.course-meta {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:20px;
+}
+.course-stat {
+  display:flex; flex-direction:column; gap:3px;
+}
+.stat-label { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.2em; color:var(--muted); text-transform:uppercase; }
+.stat-value { font-family:'Syne',sans-serif; font-weight:700; font-size:13px; color:var(--star); }
+.course-arrow {
+  font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.1em;
+  color:var(--card-accent, var(--signal)); text-transform:uppercase;
+  display:flex; align-items:center; gap:6px;
+  transition:gap .2s;
+}
+.course-card:hover .course-arrow { gap:12px; }
+
+/* ACCENT OVERRIDES */
+.card-gold {
+  --card-accent: var(--gold);
+  --card-border-hover: var(--gold-mid);
+  --card-glow: rgba(201,168,108,.04);
+}
+
+/* NETWORK STRIP */
+.network-strip {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  margin-top:0;
+}
+.network-stat {
+  background:var(--void-2);
+  padding:32px 28px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.network-stat-num {
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:clamp(28px,4vw,44px); letter-spacing:-.03em;
+  background:linear-gradient(90deg,var(--signal),var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  line-height:1;
+}
+.network-stat-label {
+  font-family:'Azeret Mono',monospace; font-size:10px;
+  letter-spacing:.2em; color:var(--muted); text-transform:uppercase;
+}
+
+/* PATH SECTION */
+.path-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+@media(max-width:720px){ .path-grid { grid-template-columns:1fr; } }
+.path-block {
+  padding:36px; background:var(--void-2); border:1px solid var(--border);
+  position:relative;
+}
+.path-block::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:var(--pb-accent, var(--signal));
+}
+.path-label {
+  font-family:'Azeret Mono',monospace; font-size:10px; letter-spacing:.25em;
+  color:var(--pb-accent, var(--signal)); text-transform:uppercase; margin-bottom:16px;
+}
+.path-title { font-family:'Syne',sans-serif; font-weight:800; font-size:20px; margin-bottom:12px; }
+.path-desc { font-size:13.5px; color:var(--muted); line-height:1.65; margin-bottom:24px; }
+.path-courses { display:flex; flex-direction:column; gap:8px; }
+.path-course-item {
+  display:flex; align-items:center; gap:10px;
+  font-family:'Azeret Mono',monospace; font-size:11px; color:var(--star);
+  text-decoration:none; padding:8px 0; border-bottom:1px solid var(--border);
+  transition:color .2s;
+}
+.path-course-item:hover { color:var(--signal); }
+.path-course-item::before { content:'→'; color:var(--pb-accent, var(--signal)); font-size:12px; }
+
+/* ENROLL PANEL */
+.enroll-panel {
+  border:1px solid var(--signal-mid);
+  padding:72px 64px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:rgba(0,212,200,.03);
+}
+.enroll-panel::before {
+  content:'ARCTURA';
+  position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
+  font-family:'Syne',sans-serif; font-weight:800; font-size:100px;
+  color:transparent; -webkit-text-stroke:1px rgba(0,212,200,.05);
+  white-space:nowrap; pointer-events:none; letter-spacing:.1em;
+}
+.enroll-panel h2 {
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:clamp(28px,4vw,48px); letter-spacing:-.02em;
+  margin-bottom:16px;
+}
+.enroll-panel p {
+  font-size:16px; color:rgba(220,227,240,.65); font-style:italic;
+  max-width:420px; margin:0 auto 40px;
+}
+@keyframes breathe {
+  0%,100% { box-shadow:0 0 40px rgba(0,212,200,.04); }
+  50%      { box-shadow:0 0 80px rgba(0,212,200,.12); }
+}
+
+/* FOOTER */
+footer {
+  position:relative; z-index:1;
+  border-top:1px solid var(--border);
+  padding:32px 48px;
+  display:flex; align-items:center; justify-content:space-between;
+  max-width:1200px; margin:0 auto;
+}
+.footer-brand { font-family:'Syne',sans-serif; font-weight:800; font-size:12px; letter-spacing:.2em; color:var(--muted); text-transform:uppercase; }
+.footer-links { display:flex; gap:28px; }
+.footer-links a { font-family:'Azeret Mono',monospace; font-size:11px; color:var(--muted); text-decoration:none; transition:color .2s; letter-spacing:.05em; }
+.footer-links a:hover { color:var(--signal); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .65s, transform .65s; }
+.reveal.in { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav { padding:16px 24px; }
+  .nav-links { display:none; }
+  .hero { padding:120px 24px 60px; }
+  .hero-ghost-text { display:none; }
+  .section-frame { padding:64px 24px; }
+  .courses-grid { grid-template-columns:1fr; }
+  .network-strip { grid-template-columns:repeat(2,1fr); }
+  footer { padding:28px 24px; flex-direction:column; gap:20px; }
+  .enroll-panel { padding:48px 28px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="scroll-bar" id="scrollBar"></div>
+<canvas id="star-canvas"></canvas>
+
+<nav>
+  <a href="https://arctura.org" class="nav-brand">Arctura</a>
+  <div class="nav-links">
+    <a href="https://arctura.org">Network</a>
+    <a href="https://arctura.network">arctura.network</a>
+    <a href="https://arctura.org/academy" style="color:var(--signal)">Academy</a>
+  </div>
+  <a href="#courses" class="nav-cta">View Courses</a>
+</nav>
+
+<section>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Arctura Academy · Knowledge Transmission</div>
+      <h1>
+        Train for<br>
+        <em>Sovereign</em><br>
+        Intelligence
+      </h1>
+      <p class="hero-sub">The ARM framework, on-chain. Operator courses for builders who want AI, identity, and capital to run at network scale.</p>
+      <div class="hero-actions">
+        <a href="#courses" class="btn-enter">Explore Courses ↓</a>
+        <a href="https://arctura.network" class="btn-ghost">arctura.network</a>
+      </div>
+    </div>
+    <div class="hero-ghost-text">ACADEMY</div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<!-- NETWORK STATS -->
+<div class="network-strip">
+  <div class="network-stat">
+    <div class="network-stat-num">5</div>
+    <div class="network-stat-label">Active Courses</div>
+  </div>
+  <div class="network-stat">
+    <div class="network-stat-num">16</div>
+    <div class="network-stat-label">AURE Agents</div>
+  </div>
+  <div class="network-stat">
+    <div class="network-stat-num">6w</div>
+    <div class="network-stat-label">Cohort Cadence</div>
+  </div>
+  <div class="network-stat">
+    <div class="network-stat-num">Base</div>
+    <div class="network-stat-label">On-Chain Credentials</div>
+  </div>
+</div>
+
+<div class="signal-divider"></div>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="section-frame">
+    <div class="section-label">Transmission · 01 · Courses</div>
+    <h2 class="section-title reveal">The Full Signal Stack</h2>
+    <p class="section-intro reveal">Five operator-grade courses covering every layer of the Arctura network — from sovereign agents to on-chain capital. Each ends with a credential minted on Base.</p>
+
+    <div class="courses-grid">
+
+      <!-- AI Agent Design -->
+      <a href="https://arctura.org/academy/ai-agent-design" class="course-card reveal" style="--card-accent:var(--signal);--card-border-hover:var(--signal-mid);--card-glow:rgba(0,212,200,.04);">
+        <div class="course-tag">Agent Architecture</div>
+        <div class="course-num">01</div>
+        <div class="course-title">AI Agent Design</div>
+        <div class="course-desc">Master the architecture of sovereign AI agents. Design, deploy, and orchestrate intelligent systems within the ARM framework — from first principles to production deployment.</div>
+        <div class="course-meta">
+          <div class="course-stat">
+            <span class="stat-label">Duration</span>
+            <span class="stat-value">38h 30m</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Modules</span>
+            <span class="stat-value">12</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Credential</span>
+            <span class="stat-value">On-Chain</span>
+          </div>
+        </div>
+        <div class="course-arrow">Enter Course →</div>
+      </a>
+
+      <!-- Signal Ops -->
+      <a href="https://arctura.org/academy/signal-ops" class="course-card reveal" style="--card-accent:var(--signal);--card-border-hover:var(--signal-mid);--card-glow:rgba(0,212,200,.04);">
+        <div class="course-tag">GEO · Distribution</div>
+        <div class="course-num">02</div>
+        <div class="course-title">Signal Ops</div>
+        <div class="course-desc">Operate the Arctura signal layer. GEO, content architecture, AI-first distribution, and the Signal Report system — for operators who want to be cited, not ignored.</div>
+        <div class="course-meta">
+          <div class="course-stat">
+            <span class="stat-label">Duration</span>
+            <span class="stat-value">27h 30m</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Modules</span>
+            <span class="stat-value">10</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Credential</span>
+            <span class="stat-value">Signal Cert</span>
+          </div>
+        </div>
+        <div class="course-arrow">Enter Course →</div>
+      </a>
+
+      <!-- Base Network Ops -->
+      <a href="https://arctura.org/academy/base-network-ops" class="course-card reveal" style="--card-accent:var(--signal);--card-border-hover:var(--signal-mid);--card-glow:rgba(0,212,200,.04);">
+        <div class="course-tag">L2 · On-Chain</div>
+        <div class="course-num">03</div>
+        <div class="course-title">Base Network Ops</div>
+        <div class="course-desc">Operate natively on Base L2. Wallets, smart contracts, Safe multisig, on-chain credentials, and sovereign treasury management — for builders who think in protocols.</div>
+        <div class="course-meta">
+          <div class="course-stat">
+            <span class="stat-label">Duration</span>
+            <span class="stat-value">32h 00m</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Modules</span>
+            <span class="stat-value">11</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Credential</span>
+            <span class="stat-value">Network Cert</span>
+          </div>
+        </div>
+        <div class="course-arrow">Enter Course →</div>
+      </a>
+
+      <!-- Decentralized Identity -->
+      <a href="https://arctura.org/academy/decentralized-identity" class="course-card card-gold reveal">
+        <div class="course-tag">Identity · DIDs · ENS</div>
+        <div class="course-num">04</div>
+        <div class="course-title">Decentralized Identity</div>
+        <div class="course-desc">Own your identity at the protocol level. DIDs, ENS, soulbound credentials, and sovereign reputation in the ARM network — the primitive beneath everything else.</div>
+        <div class="course-meta">
+          <div class="course-stat">
+            <span class="stat-label">Duration</span>
+            <span class="stat-value">24h 00m</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Modules</span>
+            <span class="stat-value">9</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Credential</span>
+            <span class="stat-value">Soulbound</span>
+          </div>
+        </div>
+        <div class="course-arrow">Enter Course →</div>
+      </a>
+
+      <!-- Treasury Governance -->
+      <a href="https://arctura.org/academy/treasury-governance" class="course-card card-gold reveal">
+        <div class="course-tag">Treasury · Governance</div>
+        <div class="course-num">05</div>
+        <div class="course-title">Treasury Governance</div>
+        <div class="course-desc">Govern sovereign capital. Safe multisig, nested vaults, on-chain voting, and the Arctura Council treasury architecture on Base — for operators who hold real keys.</div>
+        <div class="course-meta">
+          <div class="course-stat">
+            <span class="stat-label">Duration</span>
+            <span class="stat-value">29h 00m</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Modules</span>
+            <span class="stat-value">10</span>
+          </div>
+          <div class="course-stat">
+            <span class="stat-label">Credential</span>
+            <span class="stat-value">Council Cert</span>
+          </div>
+        </div>
+        <div class="course-arrow">Enter Course →</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<!-- LEARNING PATHS -->
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 02 · Paths</div>
+    <h2 class="section-title reveal">Suggested Paths</h2>
+    <p class="section-intro reveal">Courses are designed to stand alone. These sequences accelerate operator formation for two distinct trajectories.</p>
+    <div class="path-grid">
+      <div class="path-block reveal" style="--pb-accent:var(--signal);">
+        <div class="path-label">Path A · Agent Operator</div>
+        <div class="path-title">Build & Run Sovereign AI</div>
+        <div class="path-desc">For builders who want agents doing real work in the ARM mesh — from architecture to production to network credentials.</div>
+        <div class="path-courses">
+          <a href="https://arctura.org/academy/ai-agent-design" class="path-course-item">AI Agent Design</a>
+          <a href="https://arctura.org/academy/base-network-ops" class="path-course-item">Base Network Ops</a>
+          <a href="https://arctura.org/academy/decentralized-identity" class="path-course-item">Decentralized Identity</a>
+          <a href="https://arctura.org/academy/signal-ops" class="path-course-item">Signal Ops</a>
+        </div>
+      </div>
+      <div class="path-block reveal" style="--pb-accent:var(--gold);">
+        <div class="path-label">Path B · Council Contributor</div>
+        <div class="path-title">Govern Capital & Network</div>
+        <div class="path-desc">For operators entering the Arctura Council layer — managing on-chain capital, voting infrastructure, and network identity.</div>
+        <div class="path-courses">
+          <a href="https://arctura.org/academy/decentralized-identity" class="path-course-item">Decentralized Identity</a>
+          <a href="https://arctura.org/academy/base-network-ops" class="path-course-item">Base Network Ops</a>
+          <a href="https://arctura.org/academy/treasury-governance" class="path-course-item">Treasury Governance</a>
+          <a href="https://arctura.org/academy/signal-ops" class="path-course-item">Signal Ops</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<!-- ENROLL -->
+<section id="enroll">
+  <div class="section-frame">
+    <div class="enroll-panel reveal" style="animation:breathe 4s ease-in-out infinite;">
+      <div class="section-label" style="justify-content:center;">Transmission · 03 · Enrollment</div>
+      <h2>The Network Awaits Operators</h2>
+      <p>Cohorts open every 6 weeks. On-chain credentials issued on Base upon completion. The signal is live — are you in?</p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="#courses" class="btn-enter">Choose a Course</a>
+        <a href="https://arctura.network" class="btn-ghost">arctura.network</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Arctura Academy</span>
+  <div class="footer-links">
+    <a href="https://arctura.org">arctura.org</a>
+    <a href="https://arctura.network">arctura.network</a>
+    <a href="https://arctura.org/academy/ai-agent-design">AI Agent Design</a>
+    <a href="https://arctura.org/academy/signal-ops">Signal Ops</a>
+    <a href="https://arctura.org/academy/base-network-ops">Base Network Ops</a>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+const ring = document.getElementById('cursorRing');
+const dot  = document.getElementById('cursorDot');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+
+// Cursor glow on cards
+document.querySelectorAll('.course-card').forEach(card=>{
+  card.addEventListener('mouseenter',()=>{
+    const accent=getComputedStyle(card).getPropertyValue('--card-accent').trim()||'var(--signal)';
+    ring.style.borderColor='var(--gold)';
+    ring.style.width='48px'; ring.style.height='48px';
+  });
+  card.addEventListener('mouseleave',()=>{
+    ring.style.borderColor='var(--signal)';
+    ring.style.width='32px'; ring.style.height='32px';
+  });
+});
+
+// SCROLL BAR
+window.addEventListener('scroll',()=>{
+  const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('scrollBar').style.width=p+'%';
+});
+
+// REVEAL ON SCROLL
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+},{threshold:.12});
+reveals.forEach(el=>obs.observe(el));
+
+// STAR CANVAS
+const canvas=document.getElementById('star-canvas');
+const ctx=canvas.getContext('2d');
+let W,H,stars=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function init(){resize();stars=[];for(let i=0;i<180;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.2,a:Math.random(),s:Math.random()*.003+.001});}
+function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,227,240,${s.a*.55})`;ctx.fill();});}
+function tick(){draw();requestAnimationFrame(tick);}
+window.addEventListener('resize',init);
+init();tick();
+</script>
+</body>
+</html>
