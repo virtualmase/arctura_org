@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decentralized Identity · Arctura Academy</title>
+<meta name="description" content="Own your identity at the protocol level. DIDs, ENS, soulbound credentials, and sovereign reputation in the ARM network.">
+<meta property="og:title" content="Decentralized Identity · Arctura Academy">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://arctura.org/academy/decentralized-identity">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--void:#03040a;--void-2:#080b14;--signal:#00d4c8;--signal-dim:rgba(0,212,200,.12);--signal-mid:rgba(0,212,200,.35);--gold:#c9a86c;--gold-dim:rgba(201,168,108,.15);--star:#dce3f0;--muted:#6b7591;--border:rgba(220,227,240,.08);--accent:#a78bfa;--accent-dim:rgba(167,139,250,.1);--accent-mid:rgba(167,139,250,.3);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--star);font-family:'Fraunces',serif;font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,opacity .2s;}
+.cursor-dot{position:fixed;width:5px;height:5px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.scroll-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:1000;width:0%;transition:width .1s;box-shadow:0 0 8px var(--accent);}
+#star-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(3,4,10,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--signal);text-decoration:none;text-transform:uppercase;}
+.nav-path{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);}
+.nav-path a{color:var(--muted);text-decoration:none;}
+.nav-back{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--accent-mid);padding:7px 16px;transition:all .2s;}
+.nav-back:hover{background:var(--accent-dim);}
+.hero{position:relative;z-index:1;min-height:92vh;display:flex;align-items:center;padding:140px 48px 80px;max-width:1100px;margin:0 auto;}
+.hero-eyebrow{font-family:'Azeret Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--accent);}
+.hero-number{font-family:'Azeret Mono',monospace;font-size:128px;font-weight:500;color:transparent;-webkit-text-stroke:1px rgba(167,139,250,.1);position:absolute;right:0;top:50%;transform:translateY(-55%);line-height:1;pointer-events:none;user-select:none;}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(48px,7vw,84px);line-height:1.0;letter-spacing:-.02em;margin-bottom:28px;}
+.hero h1 span{color:var(--accent);display:block;}
+.hero-sub{font-size:18px;font-weight:300;color:rgba(220,227,240,.75);max-width:520px;margin-bottom:48px;line-height:1.65;font-style:italic;}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-bottom:48px;}
+.meta-item{display:flex;flex-direction:column;gap:4px;}
+.meta-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+.meta-value{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--star);}
+.btn-enter{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--void);font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.15em;text-transform:uppercase;padding:16px 36px;text-decoration:none;transition:all .25s;position:relative;overflow:hidden;}
+.btn-enter::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.2);transform:translateX(-100%);transition:transform .3s;}
+.btn-enter:hover::after{transform:translateX(0);}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--accent-mid);color:var(--accent);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 32px;text-decoration:none;background:transparent;transition:all .25s;margin-left:16px;}
+.btn-ghost:hover{background:var(--accent-dim);}
+.signal-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent-mid),transparent);}
+section{position:relative;z-index:1;}
+.section-frame{max-width:1100px;margin:0 auto;padding:96px 48px;}
+.section-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:48px;display:flex;align-items:center;gap:16px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;margin-bottom:16px;line-height:1.1;}
+.section-intro{font-size:17px;color:rgba(220,227,240,.7);max-width:620px;font-style:italic;margin-bottom:56px;}
+.modules-grid{display:flex;flex-direction:column;gap:2px;}
+.module{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:32px;padding:28px 32px;background:var(--void-2);border:1px solid var(--border);transition:all .25s;cursor:default;position:relative;overflow:hidden;}
+.module::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .3s;}
+.module:hover{border-color:var(--accent-mid);background:rgba(8,11,20,.9);}
+.module:hover::before{transform:scaleY(1);}
+.module-num{font-family:'Azeret Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.1em;}
+.module-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px;}
+.module-desc{font-size:13px;color:var(--muted);font-family:'Fraunces',serif;font-weight:300;}
+.module-duration{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--signal);white-space:nowrap;}
+/* DID LAYERS */
+.did-layers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:48px 0;}
+@media(max-width:700px){.did-layers{grid-template-columns:1fr;}}
+.did-layer{padding:32px;background:var(--void-2);border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .25s;}
+.did-layer:hover{border-color:var(--accent-mid);}
+.did-layer-tag{font-family:'Azeret Mono',monospace;font-size:9px;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:16px;}
+.did-layer-title{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;margin-bottom:10px;}
+.did-layer-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.did-layer-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(167,139,250,.06),transparent 60%);pointer-events:none;}
+/* CODE BLOCK */
+.code-block{background:var(--void-2);border:1px solid var(--border);padding:28px 32px;margin:32px 0;font-family:'Azeret Mono',monospace;font-size:12px;line-height:1.7;overflow-x:auto;}
+.code-comment{color:var(--muted);}
+.code-key{color:var(--accent);}
+.code-value{color:var(--gold);}
+.code-string{color:var(--signal);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+.prereq-block{padding:32px;background:var(--void-2);border:1px solid var(--border);}
+.prereq-block h3{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:20px;color:var(--accent);letter-spacing:.05em;}
+.prereq-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.prereq-list li{font-size:14px;color:rgba(220,227,240,.8);display:flex;align-items:flex-start;gap:12px;}
+.prereq-list li::before{content:'→';color:var(--accent);font-family:'Azeret Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.enroll-panel{background:linear-gradient(135deg,var(--void-2),rgba(167,139,250,.04));border:1px solid var(--accent-mid);padding:64px;text-align:center;margin-top:64px;}
+.enroll-panel h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,3.5vw,40px);margin-bottom:16px;}
+.enroll-panel p{font-size:16px;color:rgba(220,227,240,.7);max-width:480px;margin:0 auto 40px;font-style:italic;}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;max-width:1100px;margin:0 auto;}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:12px;letter-spacing:.2em;color:var(--signal);text-transform:uppercase;}
+.footer-links{display:flex;gap:32px;flex-wrap:wrap;}
+.footer-links a{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--star);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breathePurple{0%,100%{box-shadow:0 0 20px rgba(167,139,250,.2)}50%{box-shadow:0 0 40px rgba(167,139,250,.4)}}
+.fadeUp{animation:fadeUp .7s both;}.fadeUp-2{animation:fadeUp .7s .15s both;}.fadeUp-3{animation:fadeUp .7s .3s both;}.fadeUp-4{animation:fadeUp .7s .45s both;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:500;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px;}
+@media(max-width:768px){nav{padding:16px 24px;}.hero{padding:120px 24px 64px;}.section-frame{padding:64px 24px;}.hero-number{font-size:80px;}.hero h1{font-size:42px;}.module{grid-template-columns:40px 1fr;gap:16px;}.module-duration{display:none;}.enroll-panel{padding:40px 24px;}footer{padding:32px 24px;}}
+</style>
+</head>
+<body>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="scroll-bar" id="scrollBar"></div>
+<canvas id="star-canvas"></canvas>
+
+<nav>
+  <a href="https://arctura.org" class="nav-brand">Arctura</a>
+  <span class="nav-path"><a href="https://arctura.org/academy">Academy</a> &nbsp;/&nbsp; Decentralized Identity</span>
+  <a href="https://arctura.org/academy" class="nav-back">← Academy</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-number" aria-hidden="true">03</div>
+  <div>
+    <div class="hero-eyebrow fadeUp">Transmission · 03 · Identity Track</div>
+    <h1 class="fadeUp-2">Decentralized<span>Identity</span></h1>
+    <p class="hero-sub fadeUp-3">The self-sovereign stack. Learn to build, anchor, and operate a decentralized identity that persists across platforms, on-chain systems, and the emerging agent-to-agent reputation layer.</p>
+    <div class="hero-meta fadeUp-4">
+      <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">4 Weeks</span></div>
+      <div class="meta-item"><span class="meta-label">Modules</span><span class="meta-value">9 Units</span></div>
+      <div class="meta-item"><span class="meta-label">Level</span><span class="meta-value">Foundation → Advanced</span></div>
+      <div class="meta-item"><span class="meta-label">Standard</span><span class="meta-value">W3C DID · EIP-4361</span></div>
+    </div>
+    <div class="fadeUp-4">
+      <a href="#enroll" class="btn-enter">Begin Transmission</a>
+      <a href="#curriculum" class="btn-ghost">View Curriculum</a>
+    </div>
+  </div>
+</div>
+
+<div class="signal-divider"></div>
+
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 01 · Framework</div>
+    <h2 class="section-title">The Identity Stack</h2>
+    <p class="section-intro">Three layers. Every Arctura operator and every AURE agent operates on this stack — from cryptographic primitive to social reputation.</p>
+    <div class="did-layers">
+      <div class="did-layer">
+        <div class="did-layer-glow"></div>
+        <div class="did-layer-tag">Layer 1 · Protocol</div>
+        <div class="did-layer-title">Cryptographic Root</div>
+        <div class="did-layer-desc">The keypair is the identity. Private key control, public key derivation, address generation. The math beneath every wallet and every signature.</div>
+      </div>
+      <div class="did-layer">
+        <div class="did-layer-glow"></div>
+        <div class="did-layer-tag">Layer 2 · On-Chain</div>
+        <div class="did-layer-title">Anchored Identifier</div>
+        <div class="did-layer-desc">ENS on Base, DIDs, soulbound tokens, and the Arctura credential framework. Making a key legible to humans, agents, and machines.</div>
+      </div>
+      <div class="did-layer">
+        <div class="did-layer-glow"></div>
+        <div class="did-layer-tag">Layer 3 · Reputation</div>
+        <div class="did-layer-title">Portable Trust Graph</div>
+        <div class="did-layer-desc">Attestations, verifiable credentials, and the ARM tier system as an on-chain reputation layer. Carry your status across every network node.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<section id="curriculum">
+  <div class="section-frame">
+    <div class="section-label">Transmission · 02 · Curriculum</div>
+    <h2 class="section-title">Signal Permanence</h2>
+    <p class="section-intro">Nine modules tracing identity from cryptographic first principles to the live Arctura operator credential system.</p>
+    <div class="modules-grid">
+      <div class="module"><span class="module-num">01</span><div><div class="module-title">Why Identity Is a Protocol Problem</div><div class="module-desc">Platform identity vs sovereign identity. The costs of custodial identity. The W3C DID specification and why it matters for the ARM framework.</div></div><span class="module-duration">1h 30m</span></div>
+      <div class="module"><span class="module-num">02</span><div><div class="module-title">Cryptographic Foundations</div><div class="module-desc">Keypairs, ECDSA signatures, and hash functions without the math degree. How a signature proves ownership without revealing a secret.</div></div><span class="module-duration">2h 00m</span></div>
+      <div class="module"><span class="module-num">03</span><div><div class="module-title">DIDs — The W3C Standard</div><div class="module-desc">DID documents, DID methods (did:ethr, did:key, did:web), and resolution. Building a DID document from scratch and pinning it on IPFS.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">04</span><div><div class="module-title">Sign-In With Ethereum (EIP-4361)</div><div class="module-desc">Replace OAuth with on-chain authentication. SIWE message construction, signature verification, and session management without a password database.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">05</span><div><div class="module-title">ENS as Identity Layer</div><div class="module-desc">arcturiancouncil.base.eth — the name that resolves to a Safe, a DID, and a reputation graph simultaneously. Text records as metadata protocol.</div></div><span class="module-duration">2h 00m</span></div>
+      <div class="module"><span class="module-num">06</span><div><div class="module-title">Soulbound Tokens — Non-Transferable Proof</div><div class="module-desc">ERC-5114 and custom SBT patterns. Issue credentials that cannot be sold, transferred, or faked. The Arctura completion and tier credential system.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">07</span><div><div class="module-title">Verifiable Credentials (VCs)</div><div class="module-desc">W3C VC data model. Issue, hold, and verify credentials off-chain with on-chain anchoring. Agent-to-agent credential exchange in the ARM mesh.</div></div><span class="module-duration">3h 00m</span></div>
+      <div class="module"><span class="module-num">08</span><div><div class="module-title">Agent Identity — DID for Non-Humans</div><div class="module-desc">How AURE agents carry identity. Operator-assigned DIDs, mandate chain binding, and the cryptographic proof that an agent acted autonomously.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">09</span><div><div class="module-title">Capstone — Deploy Your Sovereign Identity Stack</div><div class="module-desc">Build a complete identity: DID document, ENS name, SIWE auth, SBT credential. Present it to the Arctura council for on-chain recognition.</div></div><span class="module-duration">4h 00m</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 03 · Sample</div>
+    <h2 class="section-title">A DID Document in the Wild</h2>
+    <p class="section-intro">This is what a deployed Arctura identity looks like at the protocol level. You'll build and own one by Module 3.</p>
+    <div class="code-block">
+<span class="code-comment">// arcturiancouncil.base.eth — resolved DID document</span>
+{
+  <span class="code-key">"@context"</span>: [<span class="code-string">"https://www.w3.org/ns/did/v1"</span>, <span class="code-string">"https://w3id.org/security/suites/ed25519-2020/v1"</span>],
+  <span class="code-key">"id"</span>: <span class="code-string">"did:ethr:base:0xb60a1dc7E453e8cB9a2859290D7f9ad4c3181664"</span>,
+  <span class="code-key">"controller"</span>: <span class="code-string">"did:ethr:base:0xb60a1dc7E453e8cB9a2859290D7f9ad4c3181664"</span>,
+  <span class="code-key">"verificationMethod"</span>: [{
+    <span class="code-key">"id"</span>: <span class="code-string">"did:ethr:base:0xb60...#controller"</span>,
+    <span class="code-key">"type"</span>: <span class="code-string">"EcdsaSecp256k1RecoveryMethod2020"</span>,
+    <span class="code-key">"controller"</span>: <span class="code-string">"did:ethr:base:0xb60..."</span>,
+    <span class="code-key">"blockchainAccountId"</span>: <span class="code-value">"eip155:8453:0xb60a1dc7E453e8cB9a2859290D7f9ad4c3181664"</span>
+  }],
+  <span class="code-key">"service"</span>: [{
+    <span class="code-key">"id"</span>: <span class="code-string">"#arctura-network"</span>,
+    <span class="code-key">"type"</span>: <span class="code-string">"ARMOperatorEndpoint"</span>,
+    <span class="code-key">"serviceEndpoint"</span>: <span class="code-value">"https://arctura.network"</span>
+  }]
+}
+    </div>
+  </div>
+</section>
+
+<section id="enroll">
+  <div class="section-frame">
+    <div class="enroll-panel" style="animation:breathePurple 4s ease-in-out infinite;">
+      <div class="section-label" style="justify-content:center;">Transmission · 04 · Enrollment</div>
+      <h2>Own Your Identity at the Protocol Level</h2>
+      <p>Your cryptographic self. Built, anchored, and recognized by the Arctura network on Base.</p>
+      <a href="https://arctura.org/academy" class="btn-enter">Enroll in Decentralized Identity</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Arctura Academy</span>
+  <div class="footer-links">
+    <a href="https://arctura.org">arctura.org</a>
+    <a href="https://arctura.network">arctura.network</a>
+    <a href="https://arctura.org/academy">Academy Index</a>
+    <a href="https://arctura.org/academy/signal-ops">Signal Ops →</a>
+  </div>
+</footer>
+
+<script>
+const ring=document.getElementById('cursorRing'),dot=document.getElementById('cursorDot');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('scrollBar').style.width=p+'%';});
+const canvas=document.getElementById('star-canvas'),ctx=canvas.getContext('2d');let W,H,stars=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function init(){resize();stars=[];for(let i=0;i<140;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.2,a:Math.random(),s:Math.random()*.003+.001});}
+function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,227,240,${s.a*.6})`;ctx.fill();});}
+(function tick(){draw();requestAnimationFrame(tick);})();
+window.addEventListener('resize',init);init();
+</script>
+</body>
+</html>

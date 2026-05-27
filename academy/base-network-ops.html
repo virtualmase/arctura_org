@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base Network Ops · Arctura Academy</title>
+<meta name="description" content="Operate natively on Base L2. Wallets, smart contracts, Safe multisig, on-chain credentials, and sovereign treasury management.">
+<meta property="og:title" content="Base Network Ops · Arctura Academy">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://arctura.org/academy/base-network-ops">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:#03040a;--void-2:#080b14;--signal:#00d4c8;
+  --signal-dim:rgba(0,212,200,.12);--signal-mid:rgba(0,212,200,.35);
+  --gold:#c9a86c;--gold-dim:rgba(201,168,108,.15);
+  --star:#dce3f0;--muted:#6b7591;--border:rgba(220,227,240,.08);--track:#1a1e2e;
+  /* this track accent = gold for Base track */
+  --accent: var(--gold);--accent-dim: var(--gold-dim);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--star);font-family:'Fraunces',serif;font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,opacity .2s;}
+.cursor-dot{position:fixed;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.scroll-bar{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:1000;width:0%;transition:width .1s;box-shadow:0 0 8px var(--gold);}
+#star-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(3,4,10,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--signal);text-decoration:none;text-transform:uppercase;}
+.nav-path{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.05em;}
+.nav-path a{color:var(--muted);text-decoration:none;}
+.nav-path a:hover{color:var(--star);}
+.nav-back{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(201,168,108,.35);padding:7px 16px;transition:all .2s;}
+.nav-back:hover{background:var(--gold-dim);}
+.hero{position:relative;z-index:1;min-height:92vh;display:flex;align-items:center;padding:140px 48px 80px;max-width:1100px;margin:0 auto;}
+.hero-eyebrow{font-family:'Azeret Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.hero-number{font-family:'Azeret Mono',monospace;font-size:128px;font-weight:500;color:transparent;-webkit-text-stroke:1px rgba(201,168,108,.12);position:absolute;right:0;top:50%;transform:translateY(-55%);line-height:1;pointer-events:none;user-select:none;}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(48px,7vw,84px);line-height:1.0;letter-spacing:-.02em;margin-bottom:28px;}
+.hero h1 span{color:var(--gold);display:block;}
+.hero-sub{font-size:18px;font-weight:300;color:rgba(220,227,240,.75);max-width:520px;margin-bottom:48px;line-height:1.65;font-style:italic;}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-bottom:48px;}
+.meta-item{display:flex;flex-direction:column;gap:4px;}
+.meta-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+.meta-value{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--star);}
+.btn-enter{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--void);font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.15em;text-transform:uppercase;padding:16px 36px;text-decoration:none;transition:all .25s;position:relative;overflow:hidden;}
+.btn-enter::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .3s;}
+.btn-enter:hover::after{transform:translateX(0);}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(201,168,108,.35);color:var(--gold);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 32px;text-decoration:none;background:transparent;transition:all .25s;margin-left:16px;}
+.btn-ghost:hover{background:var(--gold-dim);}
+.signal-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,108,.3),transparent);}
+section{position:relative;z-index:1;}
+.section-frame{max-width:1100px;margin:0 auto;padding:96px 48px;}
+.section-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:48px;display:flex;align-items:center;gap:16px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;margin-bottom:16px;line-height:1.1;}
+.section-intro{font-size:17px;color:rgba(220,227,240,.7);max-width:620px;font-style:italic;margin-bottom:56px;}
+.modules-grid{display:flex;flex-direction:column;gap:2px;}
+.module{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:32px;padding:28px 32px;background:var(--void-2);border:1px solid var(--border);transition:all .25s;cursor:default;position:relative;overflow:hidden;}
+.module::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .3s;}
+.module:hover{border-color:rgba(201,168,108,.3);background:rgba(8,11,20,.9);}
+.module:hover::before{transform:scaleY(1);}
+.module-num{font-family:'Azeret Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.1em;}
+.module-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px;}
+.module-desc{font-size:13px;color:var(--muted);font-family:'Fraunces',serif;font-weight:300;}
+.module-duration{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--signal);white-space:nowrap;}
+/* CHAIN VISUAL */
+.chain-visual{display:flex;flex-direction:column;gap:0;margin:48px 0;}
+.chain-node{display:flex;gap:24px;align-items:stretch;}
+.chain-spine{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:40px;}
+.chain-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--void);box-shadow:0 0 10px var(--gold);flex-shrink:0;margin-top:6px;}
+.chain-line{flex:1;width:1px;background:linear-gradient(180deg,var(--gold),rgba(201,168,108,.1));margin:0 auto;}
+.chain-content{padding:0 0 48px 0;flex:1;}
+.chain-title{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px;}
+.chain-body{font-size:14px;color:var(--muted);line-height:1.65;}
+/* TOOLS LIST */
+.tools-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:48px;}
+.tool-chip{padding:20px 24px;background:var(--void-2);border:1px solid var(--border);transition:border-color .2s;}
+.tool-chip:hover{border-color:rgba(201,168,108,.3);}
+.tool-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:4px;}
+.tool-type{font-family:'Azeret Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.1em;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+.prereq-block{padding:32px;background:var(--void-2);border:1px solid var(--border);}
+.prereq-block h3{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:20px;color:var(--gold);letter-spacing:.05em;}
+.prereq-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.prereq-list li{font-size:14px;color:rgba(220,227,240,.8);display:flex;align-items:flex-start;gap:12px;}
+.prereq-list li::before{content:'→';color:var(--gold);font-family:'Azeret Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.enroll-panel{background:linear-gradient(135deg,var(--void-2),rgba(201,168,108,.04));border:1px solid rgba(201,168,108,.35);padding:64px;text-align:center;margin-top:64px;}
+.enroll-panel h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,3.5vw,40px);margin-bottom:16px;}
+.enroll-panel p{font-size:16px;color:rgba(220,227,240,.7);max-width:480px;margin:0 auto 40px;font-style:italic;}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;max-width:1100px;margin:0 auto;}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:12px;letter-spacing:.2em;color:var(--signal);text-transform:uppercase;}
+.footer-links{display:flex;gap:32px;flex-wrap:wrap;}
+.footer-links a{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .2s;}
+.footer-links a:hover{color:var(--star);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breatheGold{0%,100%{box-shadow:0 0 20px rgba(201,168,108,.2)}50%{box-shadow:0 0 40px rgba(201,168,108,.4)}}
+.fadeUp{animation:fadeUp .7s both;}.fadeUp-2{animation:fadeUp .7s .15s both;}.fadeUp-3{animation:fadeUp .7s .3s both;}.fadeUp-4{animation:fadeUp .7s .45s both;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:500;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px;}
+@media(max-width:768px){nav{padding:16px 24px;}.hero{padding:120px 24px 64px;}.section-frame{padding:64px 24px;}.hero-number{font-size:80px;}.hero h1{font-size:42px;}.module{grid-template-columns:40px 1fr;gap:16px;}.module-duration{display:none;}.enroll-panel{padding:40px 24px;}footer{padding:32px 24px;}}
+</style>
+</head>
+<body>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot"  id="cursorDot"></div>
+<div class="scroll-bar"  id="scrollBar"></div>
+<canvas id="star-canvas"></canvas>
+
+<nav>
+  <a href="https://arctura.org" class="nav-brand">Arctura</a>
+  <span class="nav-path"><a href="https://arctura.org/academy">Academy</a> &nbsp;/&nbsp; Base Network Ops</span>
+  <a href="https://arctura.org/academy" class="nav-back">← Academy</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-number" aria-hidden="true">02</div>
+  <div>
+    <div class="hero-eyebrow fadeUp">Transmission · 02 · Infrastructure Track</div>
+    <h1 class="fadeUp-2">Base Network<span>Ops</span></h1>
+    <p class="hero-sub fadeUp-3">The Arctura Network runs on Base. Learn to operate natively — wallets, Safe multisig, on-chain credentials, contract interactions, and treasury management at sovereign scale.</p>
+    <div class="hero-meta fadeUp-4">
+      <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">5 Weeks</span></div>
+      <div class="meta-item"><span class="meta-label">Modules</span><span class="meta-value">10 Units</span></div>
+      <div class="meta-item"><span class="meta-label">Level</span><span class="meta-value">Foundation → Advanced</span></div>
+      <div class="meta-item"><span class="meta-label">Chain</span><span class="meta-value">Base · Chain 8453</span></div>
+    </div>
+    <div class="fadeUp-4">
+      <a href="#enroll" class="btn-enter">Begin Transmission</a>
+      <a href="#curriculum" class="btn-ghost">View Curriculum</a>
+    </div>
+  </div>
+</div>
+
+<div class="signal-divider"></div>
+
+<section id="curriculum">
+  <div class="section-frame">
+    <div class="section-label">Transmission · 01 · Curriculum</div>
+    <h2 class="section-title">Chain Fluency Stack</h2>
+    <p class="section-intro">Ten modules covering every layer of Base operations — from your first wallet to running a sovereign multisig treasury alongside AI agents.</p>
+
+    <div class="modules-grid">
+      <div class="module">
+        <span class="module-num">01</span>
+        <div><div class="module-title">Base Architecture & the ARM Connection</div><div class="module-desc">Why Base. How the Arctura Network uses Base L2 as its sovereign infrastructure layer. Chain ID 8453, ENS on Base, and the Arc protocol.</div></div>
+        <span class="module-duration">2h 00m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">02</span>
+        <div><div class="module-title">Wallet Sovereignty — Setup & Security</div><div class="module-desc">Coinbase Wallet, MetaMask, Rainbow. Seed phrases, passphrase hardening, hardware wallet integration (Arculus, Ledger). Council-standard security practices.</div></div>
+        <span class="module-duration">2h 30m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">03</span>
+        <div><div class="module-title">ENS on Base — Identity Anchoring</div><div class="module-desc">Claim your Base ENS name. How arcturiancouncil.base.eth and signalarctura.base.eth operate. Linking ENS to agent identities and social graph.</div></div>
+        <span class="module-duration">1h 45m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">04</span>
+        <div><div class="module-title">Reading & Writing the Chain</div><div class="module-desc">BaseScan navigation. Reading contract state, tracing transactions, decoding calldata. Write your first Base transaction from raw JSON-RPC.</div></div>
+        <span class="module-duration">3h 00m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">05</span>
+        <div><div class="module-title">Safe Multisig — Treasury Architecture</div><div class="module-desc">Deploy a Safe. Configure signers, thresholds, and nested vaults. The Arctura council Safe pattern — 0x3060A8Ff… — analyzed and replicated.</div></div>
+        <span class="module-duration">3h 30m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">06</span>
+        <div><div class="module-title">ERC-721 & ERC-1155 — NFT Operations</div><div class="module-desc">Mint, transfer, and manage NFTs on Base. IPFS metadata, Arweave permanence, royalty encoding. Zora and Manifold as deployment surfaces.</div></div>
+        <span class="module-duration">3h 00m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">07</span>
+        <div><div class="module-title">Soulbound Tokens & Agent Credentials</div><div class="module-desc">Non-transferable on-chain proofs. Issue SBTs for course completion, operator tier, and agent deployment. The Arctura credential architecture.</div></div>
+        <span class="module-duration">2h 30m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">08</span>
+        <div><div class="module-title">EIP-681 Payment Requests & QR Encoding</div><div class="module-desc">Encode payment requests in the ethereum: URI scheme. Build QR-triggered wallet flows. USDC on Base, gas optimization, batch transfers.</div></div>
+        <span class="module-duration">2h 00m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">09</span>
+        <div><div class="module-title">Smart Contract Interactions from Code</div><div class="module-desc">viem, ethers.js, and wagmi. Call contract functions from JavaScript. Build an agent that can read Base state and trigger transactions autonomously.</div></div>
+        <span class="module-duration">4h 00m</span>
+      </div>
+      <div class="module">
+        <span class="module-num">10</span>
+        <div><div class="module-title">Capstone — Deploy Your Network Node</div><div class="module-desc">Set up a Safe, claim an ENS name, deploy a credential contract, and wire it all to an agent that can report your on-chain status on command.</div></div>
+        <span class="module-duration">5h 00m</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 02 · Stack</div>
+    <h2 class="section-title">Tools You'll Master</h2>
+    <p class="section-intro">The exact stack the Arctura Council uses in production — no toy environments.</p>
+    <div class="tools-list">
+      <div class="tool-chip"><div class="tool-name">Safe {Wallet}</div><div class="tool-type">Multisig · Treasury</div></div>
+      <div class="tool-chip"><div class="tool-name">Base ENS</div><div class="tool-type">Identity · Naming</div></div>
+      <div class="tool-chip"><div class="tool-name">viem / ethers.js</div><div class="tool-type">JS · Contract SDK</div></div>
+      <div class="tool-chip"><div class="tool-name">BaseScan</div><div class="tool-type">Explorer · Audit</div></div>
+      <div class="tool-chip"><div class="tool-name">Arculus</div><div class="tool-type">Hardware · Signing</div></div>
+      <div class="tool-chip"><div class="tool-name">Zora Protocol</div><div class="tool-type">NFT · Minting</div></div>
+      <div class="tool-chip"><div class="tool-name">IPFS / Arweave</div><div class="tool-type">Storage · Permanence</div></div>
+      <div class="tool-chip"><div class="tool-name">Coinbase Wallet</div><div class="tool-type">Wallet · Base Native</div></div>
+      <div class="tool-chip"><div class="tool-name">JSON-RPC</div><div class="tool-type">Protocol · Raw Chain</div></div>
+      <div class="tool-chip"><div class="tool-name">Aerodrome</div><div class="tool-type">DEX · Liquidity</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 03 · Prerequisites</div>
+    <div class="two-col">
+      <div class="prereq-block">
+        <h3>Who This Is For</h3>
+        <ul class="prereq-list">
+          <li>Arctura operators who want to move beyond watching the chain to running it</li>
+          <li>Builders ready to deploy real on-chain infrastructure, not testnet toys</li>
+          <li>Anyone managing treasury, credentials, or agent funding at the network level</li>
+          <li>Developers building products that touch Base — wallets, contracts, NFTs</li>
+        </ul>
+      </div>
+      <div class="prereq-block">
+        <h3>What You Need</h3>
+        <ul class="prereq-list">
+          <li>Basic JavaScript — you'll call contracts from code</li>
+          <li>A Base-compatible wallet already set up (Coinbase Wallet recommended)</li>
+          <li>Small amount of ETH on Base for gas (covered in Module 2)</li>
+          <li>No prior smart contract experience required — we start from chain primitives</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="enroll">
+  <div class="section-frame">
+    <div class="enroll-panel" style="animation:breatheGold 4s ease-in-out infinite;">
+      <div class="section-label" style="justify-content:center;">Transmission · 04 · Enrollment</div>
+      <h2>Ready to Run the Chain?</h2>
+      <p>Become a native operator on Base. The Arctura Network's on-chain infrastructure is yours to command.</p>
+      <a href="https://arctura.org/academy" class="btn-enter">Enroll in Base Network Ops</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Arctura Academy</span>
+  <div class="footer-links">
+    <a href="https://arctura.org">arctura.org</a>
+    <a href="https://arctura.network">arctura.network</a>
+    <a href="https://arctura.org/academy">Academy Index</a>
+    <a href="https://arctura.org/academy/decentralized-identity">Decentralized Identity →</a>
+  </div>
+</footer>
+
+<script>
+const ring=document.getElementById('cursorRing'),dot=document.getElementById('cursorDot');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('scrollBar').style.width=p+'%';});
+const canvas=document.getElementById('star-canvas');const ctx=canvas.getContext('2d');let W,H,stars=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function init(){resize();stars=[];for(let i=0;i<140;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.2,a:Math.random(),s:Math.random()*.003+.001});}
+function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,227,240,${s.a*.6})`;ctx.fill();});}
+function tick(){draw();requestAnimationFrame(tick);}
+window.addEventListener('resize',init);init();tick();
+</script>
+</body>
+</html>

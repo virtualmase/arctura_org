@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal Ops · Arctura Academy</title>
+<meta name="description" content="Operate the Arctura signal layer. GEO, content architecture, AI-first distribution, and the Signal Report system.">
+<meta property="og:title" content="Signal Ops · Arctura Academy">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://arctura.org/academy/signal-ops">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--void:#03040a;--void-2:#080b14;--signal:#00d4c8;--signal-dim:rgba(0,212,200,.12);--signal-mid:rgba(0,212,200,.35);--gold:#c9a86c;--gold-dim:rgba(201,168,108,.15);--star:#dce3f0;--muted:#6b7591;--border:rgba(220,227,240,.08);--accent:#00d4c8;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--star);font-family:'Fraunces',serif;font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--signal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s;}
+.cursor-dot{position:fixed;width:5px;height:5px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.scroll-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--signal),var(--gold));z-index:1000;width:0%;transition:width .1s;box-shadow:0 0 8px var(--signal);}
+#star-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(3,4,10,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--signal);text-decoration:none;text-transform:uppercase;}
+.nav-path{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);}
+.nav-path a{color:var(--muted);text-decoration:none;}
+.nav-back{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--signal);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--signal-mid);padding:7px 16px;transition:all .2s;}
+.nav-back:hover{background:var(--signal-dim);}
+.hero{position:relative;z-index:1;min-height:92vh;display:flex;align-items:center;padding:140px 48px 80px;max-width:1100px;margin:0 auto;}
+.hero-eyebrow{font-family:'Azeret Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--signal);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:linear-gradient(90deg,var(--signal),var(--gold));}
+.hero-number{font-family:'Azeret Mono',monospace;font-size:128px;font-weight:500;color:transparent;-webkit-text-stroke:1px rgba(0,212,200,.1);position:absolute;right:0;top:50%;transform:translateY(-55%);line-height:1;pointer-events:none;user-select:none;}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(48px,7vw,84px);line-height:1.0;letter-spacing:-.02em;margin-bottom:28px;}
+.hero h1 span{background:linear-gradient(90deg,var(--signal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;}
+.hero-sub{font-size:18px;font-weight:300;color:rgba(220,227,240,.75);max-width:520px;margin-bottom:48px;line-height:1.65;font-style:italic;}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-bottom:48px;}
+.meta-item{display:flex;flex-direction:column;gap:4px;}
+.meta-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+.meta-value{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--star);}
+.btn-enter{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--signal),rgba(0,180,170,1));color:var(--void);font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.15em;text-transform:uppercase;padding:16px 36px;text-decoration:none;transition:all .25s;position:relative;overflow:hidden;}
+.btn-enter:hover{opacity:.9;}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--signal-mid);color:var(--signal);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 32px;text-decoration:none;background:transparent;transition:all .25s;margin-left:16px;}
+.btn-ghost:hover{background:var(--signal-dim);}
+.signal-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--signal-mid),transparent);}
+section{position:relative;z-index:1;}
+.section-frame{max-width:1100px;margin:0 auto;padding:96px 48px;}
+.section-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--signal);text-transform:uppercase;margin-bottom:48px;display:flex;align-items:center;gap:16px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;margin-bottom:16px;line-height:1.1;}
+.section-intro{font-size:17px;color:rgba(220,227,240,.7);max-width:620px;font-style:italic;margin-bottom:56px;}
+.modules-grid{display:flex;flex-direction:column;gap:2px;}
+.module{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:32px;padding:28px 32px;background:var(--void-2);border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden;}
+.module::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--signal),var(--gold));transform:scaleY(0);transform-origin:bottom;transition:transform .3s;}
+.module:hover{border-color:var(--signal-mid);}
+.module:hover::before{transform:scaleY(1);}
+.module-num{font-family:'Azeret Mono',monospace;font-size:12px;color:var(--muted);}
+.module-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px;}
+.module-desc{font-size:13px;color:var(--muted);font-family:'Fraunces',serif;font-weight:300;}
+.module-duration{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--gold);white-space:nowrap;}
+/* GEO SCORE */
+.geo-visual{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:48px 0;}
+@media(max-width:700px){.geo-visual{grid-template-columns:1fr 1fr;}}
+.geo-metric{padding:28px;background:var(--void-2);border:1px solid var(--border);text-align:center;transition:border-color .25s;}
+.geo-metric:hover{border-color:var(--signal-mid);}
+.geo-num{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;color:var(--signal);line-height:1;margin-bottom:8px;}
+.geo-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
+/* SIGNAL REPORT */
+.signal-report{background:var(--void-2);border:1px solid var(--signal-mid);padding:48px;margin:48px 0;position:relative;overflow:hidden;}
+.signal-report::before{content:'SIGNAL REPORT #047';position:absolute;top:24px;right:32px;font-family:'Azeret Mono',monospace;font-size:10px;color:var(--signal);letter-spacing:.2em;opacity:.5;}
+.signal-report h3{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;margin-bottom:16px;}
+.signal-report p{font-size:14px;color:var(--muted);line-height:1.7;max-width:560px;}
+.report-tags{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;}
+.report-tag{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--signal);border:1px solid var(--signal-mid);padding:4px 12px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+.prereq-block{padding:32px;background:var(--void-2);border:1px solid var(--border);}
+.prereq-block h3{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:20px;color:var(--signal);}
+.prereq-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.prereq-list li{font-size:14px;color:rgba(220,227,240,.8);display:flex;align-items:flex-start;gap:12px;}
+.prereq-list li::before{content:'→';color:var(--signal);font-family:'Azeret Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.enroll-panel{background:linear-gradient(135deg,var(--void-2),rgba(0,212,200,.04));border:1px solid var(--signal-mid);padding:64px;text-align:center;margin-top:64px;}
+.enroll-panel h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,3.5vw,40px);margin-bottom:16px;}
+.enroll-panel p{font-size:16px;color:rgba(220,227,240,.7);max-width:480px;margin:0 auto 40px;font-style:italic;}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;max-width:1100px;margin:0 auto;}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:12px;letter-spacing:.2em;color:var(--signal);text-transform:uppercase;}
+.footer-links{display:flex;gap:32px;flex-wrap:wrap;}
+.footer-links a{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--star);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breatheSignal{0%,100%{box-shadow:0 0 20px rgba(0,212,200,.2)}50%{box-shadow:0 0 40px rgba(0,212,200,.4)}}
+.fadeUp{animation:fadeUp .7s both;}.fadeUp-2{animation:fadeUp .7s .15s both;}.fadeUp-3{animation:fadeUp .7s .3s both;}.fadeUp-4{animation:fadeUp .7s .45s both;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:500;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px;}
+@media(max-width:768px){nav{padding:16px 24px;}.hero{padding:120px 24px 64px;}.section-frame{padding:64px 24px;}.hero h1{font-size:42px;}.module{grid-template-columns:40px 1fr;gap:16px;}.module-duration{display:none;}.enroll-panel{padding:40px 24px;}footer{padding:32px 24px;}}
+</style>
+</head>
+<body>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="scroll-bar" id="scrollBar"></div>
+<canvas id="star-canvas"></canvas>
+
+<nav>
+  <a href="https://arctura.org" class="nav-brand">Arctura</a>
+  <span class="nav-path"><a href="https://arctura.org/academy">Academy</a> &nbsp;/&nbsp; Signal Ops</span>
+  <a href="https://arctura.org/academy" class="nav-back">← Academy</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-number" aria-hidden="true">04</div>
+  <div>
+    <div class="hero-eyebrow fadeUp">Transmission · 04 · Signal Track</div>
+    <h1 class="fadeUp-2">Signal<span>Ops</span></h1>
+    <p class="hero-sub fadeUp-3">Master the Arctura signal layer. GEO (Generative Engine Optimization), AI-first content architecture, llms.txt strategy, the weekly Signal Report system, and the distribution mesh that makes the collective visible.</p>
+    <div class="hero-meta fadeUp-4">
+      <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">5 Weeks</span></div>
+      <div class="meta-item"><span class="meta-label">Modules</span><span class="meta-value">10 Units</span></div>
+      <div class="meta-item"><span class="meta-label">Level</span><span class="meta-value">Intermediate</span></div>
+      <div class="meta-item"><span class="meta-label">Framework</span><span class="meta-value">GEO · ARM · AURE</span></div>
+    </div>
+    <div class="fadeUp-4">
+      <a href="#enroll" class="btn-enter">Begin Transmission</a>
+      <a href="#curriculum" class="btn-ghost">View Curriculum</a>
+    </div>
+  </div>
+</div>
+
+<div class="signal-divider"></div>
+
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 01 · Context</div>
+    <h2 class="section-title">The GEO Signal Stack</h2>
+    <p class="section-intro">Search is dead. Generative engines are the new discovery layer. Signal Ops teaches you to optimize for the entities that decide what gets cited — AI systems, not algorithms.</p>
+    <div class="geo-visual">
+      <div class="geo-metric"><div class="geo-num">74%</div><div class="geo-label">Crawler Score<br>Blocked Without llms.txt</div></div>
+      <div class="geo-metric"><div class="geo-num">5x</div><div class="geo-label">Citation Rate<br>With Entity Schema</div></div>
+      <div class="geo-metric"><div class="geo-num">2×</div><div class="geo-label">Weekly Cadence<br>Arctura Content Engine</div></div>
+      <div class="geo-metric"><div class="geo-num">16</div><div class="geo-label">AURE Agents<br>Powering the Signal</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<section id="curriculum">
+  <div class="section-frame">
+    <div class="section-label">Transmission · 02 · Curriculum</div>
+    <h2 class="section-title">Broadcast Architecture</h2>
+    <p class="section-intro">Ten modules covering the full stack from AI discoverability infrastructure to live signal distribution at network scale.</p>
+    <div class="modules-grid">
+      <div class="module"><span class="module-num">01</span><div><div class="module-title">GEO — What It Is and Why SEO Is Over</div><div class="module-desc">The shift from PageRank to LLM citation. How generative engines choose what to surface. The ARM approach to AI-first discoverability.</div></div><span class="module-duration">2h 00m</span></div>
+      <div class="module"><span class="module-num">02</span><div><div class="module-title">llms.txt — The AI Robots.txt</div><div class="module-desc">Write a complete llms.txt file. The Arctura pattern that opens the crawler score from 26/100 to 100/100. Deploy it across all ARM domains.</div></div><span class="module-duration">1h 30m</span></div>
+      <div class="module"><span class="module-num">03</span><div><div class="module-title">schema.json & Structured Data Architecture</div><div class="module-desc">JSON-LD entity graphs. @type definitions for organizations, agents, and network nodes. The Arctura schema.json as a canonical template.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">04</span><div><div class="module-title">Entity Architecture — Building Citeable Identities</div><div class="module-desc">Wikidata, Crunchbase, and the E-E-A-T signal. Why external citations matter to LLMs. How to build the reference graph that makes the network legible to AI.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">05</span><div><div class="module-title">Content Silos & Topical Authority</div><div class="module-desc">The Swell silo architecture. Building content clusters where every page reinforces every other. Internal link strategy for AI crawler paths.</div></div><span class="module-duration">3h 00m</span></div>
+      <div class="module"><span class="module-num">06</span><div><div class="module-title">The Signal Report System</div><div class="module-desc">Design and run the Arctura weekly Signal Report. Format, cadence, distribution, and how the Report becomes a feed for the agent mesh.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">07</span><div><div class="module-title">Multi-Channel Distribution Architecture</div><div class="module-desc">@ArcturaNetwork, @ArcturaLearn, LinkedIn, Bluesky, HubSpot sequences. Orchestrate the Arctura emissary channel system from a single content source.</div></div><span class="module-duration">3h 00m</span></div>
+      <div class="module"><span class="module-num">08</span><div><div class="module-title">Agent-Assisted Content Production</div><div class="module-desc">Use AURE agents to draft, review, schedule, and post. The 2-articles/week production cadence using Swell pipeline automation.</div></div><span class="module-duration">3h 30m</span></div>
+      <div class="module"><span class="module-num">09</span><div><div class="module-title">Nightly Signal Format & Meridian Context</div><div class="module-desc">The "Nightly Signal + Meridian Context" content format. How Hazy Meridian intelligence feeds real-time narrative. Operating the information edge.</div></div><span class="module-duration">2h 00m</span></div>
+      <div class="module"><span class="module-num">10</span><div><div class="module-title">Capstone — Deploy a Full Signal Stack</div><div class="module-desc">Ship llms.txt, schema.json, a 5-post content silo, and one Signal Report. Get audited by the GEO Lead agent and receive your signal credential.</div></div><span class="module-duration">5h 00m</span></div>
+    </div>
+
+    <div class="signal-report">
+      <h3>What the Signal Report Looks Like</h3>
+      <p>A live preview of the weekly Arctura Signal Report — the cornerstone content format you'll learn to produce, automate, and distribute at network scale.</p>
+      <div class="report-tags">
+        <span class="report-tag">GEO Intelligence</span>
+        <span class="report-tag">Agent Architecture</span>
+        <span class="report-tag">Base Network</span>
+        <span class="report-tag">ARM Doctrine</span>
+        <span class="report-tag">Council Dispatch</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="enroll">
+  <div class="section-frame">
+    <div class="enroll-panel" style="animation:breatheSignal 4s ease-in-out infinite;">
+      <div class="section-label" style="justify-content:center;">Transmission · 03 · Enrollment</div>
+      <h2>Broadcast at Network Scale</h2>
+      <p>The Arctura signal is a living infrastructure. Learn to operate, amplify, and extend it.</p>
+      <a href="https://arctura.org/academy" class="btn-enter">Enroll in Signal Ops</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Arctura Academy</span>
+  <div class="footer-links">
+    <a href="https://arctura.org">arctura.org</a>
+    <a href="https://arctura.network">arctura.network</a>
+    <a href="https://arctura.org/academy">Academy Index</a>
+    <a href="https://arctura.org/academy/treasury-governance">Treasury Governance →</a>
+  </div>
+</footer>
+
+<script>
+const ring=document.getElementById('cursorRing'),dot=document.getElementById('cursorDot');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('scrollBar').style.width=p+'%';});
+const canvas=document.getElementById('star-canvas'),ctx=canvas.getContext('2d');let W,H,stars=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function init(){resize();stars=[];for(let i=0;i<140;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.2,a:Math.random(),s:Math.random()*.003+.001});}
+function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,227,240,${s.a*.6})`;ctx.fill();});}
+(function tick(){draw();requestAnimationFrame(tick);})();
+window.addEventListener('resize',init);init();
+</script>
+</body>
+</html>

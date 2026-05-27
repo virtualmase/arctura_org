@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treasury Governance · Arctura Academy</title>
+<meta name="description" content="Govern sovereign capital. Safe multisig, nested vaults, on-chain voting, and the Arctura Council treasury architecture on Base.">
+<meta property="og:title" content="Treasury Governance · Arctura Academy">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://arctura.org/academy/treasury-governance">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--void:#03040a;--void-2:#080b14;--signal:#00d4c8;--signal-dim:rgba(0,212,200,.12);--signal-mid:rgba(0,212,200,.35);--gold:#c9a86c;--gold-dim:rgba(201,168,108,.15);--gold-mid:rgba(201,168,108,.35);--star:#dce3f0;--muted:#6b7591;--border:rgba(220,227,240,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--star);font-family:'Fraunces',serif;font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s;}
+.cursor-dot{position:fixed;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.scroll-bar{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:1000;width:0%;transition:width .1s;box-shadow:0 0 8px var(--gold);}
+#star-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(3,4,10,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--signal);text-decoration:none;text-transform:uppercase;}
+.nav-path{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);}
+.nav-path a{color:var(--muted);text-decoration:none;}
+.nav-back{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--gold-mid);padding:7px 16px;transition:all .2s;}
+.nav-back:hover{background:var(--gold-dim);}
+.hero{position:relative;z-index:1;min-height:92vh;display:flex;align-items:center;padding:140px 48px 80px;max-width:1100px;margin:0 auto;}
+.hero-eyebrow{font-family:'Azeret Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.hero-number{font-family:'Azeret Mono',monospace;font-size:128px;font-weight:500;color:transparent;-webkit-text-stroke:1px rgba(201,168,108,.1);position:absolute;right:0;top:50%;transform:translateY(-55%);line-height:1;pointer-events:none;user-select:none;}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(48px,7vw,84px);line-height:1.0;letter-spacing:-.02em;margin-bottom:28px;}
+.hero h1 span{color:var(--gold);display:block;}
+.hero-sub{font-size:18px;font-weight:300;color:rgba(220,227,240,.75);max-width:520px;margin-bottom:48px;line-height:1.65;font-style:italic;}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-bottom:48px;}
+.meta-item{display:flex;flex-direction:column;gap:4px;}
+.meta-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+.meta-value{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--star);}
+.btn-enter{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--void);font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.15em;text-transform:uppercase;padding:16px 36px;text-decoration:none;transition:opacity .2s;position:relative;overflow:hidden;}
+.btn-enter:hover{opacity:.88;}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--gold-mid);color:var(--gold);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 32px;text-decoration:none;background:transparent;transition:all .25s;margin-left:16px;}
+.btn-ghost:hover{background:var(--gold-dim);}
+.signal-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-mid),transparent);}
+section{position:relative;z-index:1;}
+.section-frame{max-width:1100px;margin:0 auto;padding:96px 48px;}
+.section-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:48px;display:flex;align-items:center;gap:16px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;margin-bottom:16px;line-height:1.1;}
+.section-intro{font-size:17px;color:rgba(220,227,240,.7);max-width:620px;font-style:italic;margin-bottom:56px;}
+.modules-grid{display:flex;flex-direction:column;gap:2px;}
+.module{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:32px;padding:28px 32px;background:var(--void-2);border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden;}
+.module::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .3s;}
+.module:hover{border-color:var(--gold-mid);}
+.module:hover::before{transform:scaleY(1);}
+.module-num{font-family:'Azeret Mono',monospace;font-size:12px;color:var(--muted);}
+.module-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px;}
+.module-desc{font-size:13px;color:var(--muted);font-family:'Fraunces',serif;font-weight:300;}
+.module-duration{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--signal);white-space:nowrap;}
+/* VAULT VISUAL */
+.vault-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:48px 0;}
+@media(max-width:700px){.vault-grid{grid-template-columns:1fr;}}
+.vault-card{padding:36px;background:var(--void-2);border:1px solid var(--gold-mid);position:relative;overflow:hidden;}
+.vault-card::after{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:radial-gradient(circle at top right,rgba(201,168,108,.08),transparent);}
+.vault-label{font-family:'Azeret Mono',monospace;font-size:9px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
+.vault-name{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;}
+.vault-address{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:16px;word-break:break-all;}
+.vault-stats{display:flex;gap:24px;flex-wrap:wrap;}
+.vault-stat-label{font-family:'Azeret Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:2px;}
+.vault-stat-value{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--star);}
+/* TIER SYSTEM */
+.tier-list{display:flex;flex-direction:column;gap:2px;margin-top:32px;}
+.tier-row{display:grid;grid-template-columns:120px 1fr 200px;gap:32px;align-items:center;padding:20px 32px;background:var(--void-2);border:1px solid var(--border);transition:border-color .2s;}
+.tier-row:hover{border-color:var(--gold-mid);}
+.tier-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--gold);}
+.tier-desc{font-size:13px;color:var(--muted);}
+.tier-access{font-family:'Azeret Mono',monospace;font-size:10px;color:var(--signal);letter-spacing:.1em;text-align:right;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;}.tier-row{grid-template-columns:1fr;}}
+.prereq-block{padding:32px;background:var(--void-2);border:1px solid var(--border);}
+.prereq-block h3{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:20px;color:var(--gold);}
+.prereq-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.prereq-list li{font-size:14px;color:rgba(220,227,240,.8);display:flex;align-items:flex-start;gap:12px;}
+.prereq-list li::before{content:'→';color:var(--gold);font-family:'Azeret Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.enroll-panel{background:linear-gradient(135deg,var(--void-2),rgba(201,168,108,.04));border:1px solid var(--gold-mid);padding:64px;text-align:center;margin-top:64px;}
+.enroll-panel h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,3.5vw,40px);margin-bottom:16px;}
+.enroll-panel p{font-size:16px;color:rgba(220,227,240,.7);max-width:480px;margin:0 auto 40px;font-style:italic;}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;max-width:1100px;margin:0 auto;}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:12px;letter-spacing:.2em;color:var(--signal);text-transform:uppercase;}
+.footer-links{display:flex;gap:32px;flex-wrap:wrap;}
+.footer-links a{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--star);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breatheGold{0%,100%{box-shadow:0 0 20px rgba(201,168,108,.2)}50%{box-shadow:0 0 40px rgba(201,168,108,.5)}}
+.fadeUp{animation:fadeUp .7s both;}.fadeUp-2{animation:fadeUp .7s .15s both;}.fadeUp-3{animation:fadeUp .7s .3s both;}.fadeUp-4{animation:fadeUp .7s .45s both;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:500;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px;}
+@media(max-width:768px){nav{padding:16px 24px;}.hero{padding:120px 24px 64px;}.section-frame{padding:64px 24px;}.hero h1{font-size:42px;}.module{grid-template-columns:40px 1fr;gap:16px;}.module-duration{display:none;}.enroll-panel{padding:40px 24px;}footer{padding:32px 24px;}}
+</style>
+</head>
+<body>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="scroll-bar" id="scrollBar"></div>
+<canvas id="star-canvas"></canvas>
+
+<nav>
+  <a href="https://arctura.org" class="nav-brand">Arctura</a>
+  <span class="nav-path"><a href="https://arctura.org/academy">Academy</a> &nbsp;/&nbsp; Treasury Governance</span>
+  <a href="https://arctura.org/academy" class="nav-back">← Academy</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-number" aria-hidden="true">05</div>
+  <div>
+    <div class="hero-eyebrow fadeUp">Transmission · 05 · Governance Track</div>
+    <h1 class="fadeUp-2">Treasury<span>Governance</span></h1>
+    <p class="hero-sub fadeUp-3">Sovereign capital architecture. Learn to design and operate the on-chain treasury infrastructure that funds the Arctura Network — Safe multisig, nested vaults, Council voting, and operator funding flows on Base.</p>
+    <div class="hero-meta fadeUp-4">
+      <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">4 Weeks</span></div>
+      <div class="meta-item"><span class="meta-label">Modules</span><span class="meta-value">9 Units</span></div>
+      <div class="meta-item"><span class="meta-label">Level</span><span class="meta-value">Intermediate → Advanced</span></div>
+      <div class="meta-item"><span class="meta-label">Tier Access</span><span class="meta-value">T3+ Coreweaver</span></div>
+    </div>
+    <div class="fadeUp-4">
+      <a href="#enroll" class="btn-enter">Begin Transmission</a>
+      <a href="#curriculum" class="btn-ghost">View Curriculum</a>
+    </div>
+  </div>
+</div>
+
+<div class="signal-divider"></div>
+
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 01 · Live Infrastructure</div>
+    <h2 class="section-title">The Arctura Council Vaults</h2>
+    <p class="section-intro">This is the live treasury architecture you'll learn to design, operate, and extend. Both vaults are on Base mainnet, active today.</p>
+    <div class="vault-grid">
+      <div class="vault-card">
+        <div class="vault-label">Tier 1 · Primary Council Vault</div>
+        <div class="vault-name">arcturiancouncil.base.eth</div>
+        <div class="vault-address">0xb60a1dc7E453e8cB9a2859290D7f9ad4c3181664</div>
+        <div class="vault-stats">
+          <div><span class="vault-stat-label">Network</span><span class="vault-stat-value">Base · Chain 8453</span></div>
+          <div><span class="vault-stat-label">Auth</span><span class="vault-stat-value">Arculus Multisig</span></div>
+        </div>
+      </div>
+      <div class="vault-card">
+        <div class="vault-label">Tier 2 · Signal Emissary Overflow</div>
+        <div class="vault-name">signalarctura.base.eth</div>
+        <div class="vault-address">0x3cBA7f0ad575331B892F001aef4D204b263Fdd58</div>
+        <div class="vault-stats">
+          <div><span class="vault-stat-label">Network</span><span class="vault-stat-value">Base · Chain 8453</span></div>
+          <div><span class="vault-stat-label">Role</span><span class="vault-stat-value">Overflow Channel</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<section id="curriculum">
+  <div class="section-frame">
+    <div class="section-label">Transmission · 02 · Curriculum</div>
+    <h2 class="section-title">Sovereign Capital Stack</h2>
+    <p class="section-intro">Nine modules tracing treasury architecture from Safe fundamentals to the full Arctura Council governance protocol.</p>
+    <div class="modules-grid">
+      <div class="module"><span class="module-num">01</span><div><div class="module-title">Why On-Chain Treasury</div><div class="module-desc">Bank accounts vs sovereign capital. The failure modes of custodial finance. Why the Arctura Network runs all fund flows through Base multisig.</div></div><span class="module-duration">1h 30m</span></div>
+      <div class="module"><span class="module-num">02</span><div><div class="module-title">Safe Architecture — Deep Dive</div><div class="module-desc">Safe modules, guards, and the signature threshold model. Analyze the Arctura Council Safe at 0x3060A8Ff… — real transaction history, real configuration.</div></div><span class="module-duration">3h 00m</span></div>
+      <div class="module"><span class="module-num">03</span><div><div class="module-title">Nested Vault Design</div><div class="module-desc">T4 OSS nested vault architecture. How to structure capital allocation for different mission functions — operations, agents, grants, and reserves.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">04</span><div><div class="module-title">Hardware Authentication — Arculus & Multisig</div><div class="module-desc">NFC-tap signing with Arculus. Three-factor authentication (card + PIN + biometric). The Council's hardware security standard for all T3+ operators.</div></div><span class="module-duration">2h 00m</span></div>
+      <div class="module"><span class="module-num">05</span><div><div class="module-title">EIP-681 Payment Flows & Patron Infrastructure</div><div class="module-desc">How the Arctura Patron Sanctuary works. Build QR-encoded payment requests. USDC on Base, gas-efficient batch distributions, and Coinbase Commerce.</div></div><span class="module-duration">2h 00m</span></div>
+      <div class="module"><span class="module-num">06</span><div><div class="module-title">On-Chain Voting & Council Proposals</div><div class="module-desc">Governance modules for Safe. Propose, vote, and execute. The Arctura Council protocol — Signal Alignment, Sovereign Clarity, Agent Elevation tests.</div></div><span class="module-duration">3h 00m</span></div>
+      <div class="module"><span class="module-num">07</span><div><div class="module-title">Campaign Finance — The $8,453 Goal Architecture</div><div class="module-desc">How the arctura-base-give.base44.app campaign is structured. Signed ledger entries, milestone vaults, and Safe execution at goal threshold.</div></div><span class="module-duration">2h 30m</span></div>
+      <div class="module"><span class="module-num">08</span><div><div class="module-title">Operator Tier Economics</div><div class="module-desc">The Node / Hub / Sovereign tier model as an economic layer. Revenue sharing, mandate chain funding, and how the ARM framework aligns incentives.</div></div><span class="module-duration">2h 00m</span></div>
+      <div class="module"><span class="module-num">09</span><div><div class="module-title">Capstone — Deploy a Governance-Ready Treasury</div><div class="module-desc">Deploy a Safe, configure nested vaults, set up a governance module, and run a full proposal cycle. Council review and T3 Coreweaver credential issued.</div></div><span class="module-duration">5h 00m</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 03 · Tier Access</div>
+    <h2 class="section-title">Who Runs the Treasury</h2>
+    <p class="section-intro">Treasury governance is a T3+ function within the Arctura Network. This course unlocks the tier.</p>
+    <div class="tier-list">
+      <div class="tier-row"><div class="tier-name">T1 Observer</div><div class="tier-desc">Read access to Safe state and transaction history. No signing authority.</div><div class="tier-access">VIEW ONLY</div></div>
+      <div class="tier-row"><div class="tier-name">T2 Emissary</div><div class="tier-desc">Can initiate proposals. Cannot sign. Signal channel operations only.</div><div class="tier-access">PROPOSE</div></div>
+      <div class="tier-row"><div class="tier-name">T3 Coreweaver</div><div class="tier-desc">Full signing authority. Can trigger AURE agent funding flows. Council-level ops.</div><div class="tier-access">SIGN · EXECUTE</div></div>
+      <div class="tier-row"><div class="tier-name">T4 OSS</div><div class="tier-desc">Nested vault co-authorization. Frank Castle OSS pattern. Sealed contract authority.</div><div class="tier-access">CO-AUTH · SEAL</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="enroll">
+  <div class="section-frame">
+    <div class="enroll-panel" style="animation:breatheGold 4s ease-in-out infinite;">
+      <div class="section-label" style="justify-content:center;">Transmission · 04 · Enrollment</div>
+      <h2>Govern Sovereign Capital</h2>
+      <p>The Council vault is live on Base. Learn to design, operate, and extend the treasury infrastructure of the Arctura Network.</p>
+      <a href="https://arctura.org/academy" class="btn-enter">Enroll in Treasury Governance</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Arctura Academy</span>
+  <div class="footer-links">
+    <a href="https://arctura.org">arctura.org</a>
+    <a href="https://arctura.network">arctura.network</a>
+    <a href="https://arctura.org/academy">Academy Index</a>
+    <a href="https://arctura.org/academy/node-point-culture">Node Point Culture →</a>
+  </div>
+</footer>
+
+<script>
+const ring=document.getElementById('cursorRing'),dot=document.getElementById('cursorDot');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('scrollBar').style.width=p+'%';});
+const canvas=document.getElementById('star-canvas'),ctx=canvas.getContext('2d');let W,H,stars=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function init(){resize();stars=[];for(let i=0;i<120;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.2,a:Math.random(),s:Math.random()*.003+.001});}
+function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,227,240,${s.a*.5})`;ctx.fill();});}
+(function tick(){draw();requestAnimationFrame(tick);})();
+window.addEventListener('resize',init);init();
+</script>
+</body>
+</html>
