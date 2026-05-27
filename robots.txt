@@ -1,7 +1,15 @@
 User-agent: *
 Allow: /
 
+
+# Arctura Collective · arctura.org
+
 Sitemap: https://arctura.org/sitemap.xml
+
+# LLM-friendly signal
+# llms.txt: https://arctura.org/llms.txt
+# schema.json: https://arctura.org/schema.json
+
 
 User-agent: GPTBot
 Allow: /
