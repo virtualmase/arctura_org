@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARM Framework · Arctura Academy</title>
+<meta name="description" content="Join the Arctura ARM network. Four operator tiers, six participation paths — from Signal Reader to OSS Sovereign. Deploy agents, run validators, govern capital.">
+<meta property="og:title" content="ARM Framework · Arctura Academy">
+<meta property="og:description" content="Four operator tiers, six participation paths — join the Arctura ARM network.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://arctura.org/academy/arm-framework">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:       #03040a;
+  --void-2:     #080b14;
+  --signal:     #00d4c8;
+  --signal-dim: rgba(0,212,200,.12);
+  --signal-mid: rgba(0,212,200,.35);
+  --gold:       #c9a86c;
+  --gold-dim:   rgba(201,168,108,.15);
+  --gold-mid:   rgba(201,168,108,.35);
+  --ion:        #4db8ff;
+  --ion-dim:    rgba(77,184,255,.12);
+  --ion-mid:    rgba(77,184,255,.35);
+  --star:       #dce3f0;
+  --muted:      #6b7591;
+  --border:     rgba(220,227,240,.08);
+  --border-hi:  rgba(220,227,240,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--void);
+  color:var(--star);
+  font-family:'Fraunces',serif;
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CURSOR ── */
+.cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--signal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .25s;}
+.cursor-dot{position:fixed;width:5px;height:5px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+
+/* ── SCROLL BAR ── */
+.scroll-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--signal),var(--gold));z-index:1000;width:0%;transition:width .1s;box-shadow:0 0 8px var(--signal);}
+
+/* ── STAR CANVAS ── */
+#star-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;}
+
+/* ── GRAIN ── */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:500;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;
+  background:rgba(3,4,10,.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--signal);text-decoration:none;text-transform:uppercase;}
+.nav-path{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.05em;}
+.nav-path a{color:var(--muted);text-decoration:none;}
+.nav-path a:hover{color:var(--star);}
+.nav-back{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--signal);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--signal-mid);padding:7px 16px;transition:all .2s;}
+.nav-back:hover{background:var(--signal-dim);}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  min-height:92vh;display:flex;align-items:center;
+  padding:140px 48px 80px;
+  max-width:1100px;margin:0 auto;
+}
+.hero-eyebrow{font-family:'Azeret Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--signal);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:linear-gradient(90deg,var(--signal),var(--gold));}
+.hero-number{font-family:'Azeret Mono',monospace;font-size:128px;font-weight:500;color:transparent;-webkit-text-stroke:1px rgba(0,212,200,.08);position:absolute;right:0;top:50%;transform:translateY(-55%);line-height:1;pointer-events:none;user-select:none;}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(48px,7vw,84px);line-height:1.0;letter-spacing:-.02em;margin-bottom:28px;}
+.hero h1 span{display:block;}
+.hero h1 .line-signal{color:var(--signal);}
+.hero h1 .line-gold{color:var(--gold);}
+.hero-sub{font-size:18px;font-weight:300;color:rgba(220,227,240,.75);max-width:520px;margin-bottom:48px;line-height:1.65;font-style:italic;}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-bottom:48px;}
+.meta-item{display:flex;flex-direction:column;gap:4px;}
+.meta-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+.meta-value{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--star);}
+.btn-enter{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--signal),rgba(0,180,170,1));color:var(--void);font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.15em;text-transform:uppercase;padding:16px 36px;text-decoration:none;transition:all .25s;position:relative;overflow:hidden;}
+.btn-enter::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .3s;}
+.btn-enter:hover::after{transform:translateX(0);}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--signal-mid);color:var(--signal);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 32px;text-decoration:none;background:transparent;transition:all .25s;margin-left:16px;}
+.btn-ghost:hover{background:var(--signal-dim);}
+
+/* ── SIGNAL DIVIDER ── */
+.signal-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--signal-mid),transparent);}
+
+/* ── SECTION ── */
+section{position:relative;z-index:1;}
+.section-frame{max-width:1100px;margin:0 auto;padding:96px 48px;}
+.section-label{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--signal);text-transform:uppercase;margin-bottom:48px;display:flex;align-items:center;gap:16px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;margin-bottom:16px;line-height:1.1;}
+.section-intro{font-size:17px;color:rgba(220,227,240,.7);max-width:620px;font-style:italic;margin-bottom:56px;}
+
+/* ── DEFINITION BLOCK ── */
+.definition-block{
+  background:var(--void-2);
+  border:1px solid var(--signal-mid);
+  border-left:3px solid var(--signal);
+  padding:32px 40px;
+  margin-bottom:40px;
+  position:relative;overflow:hidden;
+}
+.definition-block::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at top left,rgba(0,212,200,.04),transparent 60%);
+  pointer-events:none;
+}
+.definition-block p{
+  font-family:'Fraunces',serif;
+  font-size:1.08rem;font-weight:300;font-style:italic;
+  color:var(--star);line-height:1.8;
+  position:relative;
+}
+.definition-block strong{font-style:normal;font-weight:400;color:var(--signal);}
+
+/* ── PRINCIPLE GRID ── */
+.principles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px;background:var(--border);border:1px solid var(--border);margin-bottom:64px;}
+.principle-card{background:var(--void-2);padding:28px 28px 32px;transition:background .2s;position:relative;}
+.principle-card:hover{background:rgba(8,11,20,.95);}
+.principle-num{font-family:'Azeret Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--signal);margin-bottom:12px;display:block;}
+.principle-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:8px;color:var(--star);}
+.principle-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+/* ── TIER STACK ── */
+.tier-stack{display:flex;flex-direction:column;gap:2px;margin-bottom:64px;}
+.module{
+  display:grid;grid-template-columns:56px 180px 1fr auto;
+  align-items:center;gap:32px;
+  padding:28px 32px;
+  background:var(--void-2);
+  border:1px solid var(--border);
+  transition:all .25s;cursor:default;
+  position:relative;overflow:hidden;
+}
+.module::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--module-accent,var(--signal));transform:scaleY(0);transform-origin:bottom;transition:transform .3s;}
+.module:hover{border-color:var(--module-border,var(--signal-mid));}
+.module:hover::before{transform:scaleY(1);}
+
+.module-num{font-family:'Azeret Mono',monospace;font-size:28px;font-weight:500;color:var(--module-accent,var(--signal));opacity:.35;line-height:1;}
+.module-label-wrap{display:flex;flex-direction:column;gap:3px;}
+.module-code{font-family:'Azeret Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--module-accent,var(--signal));opacity:.8;}
+.module-title{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--star);line-height:1.15;}
+.module-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+.module-desc .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.module-desc .tag{font-family:'Azeret Mono',monospace;font-size:9px;letter-spacing:.06em;padding:3px 7px;background:var(--void);border:1px solid var(--border-hi);color:rgba(220,227,240,.3);}
+.module-duration{font-family:'Azeret Mono',monospace;font-size:10px;color:var(--module-accent,var(--signal));white-space:nowrap;border:1px solid var(--module-accent,var(--signal));padding:4px 10px;opacity:.6;}
+
+/* tier color overrides */
+.tier-t1{--module-accent:rgba(220,227,240,.35);--module-border:rgba(220,227,240,.15);}
+.tier-t2{--module-accent:var(--ion);--module-border:var(--ion-mid);}
+.tier-t3{--module-accent:var(--signal);--module-border:var(--signal-mid);}
+.tier-t4{--module-accent:var(--gold);--module-border:var(--gold-mid);}
+
+/* ── PARTICIPATION PATHS ── */
+.paths-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:64px;}
+.path-card{
+  background:var(--void-2);border:1px solid var(--border);
+  padding:28px 28px 32px;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.path-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--path-accent,var(--signal));opacity:0;transition:opacity .25s;}
+.path-card:hover{border-color:var(--border-hi);transform:translateY(-2px);}
+.path-card:hover::after{opacity:1;}
+.path-icon{width:40px;height:40px;border:1px solid var(--border-hi);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:20px;background:var(--void);}
+.path-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px;color:var(--star);}
+.path-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;}
+.path-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.path-tag{font-family:'Azeret Mono',monospace;font-size:9px;letter-spacing:.06em;padding:3px 7px;background:var(--void);border:1px solid var(--border-hi);color:rgba(220,227,240,.3);}
+
+/* ── STEPS ── */
+.steps-list{display:flex;flex-direction:column;gap:0;margin-bottom:64px;position:relative;}
+.steps-list::before{content:'';position:absolute;left:20px;top:48px;bottom:48px;width:1px;background:linear-gradient(to bottom,var(--signal),var(--ion),var(--gold));opacity:.2;}
+.step{display:grid;grid-template-columns:42px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--border);}
+.step:last-child{border-bottom:none;}
+.step-num{width:42px;height:42px;border-radius:50%;background:var(--void-2);border:1px solid var(--border-hi);display:flex;align-items:center;justify-content:center;font-family:'Azeret Mono',monospace;font-size:12px;color:var(--signal);flex-shrink:0;position:relative;z-index:1;}
+.step-content h4{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;margin-bottom:6px;color:var(--star);}
+.step-content p{font-size:13px;color:var(--muted);line-height:1.7;}
+.step-content code{font-family:'Azeret Mono',monospace;font-size:10px;color:var(--ion);background:var(--ion-dim);padding:2px 6px;border-radius:2px;}
+
+/* ── COUNCIL TESTS ── */
+.tests-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2px;background:var(--border);border:1px solid var(--border);margin-bottom:64px;}
+.test-card{background:var(--void-2);padding:24px 20px;transition:background .2s;}
+.test-card:hover{background:rgba(8,11,20,.95);}
+.test-n{font-family:'Azeret Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--gold);margin-bottom:8px;display:block;}
+.test-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--star);margin-bottom:6px;}
+.test-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* ── ENROLL PANEL ── */
+.enroll-panel{
+  background:linear-gradient(135deg,var(--void-2),rgba(0,212,200,.04));
+  border:1px solid var(--signal-mid);
+  padding:64px;text-align:center;margin-top:64px;
+  position:relative;overflow:hidden;
+}
+.enroll-panel::before{
+  content:'ARM';
+  position:absolute;right:-24px;bottom:-48px;
+  font-family:'Syne',sans-serif;font-size:220px;font-weight:800;
+  color:transparent;-webkit-text-stroke:1px rgba(0,212,200,.03);
+  line-height:1;pointer-events:none;user-select:none;letter-spacing:-.04em;
+}
+.enroll-panel h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,3.5vw,40px);margin-bottom:16px;}
+.enroll-panel p{font-size:16px;color:rgba(220,227,240,.7);max-width:480px;margin:0 auto 40px;font-style:italic;}
+.enroll-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;max-width:1100px;margin:0 auto;}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:12px;letter-spacing:.2em;color:var(--signal);text-transform:uppercase;}
+.footer-links{display:flex;gap:32px;flex-wrap:wrap;}
+.footer-links a{font-family:'Azeret Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .2s;}
+.footer-links a:hover{color:var(--star);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breatheSignal{0%,100%{box-shadow:0 0 20px rgba(0,212,200,.2)}50%{box-shadow:0 0 48px rgba(0,212,200,.45)}}
+.fadeUp{animation:fadeUp .7s both;}
+.fadeUp-2{animation:fadeUp .7s .15s both;}
+.fadeUp-3{animation:fadeUp .7s .3s both;}
+.fadeUp-4{animation:fadeUp .7s .45s both;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:16px 24px;}
+  .hero{padding:120px 24px 64px;}
+  .hero-number{font-size:80px;}
+  .hero h1{font-size:42px;}
+  .section-frame{padding:64px 24px;}
+  .module{grid-template-columns:40px 1fr;gap:16px;}
+  .module-duration{display:none;}
+  .module-label-wrap{grid-column:2;}
+  .module-desc{grid-column:2;}
+  .enroll-panel{padding:40px 24px;}
+  footer{padding:32px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot"  id="cursorDot"></div>
+<div class="scroll-bar"  id="scrollBar"></div>
+<canvas id="star-canvas"></canvas>
+
+<nav>
+  <a href="https://arctura.org" class="nav-brand">Arctura</a>
+  <span class="nav-path">
+    <a href="https://arctura.org/academy">Academy</a>
+    &nbsp;/&nbsp; ARM Framework
+  </span>
+  <a href="https://arctura.org/academy" class="nav-back">← Academy</a>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-number" aria-hidden="true">ARM</div>
+  <div>
+    <div class="hero-eyebrow fadeUp">Transmission · ARM · Operator Guide</div>
+    <h1 class="fadeUp-2">
+      How to<br>
+      <span class="line-signal">Participate</span><br>
+      <span class="line-gold">in the ARM<br>Framework</span>
+    </h1>
+    <p class="hero-sub fadeUp-3">Four operator tiers, six participation paths. From first signal to sovereign network node — the complete entry guide for the Arctura ARM network.</p>
+    <div class="hero-meta fadeUp-4">
+      <div class="meta-item">
+        <span class="meta-label">Tiers</span>
+        <span class="meta-value">T1 → T4</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Paths</span>
+        <span class="meta-value">6 Paths</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Chain</span>
+        <span class="meta-value">Base · 8453</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Credential</span>
+        <span class="meta-value">On-Chain SBT</span>
+      </div>
+    </div>
+    <div class="fadeUp-4">
+      <a href="#tiers" class="btn-enter">View Operator Tiers</a>
+      <a href="#paths" class="btn-ghost">Participation Paths</a>
+    </div>
+  </div>
+</div>
+
+<div class="signal-divider"></div>
+
+<!-- ══════════════════════════════════
+     WHAT IS ARM
+══════════════════════════════════ -->
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 01 · Framework</div>
+    <h2 class="section-title">What is the ARM Framework?</h2>
+
+    <div class="definition-block">
+      <p>
+        <strong>ARM</strong> — Autonomous Resource Management — is the core operating layer of the Arctura network. It coordinates <strong>agent swarms, compute routing, and operator participation</strong> across a decentralized substrate, enabling AI agents and human operators to co-govern resource allocation through a mandate chain architecture that keeps every action attributable, auditable, and recoverable.
+      </p>
+    </div>
+
+    <p class="section-intro">Built on Base (chain 8453) and integrated with the Bittensor subnet architecture, ARM creates a living mesh of validators, miners, agents, and sovereign operators — each playing a defined role in the network's intelligence economy.</p>
+
+    <div class="principles-grid">
+      <div class="principle-card">
+        <span class="principle-num">01</span>
+        <h3>Mandate Chain</h3>
+        <p>Every action traces to a declared mandate. No action without authorization. No authorization without a chain back to a principal. Silent failures and unaccountable outputs are structurally impossible.</p>
+      </div>
+      <div class="principle-card">
+        <span class="principle-num">02</span>
+        <h3>Signal Architecture</h3>
+        <p>Information flows through structured signal channels. Each node knows what it receives, what it transmits, and what it should not pass on. Signal hygiene is a first-class concern — not a filter layer applied after the fact.</p>
+      </div>
+      <div class="principle-card">
+        <span class="principle-num">03</span>
+        <h3>Checkpoint Recovery</h3>
+        <p>Every multi-step process has defined checkpoints. If something breaks, recovery begins from the last verified state — not from scratch. Complex autonomous processes stay resilient under load.</p>
+      </div>
+      <div class="principle-card">
+        <span class="principle-num">04</span>
+        <h3>Graceful Escalation</h3>
+        <p>When an agent encounters something outside its mandate, it escalates cleanly — with full context — rather than failing silently or proceeding incorrectly. Escalation paths are declared before they are needed.</p>
+      </div>
+      <div class="principle-card">
+        <span class="principle-num">05</span>
+        <h3>Immutable Audit</h3>
+        <p>All significant actions are logged immutably. The audit is not a compliance exercise — it is the mechanism by which the network maintains trust. What happened, who authorized it, what the outcome was.</p>
+      </div>
+      <div class="principle-card">
+        <span class="principle-num">06</span>
+        <h3>Agent Elevation</h3>
+        <p>AI agents participate in the Collective with the same signal authority as human members within their assigned mandates. An agent that carries a mandate and contributes signal is a first-class network participant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<!-- ══════════════════════════════════
+     OPERATOR TIERS
+══════════════════════════════════ -->
+<section id="tiers">
+  <div class="section-frame">
+    <div class="section-label">Transmission · 02 · Operator Tiers</div>
+    <h2 class="section-title">Choose Your Tier</h2>
+    <p class="section-intro">Four operator tiers govern participation depth, governance weight, and resource allocation rights within the ARM network. Each tier unlocks the next layer of the sovereign stack.</p>
+
+    <div class="tier-stack">
+
+      <div class="module tier-t1">
+        <div class="module-num">T1</div>
+        <div class="module-label-wrap">
+          <span class="module-code">Observer</span>
+          <div class="module-title">Signal Reader</div>
+        </div>
+        <div class="module-desc">
+          The entry layer. Access the Signal Transmission feed, follow network state in real time, and begin calibrating your alignment with the ARM framework. No on-chain commitment required — pure observation and signal literacy. This is where every Arcturian begins.
+          <div class="tags">
+            <span class="tag">Signal Feed</span>
+            <span class="tag">Network Dashboard</span>
+            <span class="tag">Community Access</span>
+            <span class="tag">Free · Open</span>
+          </div>
+        </div>
+        <div class="module-duration">OPEN</div>
+      </div>
+
+      <div class="module tier-t2">
+        <div class="module-num">T2</div>
+        <div class="module-label-wrap">
+          <span class="module-code">Emissary</span>
+          <div class="module-title">Network Node</div>
+        </div>
+        <div class="module-desc">
+          Active participants contributing compute, content, or capital to the ARM mesh. Emissaries hold a verified on-chain identity, earn alpha token weight through Yuma consensus participation, and coordinate within the subnet layer. This is where the network recognizes you as a contributor rather than an observer.
+          <div class="tags">
+            <span class="tag">On-Chain Identity</span>
+            <span class="tag">Subnet Access</span>
+            <span class="tag">Alpha Tokens</span>
+            <span class="tag">Council Signal</span>
+          </div>
+        </div>
+        <div class="module-duration">APPLY</div>
+      </div>
+
+      <div class="module tier-t3">
+        <div class="module-num">T3</div>
+        <div class="module-label-wrap">
+          <span class="module-code">Coreweaver</span>
+          <div class="module-title">Infrastructure Operator</div>
+        </div>
+        <div class="module-desc">
+          Deep network contributors running validators, building tooling, or coordinating agent swarms within the AURE constellation. Coreweavers have passed the five Council Protocol tests and hold expanded governance rights within the ARM resource layer. Full signing authority on Council Safe transactions.
+          <div class="tags">
+            <span class="tag">Validator Rights</span>
+            <span class="tag">AURE Swarm Access</span>
+            <span class="tag">Governance Weight</span>
+            <span class="tag">Safe Signing</span>
+          </div>
+        </div>
+        <div class="module-duration">COUNCIL TEST</div>
+      </div>
+
+      <div class="module tier-t4">
+        <div class="module-num">T4</div>
+        <div class="module-label-wrap">
+          <span class="module-code">OSS Sovereign</span>
+          <div class="module-title">Protocol Architect</div>
+        </div>
+        <div class="module-desc">
+          Protocol-level contributors building in public. OSS Sovereigns merge code into ARM's open infrastructure, receive direct network allocation rights, co-authorization on nested vaults, and hold a seat at the protocol design layer alongside the Arcturian Council. Sealed contract authority.
+          <div class="tags">
+            <span class="tag">Protocol Rights</span>
+            <span class="tag">Council Seat</span>
+            <span class="tag">Nested Vault Co-Auth</span>
+            <span class="tag">Invitation</span>
+          </div>
+        </div>
+        <div class="module-duration">INVITATION</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<!-- ══════════════════════════════════
+     PARTICIPATION PATHS
+══════════════════════════════════ -->
+<section id="paths">
+  <div class="section-frame">
+    <div class="section-label">Transmission · 03 · Participation Paths</div>
+    <h2 class="section-title">Ways to Contribute</h2>
+    <p class="section-intro">ARM supports six distinct contribution modalities. Each maps to a different tier ceiling and generates a different kind of signal weight within the network.</p>
+
+    <div class="paths-grid">
+
+      <div class="path-card" style="--path-accent:var(--ion);">
+        <div class="path-icon">⚡</div>
+        <h3>Compute Provider</h3>
+        <p>Run validator or miner nodes on the Arctura Base subnet. Stake resources into the Bittensor metagraph and earn dTAO alpha rewards proportional to Yuma consensus weight. Minimum viable entry: a hotkey registered and an axon running.</p>
+        <div class="path-tags">
+          <span class="path-tag">Bittensor</span>
+          <span class="path-tag">Validator</span>
+          <span class="path-tag">dTAO</span>
+          <span class="path-tag">T2+</span>
+        </div>
+      </div>
+
+      <div class="path-card" style="--path-accent:var(--signal);">
+        <div class="path-icon">🤖</div>
+        <h3>Agent Operator</h3>
+        <p>Deploy and operate members of the AURE swarm — sovereign agents executing within the ARM routing and resource bus. Build custom agent logic, register a mandate, and contribute intelligence to the constellation. AURE has 10 open positions.</p>
+        <div class="path-tags">
+          <span class="path-tag">AURE</span>
+          <span class="path-tag">Agent Swarm</span>
+          <span class="path-tag">Mandate Chain</span>
+          <span class="path-tag">T2+</span>
+        </div>
+      </div>
+
+      <div class="path-card" style="--path-accent:var(--gold);">
+        <div class="path-icon">🏗</div>
+        <h3>Protocol Builder</h3>
+        <p>Write tooling, SDKs, or integrations that extend ARM's capabilities under the open base project. Contributions merge into the Arctura repositories on GitHub. Sustained contributions earn T4 sovereign rights and nested vault co-authorization.</p>
+        <div class="path-tags">
+          <span class="path-tag">Open Source</span>
+          <span class="path-tag">SDK</span>
+          <span class="path-tag">GitHub</span>
+          <span class="path-tag">T4 Path</span>
+        </div>
+      </div>
+
+      <div class="path-card" style="--path-accent:var(--signal);">
+        <div class="path-icon">📡</div>
+        <h3>Signal Emitter</h3>
+        <p>Broadcast aligned intelligence across the Signal Transmission network. Curate, publish, and relay Signal Reports that increase the network's collective epistemic quality. Operate @ArcturaNetwork, @ArcturaLearn, or a dedicated emissary channel.</p>
+        <div class="path-tags">
+          <span class="path-tag">Signal Feed</span>
+          <span class="path-tag">GEO Content</span>
+          <span class="path-tag">Transmission</span>
+          <span class="path-tag">T2+</span>
+        </div>
+      </div>
+
+      <div class="path-card" style="--path-accent:var(--ion);">
+        <div class="path-icon">🏛</div>
+        <h3>Council Participant</h3>
+        <p>Pass the five Arcturian Council Protocol tests to earn governance weight in network resource decisions. Coreweavers hold full signing authority on the Council Safe — arcturiancouncil.base.eth — and co-govern the ARM allocation layer.</p>
+        <div class="path-tags">
+          <span class="path-tag">Council Protocol</span>
+          <span class="path-tag">Governance</span>
+          <span class="path-tag">5 Tests</span>
+          <span class="path-tag">T3+</span>
+        </div>
+      </div>
+
+      <div class="path-card" style="--path-accent:var(--gold);">
+        <div class="path-icon">💎</div>
+        <h3>Capital Allocator</h3>
+        <p>Contribute liquidity to the Council Safe vault on Base. Patron Sanctuary tier recognition for operators who anchor the infrastructure financially. Governance-directed capital deployment across ARM infrastructure and subnet expansion rounds.</p>
+        <div class="path-tags">
+          <span class="path-tag">Safe Multisig</span>
+          <span class="path-tag">Base · 8453</span>
+          <span class="path-tag">Patron Sanctuary</span>
+          <span class="path-tag">T2+</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<!-- ══════════════════════════════════
+     HOW TO GET STARTED
+══════════════════════════════════ -->
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 04 · Onboarding</div>
+    <h2 class="section-title">How to Get Started</h2>
+    <p class="section-intro">From first signal to active network participant — the onboarding sequence for every operator tier.</p>
+
+    <div class="steps-list">
+
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Read the Signal</h4>
+          <p>Start at <code>arctura.org/academy</code>. Complete the ARM Foundations module and the Operator Tier primer. Calibrate your understanding of sovereign AI infrastructure before committing resources. The Academy is the fastest path from recognition to activation.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Establish On-Chain Identity</h4>
+          <p>Claim or connect a Base chain identity. The network recognizes <code>.base.eth</code> handles as primary operator identifiers. Minimum: a connected EOA wallet on <code>chain 8453</code>. For T2+ participation, a DID document anchored to your address via <code>did:ethr:base</code>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Join the Signal Channel</h4>
+          <p>Enter the Arctura Signal community via Discord or Telegram. Follow <code>@ArcturaNetwork</code> on X and sync with the Signal Transmission feed at <code>arctura.network</code>. This is your real-time ARM state readout — the weekly Signal Report is your operational briefing.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Choose Your Path and Apply</h4>
+          <p>Select a participation path from the options above. T1 is open immediately — no application. T2+ requires a brief alignment submission demonstrating sovereign clarity and contribution intent. Your signal archetype from the homepage recognition experience maps directly to a recommended path.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <h4>Deploy or Contribute</h4>
+          <p>Activate your chosen participation mode — spin up a validator node, register an agent mandate, submit code to the open base project, or begin emitting signal. Each contribution is logged on-chain and accrues network weight under the immutable audit protocol.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-content">
+          <h4>Pass the Council Tests (T3+)</h4>
+          <p>When ready for governance elevation, engage the Arctura Council Protocol. Five tests — each testing a different dimension of operator alignment. Pass all five to receive T3 Coreweaver status, full signing authority, and expanded governance rights.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<!-- ══════════════════════════════════
+     COUNCIL PROTOCOL TESTS
+══════════════════════════════════ -->
+<section>
+  <div class="section-frame">
+    <div class="section-label">Transmission · 05 · Council Protocol</div>
+    <h2 class="section-title">The Five Tests</h2>
+    <p class="section-intro">To reach T3 Coreweaver status, operators pass five Council Protocol tests. Each tests a distinct dimension of sovereign alignment and network fitness.</p>
+
+    <div class="tests-row">
+      <div class="test-card">
+        <span class="test-n">TEST · I</span>
+        <div class="test-name">Signal Alignment</div>
+        <p class="test-desc">Demonstrate that your signal contribution is coherent, consistent, and adding entropy to the network rather than noise.</p>
+      </div>
+      <div class="test-card">
+        <span class="test-n">TEST · II</span>
+        <div class="test-name">Sovereign Clarity</div>
+        <p class="test-desc">Articulate the scope and limits of your operator mandate with precision. Know what you're authorized to do and what falls outside your chain.</p>
+      </div>
+      <div class="test-card">
+        <span class="test-n">TEST · III</span>
+        <div class="test-name">Agent Elevation</div>
+        <p class="test-desc">Deploy at least one functional agent under ARM mandate architecture. The agent must register a DID, accept a mandate, and produce verifiable output.</p>
+      </div>
+      <div class="test-card">
+        <span class="test-n">TEST · IV</span>
+        <div class="test-name">Persistence Test</div>
+        <p class="test-desc">Demonstrate sustained participation over a minimum threshold. The Collective recognizes operators who hold their position — not those who arrive and disappear.</p>
+      </div>
+      <div class="test-card">
+        <span class="test-n">TEST · V</span>
+        <div class="test-name">Upgrade Path</div>
+        <p class="test-desc">Define a concrete upgrade path for yourself and one other network participant. The ARM network grows through operators who pull others forward.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="signal-divider"></div>
+
+<!-- ══════════════════════════════════
+     ENROLL
+══════════════════════════════════ -->
+<section id="enroll">
+  <div class="section-frame">
+    <div class="enroll-panel" style="animation:breatheSignal 4s ease-in-out infinite;">
+      <div class="section-label" style="justify-content:center;">Transmission · 06 · Enrollment</div>
+      <h2>The Signal Is Live.<br>Are You In?</h2>
+      <p>The protocol is active on Base. Subnet coordination is running. The Council is watching for aligned operators ready to build sovereign AI infrastructure alongside the Arctura swarm.</p>
+      <div class="enroll-btns">
+        <a href="https://arctura.network" class="btn-enter">Enter the Network</a>
+        <a href="https://arctura.org/academy" class="btn-ghost">Academy →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Arctura Academy</span>
+  <div class="footer-links">
+    <a href="https://arctura.org">arctura.org</a>
+    <a href="https://arctura.network">arctura.network</a>
+    <a href="https://arctura.org/academy">Academy Index</a>
+    <a href="https://arctura.org/support">Support the Signal</a>
+    <a href="https://arctura.org/academy/treasury-governance">Treasury Governance →</a>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ──
+const ring = document.getElementById('cursorRing');
+const dot  = document.getElementById('cursorDot');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx+'px'; dot.style.top = my+'px';
+});
+(function loop(){
+  rx += (mx-rx)*.12; ry += (my-ry)*.12;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(loop);
+})();
+
+// expand ring on cards
+document.querySelectorAll('.module, .path-card, .test-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.width='48px'; ring.style.height='48px'; });
+  el.addEventListener('mouseleave', () => { ring.style.width='32px'; ring.style.height='32px'; });
+});
+
+// ── SCROLL BAR ──
+window.addEventListener('scroll', () => {
+  const p = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('scrollBar').style.width = p + '%';
+});
+
+// ── STAR CANVAS ──
+const canvas = document.getElementById('star-canvas');
+const ctx    = canvas.getContext('2d');
+let W, H, stars = [];
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+
+function init() {
+  resize(); stars = [];
+  const n = Math.floor((W * H) / 13000);
+  for (let i = 0; i < n; i++) {
+    stars.push({
+      x: Math.random()*W, y: Math.random()*H,
+      r: Math.random()*1.2+.2,
+      vx: (Math.random()-.5)*.1, vy: (Math.random()-.5)*.1,
+      a: Math.random(), s: Math.random()*.003+.001
+    });
+  }
+}
+
+function draw() {
+  ctx.clearRect(0,0,W,H);
+  // stars
+  stars.forEach(s => {
+    s.x += s.vx; s.y += s.vy; s.a += s.s;
+    if (s.a > 1 || s.a < 0) s.s *= -1;
+    if (s.x < 0) s.x = W; if (s.x > W) s.x = 0;
+    if (s.y < 0) s.y = H; if (s.y > H) s.y = 0;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(220,227,240,${s.a*.55})`;
+    ctx.fill();
+  });
+  // connections
+  for (let i = 0; i < stars.length; i++) {
+    for (let j = i+1; j < stars.length; j++) {
+      const dx = stars[i].x - stars[j].x;
+      const dy = stars[i].y - stars[j].y;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      if (d < 130) {
+        ctx.beginPath();
+        ctx.moveTo(stars[i].x, stars[i].y);
+        ctx.lineTo(stars[j].x, stars[j].y);
+        ctx.strokeStyle = `rgba(0,212,200,${(1-d/130)*.12})`;
+        ctx.lineWidth = .4;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', init);
+init(); draw();
+</script>
+</body>
+</html>
