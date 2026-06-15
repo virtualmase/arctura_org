@@ -1,0 +1,21 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/arcturians", "destination": "/arcturians/index.html" },
+    { "source": "/academy", "destination": "/academy/index.html" },
+    { "source": "/signal-archives", "destination": "/signal-archives/index.html" },
+    { "source": "/support", "destination": "/support/index.html" },
+    { "source": "/academy/arm-framework", "destination": "/academy/arm-framework/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
