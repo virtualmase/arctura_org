@@ -331,6 +331,73 @@ footer {
   footer { padding:28px 24px; flex-direction:column; gap:20px; }
   .enroll-panel { padding:48px 28px; }
 }
+
+  /* ── GLOBAL SITE NAV ── */
+  .global-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .global-nav a {
+    font-family: var(--mono, 'JetBrains Mono', monospace);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(160,185,220,0.55);
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .global-nav a:hover {
+    color: #00d2c8;
+    border-color: rgba(0,212,200,0.35);
+    background: rgba(0,212,200,0.06);
+  }
+  .global-nav a.nav-cta {
+    color: #00d2c8;
+    border-color: rgba(0,212,200,0.35);
+    background: rgba(0,212,200,0.06);
+  }
+  .global-nav a.nav-cta:hover {
+    background: rgba(0,212,200,0.14);
+  }
+  .global-nav-bar {
+    width: 100%;
+    background: rgba(4,5,10,0.94);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255,255,255,0.055);
+    padding: 0 2rem;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .global-nav-wordmark {
+    font-family: var(--display, 'Syne', sans-serif);
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(200,220,255,0.92);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .global-nav-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #00d2c8;
+    box-shadow: 0 0 6px #00d2c8;
+    animation: gndot 3s ease-in-out infinite;
+  }
+  @keyframes gndot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
 </style>
 </head>
 <body>
