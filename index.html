@@ -761,6 +761,104 @@ h3.sub-head {
 /* ── HIGHLIGHT ── */
 .hl-signal { color: var(--signal); }
 .hl-gold { color: var(--gold); }
+
+  /* ── GLOBAL NAV ── */
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .site-nav a {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--star-3);
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .site-nav a:hover {
+    color: var(--signal);
+    border-color: var(--rule-signal);
+    background: var(--signal-dim);
+  }
+  .site-nav a.nav-cta {
+    color: var(--signal);
+    border-color: var(--rule-signal);
+    background: rgba(0,212,200,0.06);
+  }
+  .site-nav a.nav-cta:hover {
+    background: rgba(0,212,200,0.14);
+  }
+
+  /* ── PATRON CTA BLOCK ── */
+  .patron-cta-block {
+    margin: 3.5rem 0;
+    border: 1px solid var(--rule-signal);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(0,212,200,0.04), rgba(200,169,110,0.03));
+    padding: 2.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .patron-cta-block::before {
+    content: '';
+    position: absolute; top: -1px; left: 5%; right: 5%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--signal), transparent);
+    opacity: 0.5;
+  }
+  .patron-cta-text .cta-eyebrow {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--signal);
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+  }
+  .patron-cta-text .cta-title {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--star);
+    margin-bottom: 0.4rem;
+  }
+  .patron-cta-text .cta-body {
+    font-size: 0.88rem;
+    color: var(--star-2);
+    line-height: 1.6;
+    max-width: 42ch;
+  }
+  .patron-cta-btn {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #030712;
+    background: var(--signal);
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    box-shadow: 0 0 24px rgba(0,212,200,0.2);
+  }
+  .patron-cta-btn:hover {
+    box-shadow: 0 0 40px rgba(0,212,200,0.4);
+    transform: translateY(-1px);
+  }
+
 </style>
 </head>
 <body>
@@ -777,7 +875,13 @@ h3.sub-head {
       <div class="wordmark"><span class="signal-dot"></span>Arctura</div>
       <span class="archive-badge">Signal Archives</span>
     </div>
-    <div class="masthead-right">Knowledge Base · Arcturian Entry · May 2026</div>
+    <nav class="site-nav">
+      <a href="/academy/">Academy</a>
+      <a href="/arcturians/">Arcturians</a>
+      <a href="/signal-archives/">Archives</a>
+      <a href="/support/">Support</a>
+      <a href="https://arctura.network/patrons/" class="nav-cta" target="_blank" rel="noopener">Fund the Network ↗</a>
+    </nav>
   </header>
 
   <!-- LEFT RAIL -->
@@ -1216,6 +1320,17 @@ h3.sub-head {
   </aside>
 
   <!-- FOOTER -->
+  
+  <!-- PATRON CTA BLOCK -->
+  <div class="patron-cta-block">
+    <div class="patron-cta-text">
+      <div class="cta-eyebrow">◈ Arctura Network · Base 8453</div>
+      <div class="cta-title">Fund the Arcturian Council</div>
+      <p class="cta-body">Support the infrastructure, intelligence, and mission of the network. Contributions arrive as USDC on Base — directly to the Council treasury.</p>
+    </div>
+    <a href="https://arctura.network/patrons/" class="patron-cta-btn" target="_blank" rel="noopener">Become a Patron ↗</a>
+  </div>
+
   <footer class="wiki-footer">
     <div class="footer-brand">
       <strong>Arctura</strong>
