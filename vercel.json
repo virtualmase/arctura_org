@@ -1,4 +1,10 @@
 {
+  "builds": [
+    { "src": "**/*.html", "use": "@vercel/static" },
+    { "src": "**/*.txt", "use": "@vercel/static" },
+    { "src": "**/*.json", "use": "@vercel/static" },
+    { "src": "**/*.xml", "use": "@vercel/static" }
+  ],
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
