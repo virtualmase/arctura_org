@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arctura.org/content/schema/arctura-content.schema.json",
+  "title": "Arctura Shared Content Model",
+  "description": "Canonical content model for the Arctura collective, its proof artifacts, disclosed guardians, operating signals, and interactive constellation map.",
+  "type": "object",
+  "required": ["schemaVersion", "updatedAt", "artifacts", "guardians", "signals", "nodes", "edges"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^1\\.0\\.0$"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/artifact" }
+    },
+    "guardians": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/guardian" }
+    },
+    "signals": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/signal" }
+    },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 3,
+      "maxLength": 80
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["live", "operational", "building", "tested", "in-review", "archived", "conceptual", "verified"]
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "url", "kind"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "url": { "$ref": "#/$defs/url" },
+        "kind": {
+          "type": "string",
+          "enum": ["repository", "deployment", "test-report", "pull-request", "nft", "archive", "documentation", "external"]
+        },
+        "ref": { "type": "string" }
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "label"],
+      "properties": {
+        "value": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "kind": {
+          "type": "string",
+          "enum": ["code", "tests", "review", "live", "provenance", "lore"]
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "title", "summary", "status", "tags", "sources", "boundary", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": {
+          "type": "string",
+          "enum": ["protocol", "agent-system", "entity-node", "product-system", "nft", "archive", "academy", "website"]
+        },
+        "title": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "challenge": { "type": "string" },
+        "delivered": { "type": "string" },
+        "status": { "$ref": "#/$defs/status" },
+        "tags": { "type": "array", "items": { "$ref": "#/$defs/tag" }, "uniqueItems": true },
+        "sources": { "type": "array", "items": { "$ref": "#/$defs/source" }, "minItems": 1 },
+        "metrics": { "type": "array", "items": { "$ref": "#/$defs/metric" } },
+        "boundary": { "type": "string", "minLength": 1 },
+        "guardianIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "signalIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "image": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["src", "alt"],
+          "properties": {
+            "src": { "type": "string", "minLength": 1 },
+            "alt": { "type": "string", "minLength": 1 },
+            "caption": { "type": "string" }
+          }
+        },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "publishedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "guardian": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "designation", "role", "description", "status", "mode", "tags"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "designation": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/status" },
+        "mode": {
+          "type": "string",
+          "enum": ["disclosed-agent", "human-discipline", "mythic-archetype", "system-role"]
+        },
+        "tags": { "type": "array", "items": { "$ref": "#/$defs/tag" }, "uniqueItems": true },
+        "capabilities": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "artifactIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "signalIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "visual": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "symbol": { "type": "string" },
+            "orbit": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "statement", "status", "kind", "tags", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string", "minLength": 1 },
+        "statement": { "type": "string", "minLength": 1 },
+        "detail": { "type": "string" },
+        "status": { "$ref": "#/$defs/status" },
+        "kind": {
+          "type": "string",
+          "enum": ["principle", "field-note", "system-status", "lore", "release", "announcement"]
+        },
+        "tags": { "type": "array", "items": { "$ref": "#/$defs/tag" }, "uniqueItems": true },
+        "artifactIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "guardianIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "source": { "$ref": "#/$defs/source" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "expiresAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "entityType", "entityId", "label", "x", "y", "size", "accent"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "entityType": { "type": "string", "enum": ["artifact", "guardian", "signal"] },
+        "entityId": { "$ref": "#/$defs/id" },
+        "label": { "type": "string", "minLength": 1 },
+        "x": { "type": "number", "minimum": 0, "maximum": 1 },
+        "y": { "type": "number", "minimum": 0, "maximum": 1 },
+        "size": { "type": "number", "minimum": 0.25, "maximum": 2 },
+        "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "orbit": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "from", "to", "relationship"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "relationship": {
+          "type": "string",
+          "enum": ["proves", "guards", "publishes", "frames", "renders", "structures", "belongs-to", "extends", "records", "depends-on"]
+        },
+        "strength": { "type": "number", "minimum": 0, "maximum": 1 },
+        "label": { "type": "string" }
+      }
+    }
+  }
+}
