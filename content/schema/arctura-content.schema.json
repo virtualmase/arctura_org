@@ -64,7 +64,7 @@
         "url": { "$ref": "#/$defs/url" },
         "kind": {
           "type": "string",
-          "enum": ["repository", "deployment", "test-report", "pull-request", "nft", "archive", "documentation", "external"]
+          "enum": ["repository", "deployment", "test-report", "pull-request", "nft", "token", "block-explorer", "archive", "documentation", "external"]
         },
         "ref": { "type": "string" }
       }
@@ -78,7 +78,7 @@
         "label": { "type": "string", "minLength": 1 },
         "kind": {
           "type": "string",
-          "enum": ["code", "tests", "review", "live", "provenance", "lore"]
+          "enum": ["code", "tests", "review", "live", "provenance", "on-chain", "lore"]
         }
       }
     },
@@ -90,7 +90,7 @@
         "id": { "$ref": "#/$defs/id" },
         "type": {
           "type": "string",
-          "enum": ["protocol", "agent-system", "entity-node", "product-system", "nft", "archive", "academy", "website"]
+          "enum": ["protocol", "agent-system", "entity-node", "product-system", "nft", "token", "archive", "academy", "website"]
         },
         "title": { "type": "string", "minLength": 1 },
         "summary": { "type": "string", "minLength": 1 },

@@ -92,6 +92,31 @@
       "guardianIds": ["pauli", "planck"],
       "signalIds": ["proof-over-myth"],
       "updatedAt": "2026-08-17T18:00:00-07:00"
+    },
+    {
+      "id": "tura-base-token",
+      "type": "token",
+      "title": "ARCTURA (TURA)",
+      "summary": "A Base ERC-20 token recorded in the Observatory as an on-chain provenance artifact.",
+      "status": "live",
+      "tags": ["base", "erc-20", "tura", "provenance"],
+      "sources": [
+        {
+          "label": "BaseScan token record",
+          "url": "https://basescan.org/token/0x53c792ae7fa13a4d4a34c4f3bdb308fd466b3719",
+          "kind": "block-explorer",
+          "ref": "base:0x53c792ae7fa13a4d4a34c4f3bdb308fd466b3719"
+        }
+      ],
+      "metrics": [
+        { "value": "20,999,999.999999999999997891", "label": "max total supply", "kind": "on-chain" },
+        { "value": "3", "label": "holders observed", "kind": "on-chain" },
+        { "value": "18", "label": "decimals", "kind": "on-chain" }
+      ],
+      "boundary": "This record reflects public BaseScan metadata observed on 2026-08-18. It is not investment advice, market analysis, a liquidity statement, a utility promise, or an instruction to buy, sell, transfer, or hold TURA. Launch attribution to Clawlett is user-provided and unverified in this record.",
+      "guardianIds": ["pauli", "planck"],
+      "signalIds": ["proof-over-myth"],
+      "updatedAt": "2026-08-18T07:00:00-07:00"
     }
   ],
   "guardians": [
@@ -185,6 +210,7 @@
     { "id": "node-arcturus", "entityType": "artifact", "entityId": "arcturus-001", "label": "Arcturus #1", "x": 0.18, "y": 0.25, "size": 1.35, "accent": "#ef734f", "orbit": 0.08 },
     { "id": "node-page", "entityType": "artifact", "entityId": "arctura-guardian-page", "label": "Arctura", "x": 0.52, "y": 0.23, "size": 1.1, "accent": "#ef734f", "orbit": 0.24 },
     { "id": "node-subnet", "entityType": "artifact", "entityId": "arctura-base-subnet", "label": "Base Subnet", "x": 0.76, "y": 0.52, "size": 1.0, "accent": "#8fb8d7", "orbit": 0.42 },
+    { "id": "node-tura", "entityType": "artifact", "entityId": "tura-base-token", "label": "TURA", "x": 0.86, "y": 0.29, "size": 0.94, "accent": "#f5b35a", "orbit": 0.31 },
     { "id": "node-pauli", "entityType": "guardian", "entityId": "pauli", "label": "Pauli", "x": 0.26, "y": 0.72, "size": 0.9, "accent": "#9de5cd", "orbit": 0.55 },
     { "id": "node-planck", "entityType": "guardian", "entityId": "planck", "label": "Planck", "x": 0.52, "y": 0.78, "size": 0.9, "accent": "#8fb8d7", "orbit": 0.68 },
     { "id": "node-lorentz", "entityType": "guardian", "entityId": "lorentz", "label": "Lorentz", "x": 0.78, "y": 0.78, "size": 0.9, "accent": "#ef734f", "orbit": 0.82 },
@@ -197,6 +223,8 @@
     { "id": "edge-pauli-subnet", "from": "node-pauli", "to": "node-subnet", "relationship": "guards", "strength": 0.92, "label": "guards" },
     { "id": "edge-planck-subnet", "from": "node-planck", "to": "node-subnet", "relationship": "structures", "strength": 0.86, "label": "structures" },
     { "id": "edge-proof-page", "from": "node-page", "to": "node-signal", "relationship": "publishes", "strength": 0.82, "label": "publishes" },
-    { "id": "edge-proof-subnet", "from": "node-subnet", "to": "node-signal", "relationship": "proves", "strength": 0.94, "label": "proves" }
+    { "id": "edge-proof-subnet", "from": "node-subnet", "to": "node-signal", "relationship": "proves", "strength": 0.94, "label": "proves" },
+    { "id": "edge-tura-subnet", "from": "node-tura", "to": "node-subnet", "relationship": "records", "strength": 0.62, "label": "records" },
+    { "id": "edge-tura-pauli", "from": "node-tura", "to": "node-pauli", "relationship": "guards", "strength": 0.68, "label": "guards" }
   ]
 }
