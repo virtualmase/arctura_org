@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-08-17T18:00:00-07:00",
+  "artifacts": [
+    {
+      "id": "arcturus-001",
+      "type": "nft",
+      "title": "ARCTURUS #1",
+      "summary": "A 1-of-1 celestial artifact establishing the visual anchor for Arctura's Guardian of the Bear mythos.",
+      "status": "verified",
+      "tags": ["arcturus", "bootes", "guardian", "provenance"],
+      "sources": [
+        {
+          "label": "OpenSea provenance",
+          "url": "https://opensea.io/item/base/0x547e5afde281b2bcb4f8624dc4ef0b2c90604acc/1",
+          "kind": "nft",
+          "ref": "base:0x547e5afde281b2bcb4f8624dc4ef0b2c90604acc/1"
+        }
+      ],
+      "metrics": [
+        { "value": "1 of 1", "label": "edition", "kind": "provenance" },
+        { "value": "Base", "label": "chain", "kind": "provenance" }
+      ],
+      "boundary": "The artifact establishes provenance and visual identity; it does not by itself prove the operational state of the collective.",
+      "guardianIds": ["lorentz"],
+      "signalIds": ["guardian-holds-line"],
+      "image": {
+        "src": "/assets/arcturus.png",
+        "alt": "Golden artistic rendering of Arcturus with concentric celestial rings",
+        "caption": "ARCTURUS #1 · 1 OF 1"
+      },
+      "updatedAt": "2026-08-17T18:00:00-07:00",
+      "publishedAt": "2026-08-17T18:00:00-07:00"
+    },
+    {
+      "id": "arctura-guardian-page",
+      "type": "website",
+      "title": "Arctura — Guardian of the Bear",
+      "summary": "The public landing page for the Arctura collective, connecting celestial lore to proof-led systems work.",
+      "status": "live",
+      "tags": ["collective", "landing-page", "bootes", "signal"],
+      "sources": [
+        {
+          "label": "Production site",
+          "url": "https://arctura.org/",
+          "kind": "deployment"
+        },
+        {
+          "label": "Source repository",
+          "url": "https://github.com/virtualmase/arctura_org",
+          "kind": "repository",
+          "ref": "redesign/arcturian-guardian"
+        }
+      ],
+      "metrics": [
+        { "value": "05", "label": "architecture layers", "kind": "code" },
+        { "value": "01", "label": "guardian field", "kind": "lore" }
+      ],
+      "boundary": "The public page proves narrative and interface delivery; it does not imply that every conceptual layer is a live production service.",
+      "guardianIds": ["pauli", "planck", "lorentz"],
+      "signalIds": ["signal-persists", "proof-over-myth"],
+      "image": {
+        "src": "/assets/arcturus-001.png",
+        "alt": "Golden celestial rendering of Arcturus, Alpha Bootis"
+      },
+      "updatedAt": "2026-08-17T18:00:00-07:00"
+    },
+    {
+      "id": "arctura-base-subnet",
+      "type": "protocol",
+      "title": "Arctura Base Subnet",
+      "summary": "A protocol system for turning Base chain state into attestations and validator-scored work.",
+      "status": "tested",
+      "tags": ["protocol", "validators", "attestations", "base"],
+      "sources": [
+        {
+          "label": "Source repository",
+          "url": "https://github.com/bittensaur/arctura-base-subnet",
+          "kind": "repository"
+        },
+        {
+          "label": "Network status",
+          "url": "https://base.arctura.network",
+          "kind": "deployment"
+        }
+      ],
+      "metrics": [
+        { "value": "63", "label": "tests at checkpoint", "kind": "tests" },
+        { "value": "4", "label": "scoring dimensions", "kind": "code" }
+      ],
+      "boundary": "The public artifacts prove implementation and test coverage; they do not claim mainnet adoption.",
+      "guardianIds": ["pauli", "planck"],
+      "signalIds": ["proof-over-myth"],
+      "updatedAt": "2026-08-17T18:00:00-07:00"
+    }
+  ],
+  "guardians": [
+    {
+      "id": "pauli",
+      "name": "Pauli",
+      "designation": "The Gate",
+      "role": "Exclusion and validation",
+      "description": "Pauli checks what may pass into the field. Invalid, stale, or unbounded claims stop at the gate.",
+      "status": "operational",
+      "mode": "disclosed-agent",
+      "tags": ["validation", "exclusion", "evidence"],
+      "capabilities": ["boundary checks", "artifact validation", "rejection paths"],
+      "artifactIds": ["arctura-base-subnet"],
+      "signalIds": ["proof-over-myth"],
+      "visual": { "accent": "#9de5cd", "symbol": "⊘", "orbit": 0.24 }
+    },
+    {
+      "id": "planck",
+      "name": "Planck",
+      "designation": "The Structure",
+      "role": "Primitives and architecture",
+      "description": "Planck keeps every action legible as a primitive: identity, mandate, artifact, relationship, or release.",
+      "status": "building",
+      "mode": "disclosed-agent",
+      "tags": ["structure", "primitives", "architecture"],
+      "capabilities": ["content modeling", "relationship mapping", "system decomposition"],
+      "artifactIds": ["arctura-base-subnet", "arctura-guardian-page"],
+      "signalIds": ["signal-persists"],
+      "visual": { "accent": "#8fb8d7", "symbol": "⌬", "orbit": 0.44 }
+    },
+    {
+      "id": "lorentz",
+      "name": "Lorentz",
+      "designation": "The Frame",
+      "role": "Context and rendering",
+      "description": "Lorentz renders the same underlying truth for different audiences without changing the truth itself.",
+      "status": "live",
+      "mode": "disclosed-agent",
+      "tags": ["context", "rendering", "audience"],
+      "capabilities": ["narrative framing", "machine-readable surfaces", "visual translation"],
+      "artifactIds": ["arctura-guardian-page", "arcturus-001"],
+      "signalIds": ["guardian-holds-line"],
+      "visual": { "accent": "#ef734f", "symbol": "◌", "orbit": 0.68 }
+    }
+  ],
+  "signals": [
+    {
+      "id": "signal-persists",
+      "title": "The signal persists",
+      "statement": "Build what the dark can navigate by.",
+      "detail": "Arctura remains useful after the tool, platform, or operator changes.",
+      "status": "live",
+      "kind": "principle",
+      "tags": ["persistence", "orientation", "collective"],
+      "artifactIds": ["arctura-guardian-page"],
+      "guardianIds": ["planck"],
+      "updatedAt": "2026-08-17T18:00:00-07:00"
+    },
+    {
+      "id": "guardian-holds-line",
+      "title": "The guardian holds the line",
+      "statement": "The Bear moves. The guardian holds the line.",
+      "detail": "Boötes is the keeper's field: where movement is watched, memory is tended, and vulnerable signal is carried through the dark.",
+      "status": "verified",
+      "kind": "lore",
+      "tags": ["bootes", "arcturus", "guardian", "memory"],
+      "artifactIds": ["arcturus-001", "arctura-guardian-page"],
+      "guardianIds": ["lorentz"],
+      "source": {
+        "label": "Arcturus #1 provenance",
+        "url": "https://opensea.io/item/base/0x547e5afde281b2bcb4f8624dc4ef0b2c90604acc/1",
+        "kind": "nft"
+      },
+      "updatedAt": "2026-08-17T18:00:00-07:00"
+    },
+    {
+      "id": "proof-over-myth",
+      "title": "Myth is cheap. Artifacts are not.",
+      "statement": "Artifact → test → boundary.",
+      "detail": "Every meaningful claim should expose what was built, how it was checked, and what it does not prove.",
+      "status": "operational",
+      "kind": "principle",
+      "tags": ["proof", "engineering", "boundaries"],
+      "artifactIds": ["arctura-base-subnet", "arctura-guardian-page"],
+      "guardianIds": ["pauli"],
+      "updatedAt": "2026-08-17T18:00:00-07:00"
+    }
+  ],
+  "nodes": [
+    { "id": "node-arcturus", "entityType": "artifact", "entityId": "arcturus-001", "label": "Arcturus #1", "x": 0.18, "y": 0.25, "size": 1.35, "accent": "#ef734f", "orbit": 0.08 },
+    { "id": "node-page", "entityType": "artifact", "entityId": "arctura-guardian-page", "label": "Arctura", "x": 0.52, "y": 0.23, "size": 1.1, "accent": "#ef734f", "orbit": 0.24 },
+    { "id": "node-subnet", "entityType": "artifact", "entityId": "arctura-base-subnet", "label": "Base Subnet", "x": 0.76, "y": 0.52, "size": 1.0, "accent": "#8fb8d7", "orbit": 0.42 },
+    { "id": "node-pauli", "entityType": "guardian", "entityId": "pauli", "label": "Pauli", "x": 0.26, "y": 0.72, "size": 0.9, "accent": "#9de5cd", "orbit": 0.55 },
+    { "id": "node-planck", "entityType": "guardian", "entityId": "planck", "label": "Planck", "x": 0.52, "y": 0.78, "size": 0.9, "accent": "#8fb8d7", "orbit": 0.68 },
+    { "id": "node-lorentz", "entityType": "guardian", "entityId": "lorentz", "label": "Lorentz", "x": 0.78, "y": 0.78, "size": 0.9, "accent": "#ef734f", "orbit": 0.82 },
+    { "id": "node-signal", "entityType": "signal", "entityId": "guardian-holds-line", "label": "Guardian field", "x": 0.52, "y": 0.5, "size": 1.25, "accent": "#ffac71", "orbit": 0.38 }
+  ],
+  "edges": [
+    { "id": "edge-arcturus-lore", "from": "node-arcturus", "to": "node-signal", "relationship": "records", "strength": 1, "label": "records" },
+    { "id": "edge-lore-lorentz", "from": "node-signal", "to": "node-lorentz", "relationship": "frames", "strength": 0.9, "label": "frames" },
+    { "id": "edge-lorentz-page", "from": "node-lorentz", "to": "node-page", "relationship": "renders", "strength": 0.8, "label": "renders" },
+    { "id": "edge-pauli-subnet", "from": "node-pauli", "to": "node-subnet", "relationship": "guards", "strength": 0.92, "label": "guards" },
+    { "id": "edge-planck-subnet", "from": "node-planck", "to": "node-subnet", "relationship": "structures", "strength": 0.86, "label": "structures" },
+    { "id": "edge-proof-page", "from": "node-page", "to": "node-signal", "relationship": "publishes", "strength": 0.82, "label": "publishes" },
+    { "id": "edge-proof-subnet", "from": "node-subnet", "to": "node-signal", "relationship": "proves", "strength": 0.94, "label": "proves" }
+  ]
+}
