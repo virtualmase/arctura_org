@@ -1,12 +1,15 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/collective", "destination": "/field/", "permanent": true },
+    { "source": "/collective/", "destination": "/field/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/field", "destination": "/field/index.html" },
     { "source": "/guardian", "destination": "/guardian/index.html" },
     { "source": "/tools", "destination": "/tools/index.html" },
     { "source": "/products", "destination": "/products/index.html" },
     { "source": "/case-studies", "destination": "/case-studies/index.html" },
-    { "source": "/collective", "destination": "/collective/index.html" },
     { "source": "/protocol", "destination": "/protocol/index.html" },
     { "source": "/autonomous-resource-management", "destination": "/autonomous-resource-management/index.html" },
     { "source": "/arcturian-council", "destination": "/arcturian-council/index.html" },

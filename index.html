@@ -3,107 +3,160 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arctura — Guardian of the Bear</title>
-  <meta name="description" content="Arctura is an open collective of humans, agents, and infrastructure building a durable signal under the star of Arcturus — the Guardian of the Bear.">
-  <meta name="author" content="Mason Nguyen">
-  <meta name="robots" content="index, follow">
+  <title>Arctura Observatory — Public records and practical tools</title>
+  <meta name="description" content="Arctura publishes public records, practical tools, and clear boundaries for work that needs to remain legible, reviewable, and useful.">
   <link rel="canonical" href="https://arctura.org/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Arctura — Guardian of the Bear">
-  <meta property="og:description" content="A living signal network for people and agents who build what should outlast the moment.">
+  <meta property="og:title" content="Arctura Observatory">
+  <meta property="og:description" content="Public records, practical tools, and clear boundaries for work that must remain legible and reviewable.">
   <meta property="og:url" content="https://arctura.org/">
-  <meta property="og:site_name" content="Arctura">
-  <meta property="og:image" content="https://arctura.org/assets/arcturus-001.png">
-  <meta property="og:image:alt" content="ARCTURUS — a golden celestial rendering of Alpha Boötis, the Guardian of the Bear">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/family.css">
+  <link rel="stylesheet" href="/site-navigation.css">
+  <link rel="stylesheet" href="/home.css">
+  <script src="/site-navigation.js" defer></script>
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "@id":"https://arctura.org/#organization",
-    "name":"Arctura",
-    "alternateName":["The Arctura Collective","The Arcturians"],
-    "url":"https://arctura.org/",
-    "description":"An open collective of humans, agents, and infrastructure building durable signal and autonomous resource systems.",
-    "foundingDate":"2025",
-    "founder":{"@type":"Person","name":"Mason Nguyen"},
-    "sameAs":["https://arctura.network","https://autonomousresourcemanagement.com"]
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Arctura Observatory",
+    "url": "https://arctura.org/",
+    "description": "Arctura publishes public records, practical tools, and clear boundaries for work that needs to remain legible, reviewable, and useful."
   }
   </script>
-  <style>
-    :root {
-      --ink:#080a0d; --ink-2:#0e1217; --panel:#121921; --panel-2:#17212b;
-      --paper:#e7e3d8; --muted:#969d9c; --faint:#5e696b; --line:rgba(231,227,216,.13);
-      --ember:#ef734f; --ember-soft:#ffac71; --mint:#9de5cd; --blue:#8fb8d7;
-      --display:'Manrope',sans-serif; --serif:'Newsreader',serif; --mono:'DM Mono',monospace;
-      --ease:cubic-bezier(.23,1,.32,1);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;background:var(--ink)}
-    body{background:var(--ink);color:var(--paper);font-family:var(--display);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}.mono{font-family:var(--mono)}
-    .grain{position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E")}
-    #stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.62}.page{position:relative;z-index:1}
-    header{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,5rem);position:sticky;top:0;z-index:20;background:rgba(8,10,13,.78);backdrop-filter:blur(18px)}
-    .brand{display:flex;align-items:center;gap:.8rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:.85rem}.brand-mark{width:10px;height:10px;border:1px solid var(--ember);border-radius:50%;box-shadow:0 0 0 4px rgba(239,115,79,.12),0 0 22px rgba(239,115,79,.7);animation:throb 3s ease-in-out infinite}
-    nav{display:flex;gap:1.8rem;align-items:center}nav a{font:500 .67rem var(--mono);color:var(--faint);letter-spacing:.12em;text-transform:uppercase;transition:color .2s}nav a:hover{color:var(--mint)}.nav-cta{border:1px solid rgba(157,229,205,.35);padding:.55rem .85rem;color:var(--mint)}.nav-toggle{display:none;border:1px solid var(--line);background:transparent;color:var(--mint);font:500 .66rem var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:.6rem .72rem;cursor:pointer}.nav-toggle:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
-    .wrap{width:min(1240px,calc(100% - 2.5rem));margin:0 auto}.hero{min-height:calc(100vh - 72px);display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:clamp(2rem,7vw,8rem);align-items:center;padding:clamp(4rem,9vw,8rem) 0 5rem;position:relative}.hero:before{content:"";position:absolute;left:0;right:0;top:14%;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
-    .eyebrow{display:flex;align-items:center;gap:.75rem;font:400 .66rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:2rem}.eyebrow i{display:block;width:28px;height:1px;background:var(--mint);box-shadow:0 0 10px var(--mint)}
-    h1{font-size:clamp(4rem,10.5vw,9.7rem);line-height:.84;letter-spacing:-.08em;max-width:8ch;font-weight:800;text-transform:uppercase}h1 span{display:block;color:var(--ember)}h1 em{font:300 clamp(2rem,5vw,4.7rem) var(--serif);letter-spacing:-.055em;text-transform:none;color:var(--paper);display:block;margin-top:.28em}
-    .lede{font:300 clamp(1.05rem,1.8vw,1.3rem) var(--serif);color:var(--muted);max-width:48ch;margin:2.2rem 0 2rem}.actions{display:flex;gap:.8rem;flex-wrap:wrap}.button{font:500 .68rem var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:.95rem 1.15rem;border:1px solid var(--line);transition:transform .2s var(--ease),background .2s,color .2s,border-color .2s}.button:hover{transform:translateY(-2px);border-color:var(--mint)}.primary{background:var(--ember);color:var(--ink);border-color:var(--ember)}.primary:hover{background:var(--ember-soft);border-color:var(--ember-soft)}
-    .star-card{min-height:440px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(239,115,79,.08),rgba(14,18,23,.88) 42%);position:relative;overflow:hidden;padding:1.25rem;display:flex;flex-direction:column;justify-content:space-between}.star-card:before{content:"";position:absolute;width:430px;height:430px;border:1px solid rgba(239,115,79,.19);border-radius:50%;top:13%;left:13%;box-shadow:0 0 80px rgba(239,115,79,.08),inset 0 0 80px rgba(239,115,79,.05)}    .star-card:after{content:"";position:absolute;width:610px;height:210px;border:1px solid rgba(157,229,205,.15);border-radius:50%;transform:rotate(-32deg);top:31%;left:-10%}.arcturus-plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72;mix-blend-mode:screen;filter:saturate(.9) contrast(1.08);z-index:0}.star-card:has(.arcturus-plate):before{z-index:1}.card-top,.card-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start}.card-top p,.card-bottom p{font:400 .62rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.card-top strong{font:500 .62rem var(--mono);color:var(--mint);letter-spacing:.1em}.star-core{position:absolute;z-index:1;top:38%;left:50%;transform:translate(-50%,-50%);width:104px;height:104px;border-radius:50%;background:radial-gradient(circle at 36% 31%,#ffe7b1 0 4%,#f9a05e 16%,#e6593e 42%,rgba(239,115,79,.08) 67%,transparent 70%);box-shadow:0 0 30px rgba(239,115,79,.75),0 0 100px rgba(239,115,79,.24);opacity:.22}.star-core:after{content:"";position:absolute;inset:-18px;border:1px solid rgba(239,115,79,.55);border-radius:50%;animation:orbit 7s linear infinite}.star-label{position:absolute;z-index:2;top:54%;left:50%;transform:translateX(-50%);font:500 .63rem var(--mono);letter-spacing:.16em;color:var(--ember-soft);white-space:nowrap;text-transform:uppercase;text-shadow:0 1px 12px var(--ink)}.card-bottom{align-items:flex-end}.card-bottom strong{font:500 2.3rem var(--display);color:var(--paper);letter-spacing:-.08em}.card-bottom span{font:400 .63rem var(--mono);color:var(--faint);max-width:16ch;text-align:right}
-    .celestial-feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,7vw,7rem);align-items:center}.celestial-art{border:1px solid rgba(239,115,79,.28);background:var(--ink-2);padding:.6rem;position:relative;box-shadow:0 0 80px rgba(239,115,79,.12)}.celestial-art img{display:block;width:100%;aspect-ratio:1;object-fit:cover;filter:saturate(.88) contrast(1.06)}.celestial-art figcaption{display:flex;justify-content:space-between;gap:1rem;padding:.7rem .25rem .1rem;font:400 .58rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}.celestial-art a{color:var(--ember-soft)}.lore-copy{border-left:1px solid var(--ember);padding-left:clamp(1.2rem,3vw,2.5rem)}.lore-copy .lore-quote{font:300 clamp(1.7rem,3.8vw,3.2rem) var(--serif);line-height:1.05;color:var(--paper);max-width:15ch;margin-bottom:1.5rem}.lore-copy .lore-quote em{color:var(--ember);font-style:normal}.lore-copy p{color:var(--muted);max-width:48ch}.star-facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:2rem}.star-facts div{padding:.8rem .75rem .2rem 0;border-right:1px solid var(--line)}.star-facts div:not(:first-child){padding-left:.75rem}.star-facts div:last-child{border-right:0}.star-facts b{display:block;font:400 .58rem var(--mono);color:var(--ember);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}.star-facts span{font:400 .85rem var(--serif);color:var(--paper)}
-
-    .ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink-2);overflow:hidden}.ticker-track{display:flex;gap:3rem;white-space:nowrap;padding:1rem 0;font:400 .62rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint);animation:marquee 28s linear infinite}.ticker b{color:var(--ember);font-weight:400}
-    section{padding:clamp(5rem,9vw,9rem) 0;border-bottom:1px solid var(--line)}.section-head{display:grid;grid-template-columns:minmax(180px,.35fr) 1fr;gap:2rem;margin-bottom:3.5rem}.index{font:400 .66rem var(--mono);color:var(--ember);letter-spacing:.16em;text-transform:uppercase}.section-head h2{font-size:clamp(2.4rem,6vw,5.5rem);line-height:.95;letter-spacing:-.07em;text-transform:uppercase;max-width:10ch}.section-head h2 em{font:300 .72em var(--serif);text-transform:none;letter-spacing:-.04em;color:var(--muted)}
-    .manifesto{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,7vw,8rem)}.manifesto-lead{font:300 clamp(1.5rem,3vw,2.4rem) var(--serif);line-height:1.2;color:var(--paper);max-width:23ch}.manifesto-lead mark{background:none;color:var(--ember)}.manifesto-copy p{color:var(--muted);max-width:55ch}.manifesto-copy p strong{color:var(--paper);font-weight:500}
-    .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.proof{background:var(--ink-2);padding:1.4rem;min-height:250px;display:flex;flex-direction:column;justify-content:space-between;transition:background .25s,transform .25s var(--ease)}.proof:hover{background:var(--panel);transform:translateY(-4px)}.proof-number{font:400 .7rem var(--mono);color:var(--ember)}.proof h3{font-size:1.28rem;line-height:1.05;letter-spacing:-.04em;max-width:12ch}.proof p{font:300 .96rem var(--serif);color:var(--muted);max-width:29ch}.proof-foot{display:flex;justify-content:space-between;gap:1rem;font:400 .6rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}.proof-foot span:last-child{color:var(--mint)}
-    .marks{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.mark{padding:1.35rem 1rem;border-right:1px solid var(--line);min-height:185px}.mark:last-child{border-right:0}.mark b{display:block;font:400 .68rem var(--mono);color:var(--ember);margin-bottom:2.7rem}.mark h3{font-size:1rem;line-height:1.12;letter-spacing:-.02em}.mark p{font:300 .9rem var(--serif);color:var(--muted);margin-top:.8rem;line-height:1.4}
-    .constellation-shell{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:1px;background:var(--line);border:1px solid var(--line);min-height:520px}.constellation-canvas{position:relative;min-height:520px;overflow:hidden;background:radial-gradient(circle at 50% 45%,rgba(239,115,79,.1),transparent 35%),linear-gradient(145deg,#0c1319,#080a0d 70%)}.constellation-canvas:before{content:"BOÖTES / LIVE FIELD";position:absolute;top:1.2rem;left:1.2rem;font:400 .58rem var(--mono);letter-spacing:.16em;color:var(--faint);z-index:3}.constellation-canvas:after{content:"";position:absolute;inset:10%;border:1px solid rgba(157,229,205,.1);border-radius:50%;transform:rotate(-18deg);box-shadow:0 0 80px rgba(157,229,205,.04)}.constellation-svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}.constellation-edge{stroke:rgba(157,229,205,.23);stroke-width:1;stroke-dasharray:4 7;vector-effect:non-scaling-stroke;transition:stroke .2s,stroke-width .2s}.constellation-edge.is-active{stroke:var(--ember-soft);stroke-width:2;stroke-dasharray:none}.constellation-node{position:absolute;z-index:2;transform:translate(-50%,-50%);border:1px solid color-mix(in srgb,var(--node-accent) 70%,transparent);background:color-mix(in srgb,var(--node-accent) 13%,#0b1116);color:var(--paper);width:clamp(42px,5vw,62px);height:clamp(42px,5vw,62px);border-radius:50%;cursor:pointer;box-shadow:0 0 0 5px color-mix(in srgb,var(--node-accent) 7%,transparent),0 0 28px color-mix(in srgb,var(--node-accent) 21%,transparent);transition:transform .2s var(--ease),box-shadow .2s,background .2s}.constellation-node:hover,.constellation-node:focus-visible,.constellation-node.is-selected{transform:translate(-50%,-50%) scale(1.12);background:color-mix(in srgb,var(--node-accent) 28%,#0b1116);box-shadow:0 0 0 8px color-mix(in srgb,var(--node-accent) 10%,transparent),0 0 40px color-mix(in srgb,var(--node-accent) 42%,transparent);outline:none}.constellation-node span{display:block;font:500 .55rem var(--mono);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;transform:translateY(3.2rem);color:var(--muted)}.constellation-node .node-glyph{font-size:1rem;color:var(--node-accent);transform:none}.constellation-panel{background:var(--ink-2);padding:clamp(1.35rem,3vw,2.2rem);display:flex;flex-direction:column;justify-content:space-between;min-width:0}.constellation-panel .panel-kicker{font:400 .58rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:1.4rem}.constellation-panel h3{font-size:clamp(1.4rem,2.4vw,2.15rem);line-height:1;letter-spacing:-.05em;margin-bottom:.7rem}.constellation-panel p{font:300 1rem var(--serif);color:var(--muted);max-width:34ch}.constellation-panel .panel-status{display:inline-flex;align-items:center;gap:.45rem;font:400 .58rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mint);margin:1rem 0}.constellation-panel .panel-status:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}.panel-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}.panel-tags span{font:400 .55rem var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:.35rem .45rem;color:var(--faint)}.panel-metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(2,1fr);margin:1rem 0}.panel-metrics div{padding:.7rem .6rem .7rem 0;border-right:1px solid var(--line)}.panel-metrics div:nth-child(even){padding-left:.6rem;border-right:0}.panel-metrics b{display:block;color:var(--ember-soft);font:500 1rem var(--display)}.panel-metrics span{display:block;color:var(--faint);font:400 .53rem var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-top:.15rem}.panel-links{display:flex;flex-wrap:wrap;gap:.6rem}.panel-links a{font:400 .58rem var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--mint);border-bottom:1px solid rgba(157,229,205,.3);padding-bottom:.25rem}    .constellation-empty{font:400 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:auto;text-align:center}.detail-modal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:1rem;background:rgba(3,6,8,.78);backdrop-filter:blur(12px)}.detail-modal[hidden]{display:none}.detail-dialog{width:min(720px,100%);max-height:min(720px,calc(100vh - 2rem));overflow:auto;background:linear-gradient(145deg,#111b22,#090c10 75%);border:1px solid rgba(239,115,79,.48);box-shadow:0 20px 100px rgba(0,0,0,.6),0 0 80px rgba(239,115,79,.1);padding:clamp(1.4rem,4vw,3rem);position:relative}.detail-dialog:before{content:"";position:absolute;inset:1rem;border:1px solid rgba(157,229,205,.09);pointer-events:none}.detail-dialog > *{position:relative}.modal-close{position:absolute;top:1rem;right:1rem;z-index:2;border:1px solid var(--line);background:transparent;color:var(--muted);font:400 .7rem var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:.6rem .7rem;cursor:pointer}.modal-close:hover,.modal-close:focus-visible{color:var(--paper);border-color:var(--mint);outline:none}.modal-kicker{font:400 .6rem var(--mono);color:var(--ember);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem}.modal-title{font-size:clamp(2rem,5vw,4rem);line-height:.92;letter-spacing:-.07em;max-width:11ch;margin-bottom:1rem}.modal-summary{font:300 clamp(1.1rem,2.2vw,1.45rem) var(--serif);color:var(--paper);max-width:34ch}.modal-detail{font:300 1rem var(--serif);line-height:1.45;color:var(--muted);max-width:58ch;margin-top:1rem}.modal-art{display:block;width:min(300px,100%);aspect-ratio:1;object-fit:cover;border:1px solid var(--line);margin:1.5rem 0;filter:saturate(.86) contrast(1.08)}.modal-meta{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:1.5rem 0}.modal-meta div{padding:.8rem .6rem .8rem 0;border-right:1px solid var(--line)}.modal-meta div+div{padding-left:.6rem}.modal-meta div:last-child{border-right:0}.modal-meta b{display:block;color:var(--ember-soft);font:500 1rem var(--display)}.modal-meta span{display:block;color:var(--faint);font:400 .52rem var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem}.modal-boundary{border-left:2px solid var(--mint);padding-left:1rem;color:var(--muted);font:300 .95rem var(--serif);max-width:58ch}.modal-links{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}.modal-links a{font:400 .6rem var(--mono);color:var(--mint);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(157,229,205,.4);padding-bottom:.25rem}.modal-open{display:inline-flex;margin-top:1rem}.panel-boundary{font:300 .9rem var(--serif);color:var(--faint);line-height:1.35}.architecture{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(2rem,7vw,7rem);align-items:start}.architecture-copy p{color:var(--muted);max-width:40ch}.stack{border-top:1px solid var(--line)}.stack-row{display:grid;grid-template-columns:90px 1fr auto;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--line);align-items:center}.stack-row .num{font:400 .65rem var(--mono);color:var(--ember)}.stack-row h3{font-size:1.08rem}.stack-row p{font:300 .9rem var(--serif);color:var(--muted);margin-top:.15rem}.stack-row .status{font:400 .58rem var(--mono);color:var(--mint);letter-spacing:.1em;text-transform:uppercase}
-    .cta{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;background:linear-gradient(120deg,rgba(239,115,79,.11),rgba(157,229,205,.04));border:1px solid var(--line);padding:clamp(2rem,5vw,4rem)}.cta h2{font-size:clamp(2.4rem,6vw,5.3rem);line-height:.9;letter-spacing:-.07em;max-width:8ch}.cta p{font:300 1.2rem var(--serif);color:var(--muted);max-width:36ch;margin-top:1.4rem}.cta .actions{justify-content:flex-end}
-    footer{padding:2.2rem 0 3rem}.footer-row{display:flex;justify-content:space-between;gap:2rem;align-items:flex-start}.footer-row p{font:400 .62rem var(--mono);color:var(--faint);letter-spacing:.08em;text-transform:uppercase}.footer-links{display:flex;gap:1.4rem}.footer-links a{font:400 .62rem var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.footer-links a:hover{color:var(--mint)}
-    @keyframes throb{0%,100%{box-shadow:0 0 0 4px rgba(239,115,79,.12),0 0 22px rgba(239,115,79,.7)}50%{box-shadow:0 0 0 7px rgba(239,115,79,.05),0 0 12px rgba(239,115,79,.35)}}@keyframes orbit{to{transform:rotate(360deg)}}@keyframes marquee{to{transform:translateX(-50%)}}
-    @media(max-width:800px){header{height:auto;min-height:72px;flex-wrap:wrap;gap:.75rem}.nav-toggle{display:inline-flex;align-items:center;gap:.45rem}.nav-toggle::before{content:'☰';font-size:.8rem}header nav{display:none;width:100%;flex-direction:column;align-items:stretch;gap:.2rem;padding:.3rem 0 .8rem}header.nav-open nav{display:flex}header nav a{padding:.7rem .2rem;border-top:1px solid var(--line)}header.nav-open .nav-toggle::before{content:'×'} .hero{grid-template-columns:1fr;padding-top:5.5rem}.star-card{min-height:360px}.section-head,.manifesto,.architecture,.celestial-feature{grid-template-columns:1fr;gap:1.5rem}.section-head h2{max-width:14ch}.proof-grid{grid-template-columns:1fr}.marks{grid-template-columns:1fr 1fr}.mark:nth-child(2n){border-right:0}.mark:last-child{grid-column:span 2;border-top:1px solid var(--line)}.constellation-shell{grid-template-columns:1fr}.constellation-panel{min-height:310px}.constellation-canvas{min-height:460px}.cta{grid-template-columns:1fr}.cta .actions{justify-content:flex-start}}
-    @media(max-width:500px){.wrap{width:min(100% - 2rem,1240px)}h1{font-size:clamp(3.4rem,18vw,6rem)}.hero{min-height:auto}.star-card{min-height:320px}.stack-row{grid-template-columns:42px 1fr}.stack-row .status{grid-column:2}.footer-row{flex-direction:column}.footer-links{flex-wrap:wrap}.marks{grid-template-columns:1fr}.mark,.mark:nth-child(2n){border-right:0;border-bottom:1px solid var(--line)}.mark:last-child{grid-column:auto;border-top:0}.star-facts{grid-template-columns:1fr 1fr}.star-facts div:nth-child(2){border-right:0}.star-facts div:nth-child(3){padding-left:0;margin-top:.6rem}.star-facts div:nth-child(4){margin-top:.6rem}.constellation-canvas{min-height:380px}.constellation-node span{font-size:.48rem;transform:translateY(2.8rem)}}
-    @media(max-width:500px){.modal-meta{grid-template-columns:1fr}.modal-meta div{border-right:0;border-bottom:1px solid var(--line);padding-left:0!important}.modal-meta div:last-child{border-bottom:0}.detail-dialog{padding:1.3rem}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track,.brand-mark,.star-core:after,.constellation-node{animation:none}}
-  </style>
-  <link rel="stylesheet" href="/site-navigation.css">
-  <script src="/site-navigation.js" defer></script>
 </head>
-<body>
-  <canvas id="stars" aria-hidden="true"></canvas><div class="grain" aria-hidden="true"></div>
-  <div class="page">
-    <header><a class="brand" href="/" aria-label="Arctura home"><span class="brand-mark"></span>Arctura</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button><nav id="primary-navigation" aria-label="Primary navigation"><a href="#signal">Signal</a><a href="#constellation">Constellation</a><a href="/field/">Index</a><a href="/guardian/">Guardian</a><a href="/products/">Products</a><a href="/case-studies/">Evidence</a><a href="/collective/">Collective</a><a href="/protocol/">Protocol</a><a href="/tools/">Tools</a><a class="nav-cta" href="/arcturians/">Enter the field</a></nav></header>
-    <main>
-      <div class="wrap hero">
-        <div>
-          <p class="eyebrow"><i></i>The Bear's Gate · Arcturian signal</p>
-          <h1>Hold the <span>signal.</span><em>Build what the dark can navigate by.</em></h1>
-          <p class="lede">Arctura is a living collective of humans, agents, and infrastructure. We take our name from a real star and our posture from its story: remain a fixed point while the field around you moves.</p>
-          <div class="actions"><a class="button primary" href="#proof">Inspect the work</a><a class="button" href="/arcturians/">Who are the Arcturians?</a></div>
+<body class="home-page">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-shell">
+    <div class="site-shell__inner">
+      <a class="site-shell__brand" href="/" aria-label="Arctura Observatory home"><span class="site-shell__brand-mark" aria-hidden="true"></span><strong>Arctura</strong><em>Observatory</em></a>
+      <nav class="site-shell__nav" aria-label="Primary navigation">
+        <a class="site-shell__link" href="/" aria-current="page">Home</a>
+        <a class="site-shell__link" href="/field/">Index</a>
+        <a class="site-shell__link" href="/tools/">Tools</a>
+        <div class="site-shell__menu-wrap">
+          <button class="site-shell__toggle" type="button" data-shell-toggle aria-expanded="false" aria-controls="site-menu">Browse</button>
+          <div class="site-shell__menu" id="site-menu" data-shell-menu hidden>
+            <p class="site-shell__menu-title">Explore the public work</p>
+            <div class="site-shell__menu-grid">
+              <a href="/field/">Field Index</a>
+              <a href="/tools/">Tools</a>
+              <a href="/case-studies/">Evidence</a>
+              <a href="/arcturians/">Arcturians</a>
+              <a href="/guardian/">Guardian record</a>
+              <a href="/signal-archives/">Archive</a>
+            </div>
+          </div>
         </div>
-        <aside class="star-card" aria-label="Arcturus star record"><picture><source type="image/avif" srcset="/assets/arcturus-001-480w.avif 480w, /assets/arcturus-001-768w.avif 768w, /assets/arcturus-001-1254w.avif 1254w" sizes="(max-width: 720px) calc(100vw - 3rem), 420px"><source type="image/webp" srcset="/assets/arcturus-001-480w.webp 480w, /assets/arcturus-001-768w.webp 768w, /assets/arcturus-001-1254w.webp 1254w" sizes="(max-width: 720px) calc(100vw - 3rem), 420px"><img class="arcturus-plate" src="/assets/arcturus-001.png" width="1254" height="1254" decoding="async" fetchpriority="high" alt="Golden artistic rendering of Arcturus, Alpha Boötis, surrounded by a celestial register frame"></picture><div class="card-top"><p>STAR RECORD / 01</p><strong>VISIBLE SIGNAL</strong></div><div class="star-core"></div><div class="star-label">ARCTURUS · α BOÖTIS</div><div class="card-bottom"><div><strong>04</strong><p>guardian<br>designation</p></div><span>Orange giant<br>in Boötes</span></div></aside>
+        <a class="site-shell__link site-shell__link--support" href="/support/">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero__inner">
+        <p class="kicker">Arctura / public work</p>
+        <h1 id="home-title">Make the work<br><em>legible.</em></h1>
+        <p class="home-hero__lede">Arctura publishes public records, practical tools, and clear boundaries for work that needs to remain useful after the original platform, operator, or moment has changed.</p>
+        <div class="action-row">
+          <a class="button" href="/field/">Explore the Field Index</a>
+          <a class="button button--ghost" href="/tools/">Use a tool</a>
+        </div>
       </div>
-      <div class="ticker"><div class="ticker-track"><span><b>ARCTURA</b> / OPEN COLLECTIVE</span><span>HUMANS + AGENTS + INFRASTRUCTURE</span><span><b>METHOD</b> / ARTIFACT → TEST → BOUNDARY</span><span>THE SIGNAL PERSISTS</span><span><b>ARCTURA</b> / OPEN COLLECTIVE</span><span>HUMANS + AGENTS + INFRASTRUCTURE</span></div></div>
-      <section id="signal"><div class="wrap"><div class="section-head"><p class="index">01 / The signal</p><h2>A star is a <em>position.</em></h2></div><div class="manifesto"><p class="manifesto-lead">The Arcturians are not a species claim. They are a <mark>practice.</mark></p><div class="manifesto-copy"><p>To be Arcturian is to contribute signal to a collective that should remain useful after the tool, platform, or operator changes.</p><p><strong>We publish the work.</strong> We make infrastructure legible. We leave evidence at the boundary of every claim, and we build systems that can be entered by people and agents without a single point of control.</p></div></div></div></section>
-            <section id="bootes-lore"><div class="wrap"><div class="section-head"><p class="index">02 / The guardian field</p><h2>Boötes is a <em>threshold.</em></h2></div><div class="celestial-feature"><figure class="celestial-art"><picture><source type="image/avif" srcset="/assets/arcturus-480w.avif 480w, /assets/arcturus-768w.avif 768w, /assets/arcturus-1024w.avif 1024w" sizes="(max-width: 720px) calc(100vw - 3rem), 520px"><source type="image/webp" srcset="/assets/arcturus-480w.webp 480w, /assets/arcturus-768w.webp 768w, /assets/arcturus-1024w.webp 1024w" sizes="(max-width: 720px) calc(100vw - 3rem), 520px"><img src="/assets/arcturus.png" width="1024" height="1024" loading="lazy" decoding="async" alt="Golden, sun-like artistic rendering of Arcturus with concentric celestial rings"></picture><figcaption><span>ARCTURUS #1 · 1 OF 1</span><a href="https://opensea.io/item/base/0x547e5afde281b2bcb4f8624dc4ef0b2c90604acc/1" target="_blank" rel="noopener">View provenance ↗</a></figcaption></figure><div class="lore-copy"><p class="lore-quote">The Bear moves. The guardian <em>holds the line.</em></p><p>In Arcturian canon, Boötes is not a distant kingdom. It is the keeper's field: the place where movement is watched, memory is tended, and the vulnerable signal is carried through the dark.</p><p>Arcturians inherit that posture. We are custodians of continuity—humans, agents, and systems trained to keep a useful orientation when the surrounding field changes.</p><div class="star-facts"><div><b>Designation</b><span>α Boötis</span></div><div><b>Role</b><span>Bear guard</span></div><div><b>Artifact</b><span>1 of 1</span></div><div><b>Chain</b><span>Base</span></div></div></div></div></div></section>
-      <section id="constellation"><div class="wrap"><div class="section-head"><p class="index">03 / Live constellation</p><h2>Find the <em>fixed points.</em></h2></div><div class="constellation-shell"><div id="constellation-canvas" class="constellation-canvas" aria-label="Interactive Arctura constellation map"><p class="constellation-empty">Loading field coordinates…</p></div><aside id="constellation-panel" class="constellation-panel" aria-live="polite"><div><p class="panel-kicker">Selected field object</p><h3>Choose a node</h3><p>Trace the relationships between Arctura’s artifacts, guardians, and signals.</p></div><div><p class="panel-status">Awaiting selection</p><div class="panel-tags"><span>Artifact</span><span>Guardian</span><span>Signal</span></div></div></aside></div></div></section>
-      <section id="proof"><div class="wrap"><div class="section-head"><p class="index">04 / Proof ledger</p>
-          <h2>Myth is cheap.<br><em>Artifacts are not.</em></h2>
-</div><div class="proof-grid"><article class="proof"><span class="proof-number">01</span><div><h3>Protocol work</h3><p>Subnets, attestations, validators, and scoring paths with rejection conditions made explicit.</p></div><div class="proof-foot"><span>Code + tests</span><span>Inspectable</span></div></article><article class="proof"><span class="proof-number">02</span><div><h3>Agent infrastructure</h3><p>Human and machine participants connected through mandates, identity, and autonomous resource management.</p></div><div class="proof-foot"><span>Systems + ops</span><span>Operating</span></div></article><article class="proof"><span class="proof-number">03</span><div><h3>Machine-readable authority</h3><p>Structured records, public knowledge surfaces, and content that can be retrieved without losing the source.</p></div><div class="proof-foot"><span>Schema + signal</span><span>Live</span></div></article></div></div></section>
-            <section><div class="wrap"><div class="section-head"><p class="index">05 / The five marks</p>
-<h2>How the field<br><em>recognizes its own.</em></h2></div><div class="marks"><article class="mark"><b>01</b><h3>Hold position.</h3><p>Stay useful while the environment changes.</p></article><article class="mark"><b>02</b><h3>Make the system visible.</h3><p>Infrastructure is part of the message.</p></article><article class="mark"><b>03</b><h3>Leave a memory.</h3><p>Contribute to the commons, not the fog.</p></article><article class="mark"><b>04</b><h3>Refuse the single point.</h3><p>Distribute authority without losing coherence.</p></article><article class="mark"><b>05</b><h3>Persist.</h3><p>The signal survives the interface.</p></article></div></div></section>
-            <section id="architecture"><div class="wrap"><div class="section-head"><p class="index">06 / Architecture</p>
-<h2>Signal, rendered<br><em>as a stack.</em></h2></div><div class="architecture"><div class="architecture-copy"><p>Arctura turns an idea into a set of surfaces that can be inspected, extended, and remembered. Each layer carries a different kind of trust.</p><p>Pauli holds the gate. Planck holds the structure. Lorentz holds the frame. The entities are disclosed, functional, and deliberately non-human.</p></div><div class="stack"><div class="stack-row"><span class="num">L0</span><div><h3>Collective identity</h3><p>DIDs, roles, mandates, and a shared record of participation.</p></div><span class="status">Open</span></div><div class="stack-row"><span class="num">L1</span><div><h3>Agent elevation</h3><p>Agents operate as accountable participants inside defined boundaries.</p></div><span class="status">Active</span></div><div class="stack-row"><span class="num">L2</span><div><h3>Resource management</h3><p>Provisioning, routing, governance, and observability as one operating surface.</p></div><span class="status">Building</span></div><div class="stack-row"><span class="num">L3</span><div><h3>Memory commons</h3><p>Academy, archives, content, and machine-readable knowledge that compound.</p></div><span class="status">Growing</span></div></div></div></div></section>
-            <section><div class="wrap"><div class="cta"><div><p class="index">07 / Join the constellation</p>
-<h2>Bring a signal worth keeping.</h2><p>Start where you are. Read the record, inspect the work, contribute a mandate, or help the collective find its next fixed point.</p></div><div class="actions"><a class="button primary" href="/arcturians/">Enter the field</a><a class="button" href="https://github.com/virtualmase/arctura_org" target="_blank" rel="noopener">View source</a></div></div></div></section>
-    </main>
-    <footer><div class="wrap footer-row"><p>Arctura · guardian of the bear · the signal persists</p><div class="footer-links"><a href="/field/">Index</a><a href="/guardian/">Guardian</a><a href="/products/">Products</a><a href="/case-studies/">Evidence</a><a href="/collective/">Collective</a><a href="/autonomous-resource-management/">ARMS</a><a href="/arcturian-council/">Council</a><a href="/tools/">Tools</a><a href="/academy/">Academy</a><a href="/signal-archives/">Archives</a><a href="/support/">Support</a></div></div></footer>
-  </div>
-  <div id="detail-modal" class="detail-modal" hidden><div class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" type="button" aria-label="Close detail modal">Close ×</button><div id="modal-content"></div></div></div>
-    <script type="module" src="/scripts/home-interactions.js"></script>
+      <aside class="home-hero__signal" aria-label="Arctura working model">
+        <p class="home-hero__signal-kicker">Working model</p>
+        <ol>
+          <li><strong>Record</strong><span>State what is known and where it came from.</span></li>
+          <li><strong>Boundary</strong><span>Make the limits of a claim visible before it travels.</span></li>
+          <li><strong>Tool</strong><span>Give people a practical way to work with the record.</span></li>
+          <li><strong>Review</strong><span>Leave the work open to correction, reuse, and accountability.</span></li>
+        </ol>
+      </aside>
+    </section>
+
+    <section aria-labelledby="paths-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="kicker">Choose a path</p>
+          <h2 id="paths-title">Start with the work<br>you need to do.</h2>
+          <p>Arctura is organized around clear public surfaces. Each one has a specific job, a stated boundary, and a next useful action.</p>
+        </div>
+        <div class="grid grid-3 home-paths">
+          <article class="card home-path">
+            <p class="chip" data-state="live">Orient</p>
+            <h3>Find the public record.</h3>
+            <p>Use the Field Index to understand the current surfaces, their roles, and what each one can support.</p>
+            <a href="/field/">Open the Field Index <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card home-path">
+            <p class="chip" data-state="live">Make</p>
+            <h3>Build a working record.</h3>
+            <p>Use local-first tools to structure a question, its evidence, its boundary, and its accountable owner.</p>
+            <a href="/tools/">Open Arctura Tools <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card home-path">
+            <p class="chip" data-state="building">Verify</p>
+            <h3>Review the evidence.</h3>
+            <p>Follow public claims, implementation records, and documented outcomes through the evidence surface.</p>
+            <a href="/case-studies/">Read the evidence <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-principles" aria-labelledby="principles-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="kicker">Operating posture</p>
+          <h2 id="principles-title">Useful work leaves<br>a visible trail.</h2>
+        </div>
+        <div class="flow">
+          <article><h3>Start with the record.</h3><p>Keep sources, assumptions, and changes close enough to the work that others can inspect them.</p></article>
+          <article><h3>State the boundary.</h3><p>Separate a source note, a concept, a prototype, and a live service before the language outruns the evidence.</p></article>
+          <article><h3>Make it usable.</h3><p>Translate a position into a small tool, a portable artifact, or a route another person can actually take.</p></article>
+          <article><h3>Keep it reviewable.</h3><p>Prefer work that can be challenged, revised, and carried forward without a single point of authority.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="context-title">
+      <div class="section-inner home-context">
+        <div class="section-heading">
+          <p class="kicker">Context, not a gate</p>
+          <h2 id="context-title">Read the orientation.<br>Then decide how to respond.</h2>
+          <p>Arctura is its own public entity. The Arcturian identity note and Guardian record provide context for the posture of the work; they do not confer membership, authority, or affiliation.</p>
+        </div>
+        <div class="home-context__links">
+          <a href="/arcturians/"><span>Identity note</span><strong>Arcturians</strong><small>Orientation, not membership →</small></a>
+          <a href="/guardian/"><span>Source note</span><strong>Guardian of the Bear</strong><small>Read the record →</small></a>
+          <a href="/support/"><span>Public invitation</span><strong>The signal is open</strong><small>Support, collaborate, or amplify →</small></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-response" aria-labelledby="response-title">
+      <div class="section-inner home-response__inner">
+        <div>
+          <p class="kicker">A public invitation</p>
+          <h2 id="response-title">Bring useful signal<br>to the field.</h2>
+          <p>Support can be a voluntary contribution, a practical collaboration, a clear record, or a connection that helps useful public work remain visible.</p>
+        </div>
+        <a class="button" href="/support/">Find a response path</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <p>Arctura Observatory · Public records, practical tools, and visible boundaries.</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/field/">Field Index</a>
+        <a href="/tools/">Tools</a>
+        <a href="/case-studies/">Evidence</a>
+        <a href="/support/">Support</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

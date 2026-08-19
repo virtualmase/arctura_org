@@ -16,21 +16,24 @@
   <script src="/site-navigation.js" defer></script>
 </head>
 <body>
+
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header">
-    <nav class="nav" aria-label="Primary navigation">
-      <a class="brand" href="/"><span>Arctura</span> Observatory</a>
-      <div class="nav-links">
-        <a href="/field/" aria-current="page">Index</a>
-        <a href="/guardian/">Guardian</a>
-        <a href="/products/">Products</a>
-        <a href="/case-studies/">Evidence</a>
-        <a href="/collective/">Collective</a>
-        <a href="/protocol/">Protocol</a>
-        <a href="/tools/">Tools</a>
+<header class="site-shell">
+  <div class="site-shell__inner">
+    <a class="site-shell__brand" href="/" aria-label="Arctura Observatory home"><span class="site-shell__brand-mark" aria-hidden="true"></span><strong>Arctura</strong><em>Observatory</em></a>
+    <nav class="site-shell__nav" aria-label="Primary navigation">
+      <a class="site-shell__link" href="/">Home</a><a class="site-shell__link" href="/field/" aria-current="page">Index</a><a class="site-shell__link" href="/tools/">Tools</a>
+      <div class="site-shell__menu-wrap">
+        <button class="site-shell__toggle" type="button" data-shell-toggle aria-expanded="false" aria-controls="site-menu">Browse</button>
+        <div class="site-shell__menu" id="site-menu" data-shell-menu hidden>
+          <p class="site-shell__menu-title">Explore the public work</p>
+          <div class="site-shell__menu-grid"><a href="/field/" aria-current="page">Field Index</a><a href="/tools/">Tools</a><a href="/case-studies/">Evidence</a><a href="/arcturians/">Arcturians</a><a href="/guardian/">Guardian record</a><a href="/signal-archives/">Archive</a></div>
+        </div>
       </div>
+      <a class="site-shell__link site-shell__link--support" href="/support/">Support</a>
     </nav>
-  </header>
+  </div>
+</header>
   <main id="main">
     <section class="hero">
       <div>
@@ -55,7 +58,7 @@
           <article class="card">
             <p class="kicker">Observatory</p>
             <h3><a href="/">Arctura home</a></h3>
-            <p>The collective landing page, live constellation, proof ledger, and high-level system view.</p>
+            <p>The public entry point for Arctura’s records, tools, evidence, and stated operating boundaries.</p>
             <small>Primary entry point</small>
           </article>
           <article class="card">
@@ -86,7 +89,7 @@
           <article class="card"><p class="kicker">Protocol</p><h3><a href="/protocol/">Protocol</a></h3><p>Protocol-facing documentation and system primitives.</p><small>Documentation</small></article>
           <article class="card"><p class="kicker">Resources</p><h3><a href="/autonomous-resource-management/">ARMS</a></h3><p>The autonomous resource-management surface.</p><small>Operating surface</small></article>
           <article class="card"><p class="kicker">Decision support</p><h3><a href="/arcturian-council/">Arcturian Council</a></h3><p>A disclosed decision-support concept with explicit boundaries and accountable records.</p><small>Building</small></article>
-          <article class="card"><p class="kicker">Collective</p><h3><a href="/collective/">Collective</a></h3><p>Participation, identity, and collective context.</p><small>Community surface</small></article>
+          <article class="card"><p class="kicker">Public orientation</p><h3><a href="/arcturians/">Arcturians</a></h3><p>An identity note that separates an interpretive posture from affiliation, membership, or authority.</p><small>Context note</small></article>
         </div>
       </div>
     </section>
@@ -94,12 +97,12 @@
     <section>
       <div class="section-inner">
         <div class="section-heading">
-          <p class="kicker">Learn and contribute</p>
-          <h2>Knowledge and support.</h2>
+          <p class="kicker">Reference and respond</p>
+          <h2>Archive context and support.</h2>
         </div>
         <div class="grid grid-3">
-          <article class="card"><p class="kicker">Academy</p><h3><a href="/academy/">Arctura Academy</a></h3><p>Learning tracks for agents, networks, identity, signal operations, and governance.</p><small>Learning surface</small></article>
-          <article class="card"><p class="kicker">Archive</p><h3><a href="/signal-archives/">Signal Archives</a></h3><p>Long-form reference, context, and collected public records.</p><small>Archive surface</small></article>
+          <article class="card"><p class="kicker">Reference archive</p><h3><a href="/academy/">Academy archive</a></h3><p>Earlier learning tracks retained as reference material. Review each page’s date, scope, and stated boundary before relying on it.</p><small>Archived reference</small></article>
+          <article class="card"><p class="kicker">Archive</p><h3><a href="/signal-archives/">Signal Archives</a></h3><p>Earlier long-form material retained for context. It does not replace the current Arctura record or operating boundaries.</p><small>Context archive</small></article>
           <article class="card"><p class="kicker">Support</p><h3><a href="/support/">Support</a></h3><p>Support and contribution pathways for the public network.</p><small>Contribution path</small></article>
         </div>
       </div>
