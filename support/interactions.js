@@ -1,35 +1,42 @@
-/* Extracted interaction module for /support/index.html. */
+const announcement = 'The signal is open. Arctura is open to voluntary support, collaboration, and amplification for its public records, tools, and field work. Learn more and verify receiving routes at https://arctura.org/support/';
 
-document.addEventListener('DOMContentLoaded', function () {
-  // T1 — Primary Council Safe (cyan/gold)
-  new QRCode(document.getElementById('qr1'), {
-    text: 'ethereum:0xb60a1dc7E453e8cB9a2859290D7f9ad4c3181664@8453',
-    width: 148, height: 148,
-    colorDark: '#C8A96E',
-    colorLight: '#0a0f1c',
-    correctLevel: QRCode.CorrectLevel.M
-  });
+const status = document.createElement('p');
+status.className = 'sr-only';
+status.setAttribute('role', 'status');
+status.setAttribute('aria-live', 'polite');
+document.body.append(status);
 
-  // T2 — Overflow Channel (blue)
-  new QRCode(document.getElementById('qr2'), {
-    text: 'ethereum:0x3cBA7f0ad575331B892F001aef4D204b263Fdd58@8453',
-    width: 148, height: 148,
-    colorDark: '#7EAADC',
-    colorLight: '#0a0f1c',
-    correctLevel: QRCode.CorrectLevel.M
-  });
+const copyText = async (value, button, successLabel = 'Copied') => {
+  try {
+    await navigator.clipboard.writeText(value);
+    const previousLabel = button.textContent;
+    button.textContent = `✓ ${successLabel}`;
+    status.textContent = `${successLabel}.`;
+    window.setTimeout(() => { button.textContent = previousLabel; }, 2400);
+  } catch {
+    status.textContent = 'Copy is unavailable in this browser. Select the text manually.';
+  }
+};
+
+document.querySelectorAll('[data-copy-value]').forEach((button) => {
+  button.addEventListener('click', () => copyText(button.dataset.copyValue, button, 'Address copied'));
 });
 
-function copy(addr, btn) {
-  navigator.clipboard.writeText(addr).then(function () {
-    btn.textContent = '✓ Copied';
-    btn.classList.add('ok');
-    setTimeout(function () {
-      btn.textContent = '⬡ Copy Address';
-      btn.classList.remove('ok');
-    }, 2400);
-  }).catch(function () {
-    btn.textContent = addr.slice(0, 12) + '…';
-    setTimeout(function () { btn.textContent = '⬡ Copy Address'; }, 3000);
+document.querySelectorAll('[data-copy-announcement]').forEach((button) => {
+  button.addEventListener('click', () => copyText(announcement, button, 'Invitation copied'));
+});
+
+document.querySelectorAll('[data-share-page]').forEach((button) => {
+  button.addEventListener('click', async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'The Signal Is Open — Arctura', text: announcement, url: 'https://arctura.org/support/' });
+        status.textContent = 'Share sheet opened.';
+        return;
+      } catch (error) {
+        if (error?.name === 'AbortError') return;
+      }
+    }
+    copyText(announcement, button, 'Invitation copied');
   });
-}
+});
