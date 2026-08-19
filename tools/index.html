@@ -13,6 +13,7 @@
   <title>Arctura Tools</title>
   <link rel="stylesheet" href="/family.css">
   <script src="/tools/signal-brief.js" defer></script>
+  <script src="/tools/claim-record.js" defer></script>
   <link rel="stylesheet" href="/site-navigation.css">
   <script src="/site-navigation.js" defer></script>
 </head>
@@ -52,7 +53,7 @@
     <section>
       <div class="section-inner">
         <div class="section-heading">
-          <p class="kicker">Starter tool / 01</p>
+          <p class="kicker">Tool / 01</p>
           <h2>Signal Brief Builder</h2>
           <p>Turn a complex question into a concise Markdown brief with a scope, evidence plan, explicit boundary, accountable owner, and review date.</p>
         </div>
@@ -109,16 +110,94 @@
       </div>
     </section>
 
+    <section id="claim-record">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="kicker">Tool / 02</p>
+          <h2>Claim Record Builder</h2>
+          <p>Turn a stated claim into a reviewable Markdown record with a status, cited sources, an explicit boundary, an accountable owner, and a review date.</p>
+        </div>
+        <div class="tool-grid" data-tool="claim-record">
+          <form class="tool-form" data-claim-form>
+            <div class="field-row">
+              <label for="claim-title">Record title <span aria-hidden="true">*</span></label>
+              <input id="claim-title" name="title" type="text" required placeholder="e.g. Public records improve implementation review">
+            </div>
+            <div class="field-row">
+              <label for="claim-statement">Claim statement <span aria-hidden="true">*</span></label>
+              <textarea id="claim-statement" name="statement" required rows="4" placeholder="State the claim precisely enough that another person can review it."></textarea>
+            </div>
+            <div class="tool-two-up">
+              <div class="field-row">
+                <label for="claim-category">Category</label>
+                <select id="claim-category" name="category">
+                  <option value="Operational">Operational</option>
+                  <option value="Evidence">Evidence</option>
+                  <option value="Implementation">Implementation</option>
+                  <option value="Identity">Identity</option>
+                  <option value="Financial">Financial</option>
+                  <option value="General">General</option>
+                </select>
+              </div>
+              <div class="field-row">
+                <label for="claim-status">Evidence status</label>
+                <select id="claim-status" name="status">
+                  <option value="Unverified">Unverified</option>
+                  <option value="Sources cited">Sources cited</option>
+                  <option value="Under review">Under review</option>
+                  <option value="Reviewed">Reviewed</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row">
+              <label for="claim-sources">Cited sources</label>
+              <textarea id="claim-sources" name="sources" rows="4" placeholder="Add a source URL, document title, dataset, or test result—one per line."></textarea>
+            </div>
+            <div class="field-row">
+              <label for="claim-boundary">Boundary</label>
+              <textarea id="claim-boundary" name="boundary" rows="3" placeholder="What does this record not establish, prove, or decide?"></textarea>
+            </div>
+            <div class="tool-two-up">
+              <div class="field-row">
+                <label for="claim-owner">Record owner</label>
+                <input id="claim-owner" name="owner" type="text" placeholder="Name or team">
+              </div>
+              <div class="field-row">
+                <label for="claim-review">Review date</label>
+                <input id="claim-review" name="reviewDate" type="date">
+              </div>
+            </div>
+            <div class="action-row">
+              <button class="button" type="submit">Build record</button>
+              <button class="button button--ghost" type="button" data-reset-claim>Clear</button>
+            </div>
+            <p class="tool-privacy">Private by default: the form runs only in your browser. It records your inputs; it does not verify them.</p>
+          </form>
+
+          <section class="tool-output" aria-labelledby="claim-output-title" aria-live="polite">
+            <div class="tool-output__head">
+              <div>
+                <p class="kicker">Preview</p>
+                <h3 id="claim-output-title">Your claim record</h3>
+              </div>
+              <button class="button button--ghost" type="button" data-download-claim disabled>Download .md</button>
+            </div>
+            <pre data-claim-output>Complete the required fields and choose “Build record” to create a portable Markdown claim record.</pre>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <section>
       <div class="section-inner">
         <div class="section-heading">
-          <p class="kicker">Tool contract</p>
-          <h2>What this tool does—and does not do.</h2>
+          <p class="kicker">Tool contracts</p>
+          <h2>What the tools do—and do not do.</h2>
         </div>
         <div class="grid grid-3">
-          <article class="card"><h3>Inputs</h3><p>A working question, intended outcome, evidence plan, boundary, owner, and review date.</p></article>
-          <article class="card"><h3>Output</h3><p>A plain Markdown brief that can be committed, shared, or expanded in any text editor.</p></article>
-          <article class="card"><h3>Boundary</h3><p>The tool structures what you enter. It does not research, verify sources, make decisions, or provide professional advice.</p></article>
+          <article class="card"><h3>Inputs</h3><p>A working question or stated claim, evidence plan or cited sources, a boundary, an accountable owner, and a review date.</p></article>
+          <article class="card"><h3>Outputs</h3><p>A portable Markdown brief or claim record that can be committed, shared, or expanded in any text editor.</p></article>
+          <article class="card"><h3>Boundary</h3><p>The tools structure what you enter. They do not research, verify sources, make decisions, or provide professional advice.</p></article>
         </div>
       </div>
     </section>

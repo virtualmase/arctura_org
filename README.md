@@ -1,6 +1,6 @@
 # Arctura Observatory
 
-[Arctura](https://arctura.org/) is a static public observatory for the Arctura collective. It combines a narrative landing page, source-aware project records, the **Guardian of the Bear** lore route, an academy and archive, and small browser tools for producing accountable working records.
+[Arctura](https://arctura.org/) is a static public observatory for an independent Arctura entity. It combines a product-led public entry, source-aware records, practical browser tools, the **Guardian of the Bear** source note, and clearly bounded archive material.
 
 > **Working posture:** artifact → test → boundary. The site distinguishes lore, concepts, implementation records, and live public surfaces so that narrative does not outrun its evidence.
 
@@ -10,23 +10,23 @@ The project is intentionally lightweight. It is a static HTML, CSS, JavaScript, 
 
 | Surface | Route | Purpose |
 | --- | --- | --- |
-| Observatory | [`/`](https://arctura.org/) | The primary Arctura landing page, constellation view, and proof-led overview. |
-| Field Index | [`/field/`](https://arctura.org/field/) | A stable directory of every major public surface and its purpose. |
+| Observatory | [`/`](https://arctura.org/) | The primary public entry: records, practical tools, evidence, boundaries, and a clear next action. |
+| Field Index | [`/field/`](https://arctura.org/field/) | The stable directory of the current public surfaces, their roles, and their boundaries. |
 | Guardian of the Bear | [`/guardian/`](https://arctura.org/guardian/) | A dedicated source note connecting the Arcturus/Boötes narrative to an accountable operating posture. |
 | Arcturians | [`/arcturians/`](https://arctura.org/arcturians/) | A public identity note that distinguishes the Arcturian posture from Arctura’s independent entity, authority, and operating record. |
-| Tools | [`/tools/`](https://arctura.org/tools/) | Local-first browser utilities, beginning with the Signal Brief Builder. |
+| Tools | [`/tools/`](https://arctura.org/tools/) | Local-first browser utilities: the Signal Brief Builder and Claim Record Builder. |
 | Products | [`/products/`](https://arctura.org/products/) | Public portfolio and product records. |
 | Evidence | [`/case-studies/`](https://arctura.org/case-studies/) | Evidence and case-study surfaces. |
-| Collective | [`/collective/`](https://arctura.org/collective/) | Collective identity and participation context. |
+| Retired Collective route | [`/collective/`](https://arctura.org/collective/) | Permanently redirects to the Field Index; it is not a current public surface. |
 | Protocol | [`/protocol/`](https://arctura.org/protocol/) | Protocol-facing documentation. |
 | ARMS | [`/autonomous-resource-management/`](https://arctura.org/autonomous-resource-management/) | Autonomous resource-management surface. |
 | Arcturian Council | [`/arcturian-council/`](https://arctura.org/arcturian-council/) | A disclosed decision-support concept with stated limitations. |
-| Academy | [`/academy/`](https://arctura.org/academy/) | Learning tracks and topic pages. |
-| Signal Archives | [`/signal-archives/`](https://arctura.org/signal-archives/) | Long-form archive and reference material. |
+| Academy | [`/academy/`](https://arctura.org/academy/) | Retained learning reference material; review individual pages for their scope and date. |
+| Signal Archives | [`/signal-archives/`](https://arctura.org/signal-archives/) | Preserved long-form archive material with an explicit current-record boundary. |
 
 ## Routing and the Field Index
 
-The root route (`/`) remains the narrative Observatory landing page. The dedicated [`/field/`](https://arctura.org/field/) route is the stable **site directory** for visitors who need a clear map of the public architecture rather than an immersive introduction.
+The root route (`/`) is the product-led public entry. It directs new visitors to the Field Index, the local-first tools, the evidence surface, and the public support invitation. The dedicated [`/field/`](https://arctura.org/field/) route is the stable **site directory** for visitors who need a clear map of the public architecture.
 
 Directory routes use canonical trailing-slash URLs in navigation and the sitemap. [`vercel.json`](vercel.json) also defines clean aliases without trailing slashes—for example, both `/guardian/` and `/guardian` resolve to the Guardian page. Keep both the canonical route and its clean alias in mind whenever you add a new directory-based page.
 
@@ -42,38 +42,48 @@ The [`tools/`](tools/) directory is a small, dependency-free tool surface. Tool 
 
 ### Signal Brief Builder
 
-The first tool is the **Signal Brief Builder** at [`/tools/`](https://arctura.org/tools/). It converts a decision question, desired outcome, evidence plan, boundary, accountable owner, and review date into a portable Markdown brief.
+The **Signal Brief Builder** at [`/tools/`](https://arctura.org/tools/) converts a decision question, desired outcome, evidence plan, boundary, accountable owner, and review date into a portable Markdown brief.
+
+### Claim Record Builder
+
+The **Claim Record Builder** converts a stated claim, category, evidence status, cited sources, boundary, accountable owner, and review date into a portable Markdown claim record. It makes the status of a claim visible without asserting that the tool has verified the underlying sources.
 
 | Property | Behavior |
 | --- | --- |
 | Runtime | Browser-only JavaScript; no framework or build process. |
 | Data handling | Form input remains in the browser. The page does not send entered data to Arctura. |
-| Output | A downloadable `.md` record suitable for a repository, text editor, or review workflow. |
-| Boundary | The tool formats information supplied by the user. It does not research, verify evidence, make decisions, or provide professional advice. |
+| Output | A downloadable `.md` brief or claim record suitable for a repository, text editor, or review workflow. |
+| Boundary | The tools format information supplied by the user. They do not research, verify evidence, make decisions, or provide professional advice. |
 
-New tools should live in their own folder under `tools/`, use the shared design system where possible, avoid introducing dependencies without a demonstrated need, and document their data boundary in the user interface.
+New tools should use the shared design system where possible, avoid introducing dependencies without a demonstrated need, and document their data boundary in the user interface.
 
 ## Repository structure
 
 ```text
 arctura_org/
-├── index.html                         # Primary Observatory landing page
+├── index.html                         # Product-led public entry
+├── home.css                            # Homepage-specific Observatory styles
 ├── family.css                          # Shared styles for Observatory-family routes
 ├── family.js                           # Shared registry renderer
+├── site-navigation.css                 # Stable static navigation shell
+├── site-navigation.js                  # Lightweight Browse-menu behavior
 ├── field/
 │   └── index.html                     # Stable site directory and route index
 ├── guardian/
 │   └── index.html                     # Guardian of the Bear route
 ├── tools/
-│   ├── index.html                     # Tool directory and Signal Brief Builder UI
-│   └── signal-brief.js                # Local Markdown generation and download logic
+│   ├── index.html                     # Tool directory with two browser-local builders
+│   ├── signal-brief.js                # Signal Brief Markdown generation and download
+│   └── claim-record.js                # Claim Record Markdown generation and download
 ├── content/
 │   ├── arctura.json                   # Structured artifacts, guardians, signals, and graph data
 │   ├── family.json                    # Registry data used by family pages
 │   ├── lore/bootes-guardian.md        # Versioned Guardian source note
 │   └── schema/                        # JSON schemas for structured content
 ├── scripts/
-│   └── validate_content.py            # Content-schema validator
+│   ├── validate_content.py            # Content-schema validator
+│   ├── install_static_shell.py        # Stable-shell migration and maintenance helper
+│   └── validate_shell.py              # Shared-shell regression validator
 ├── academy/                           # Academy landing page and topic pages
 ├── case-studies/                      # Evidence surface
 ├── products/                          # Product surface
@@ -112,8 +122,13 @@ python3 scripts/validate_content.py
 Before creating a pull request, also perform the following checks:
 
 ```bash
-# JavaScript syntax for the current browser tool
+# JavaScript syntax for both browser tools
 node --check tools/signal-brief.js
+node --check tools/claim-record.js
+node scripts/test_claim_record.js
+
+# Stable static shell across public HTML pages
+python3 scripts/validate_shell.py
 
 # Whitespace errors in tracked changes
 git diff --check
