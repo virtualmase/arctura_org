@@ -11,6 +11,7 @@ The project is intentionally lightweight. It is a static HTML, CSS, JavaScript, 
 | Surface | Route | Purpose |
 | --- | --- | --- |
 | Observatory | [`/`](https://arctura.org/) | The primary Arctura landing page, constellation view, and proof-led overview. |
+| Field Index | [`/field/`](https://arctura.org/field/) | A stable directory of every major public surface and its purpose. |
 | Guardian of the Bear | [`/guardian/`](https://arctura.org/guardian/) | A dedicated source note connecting the Arcturus/Boötes narrative to an accountable operating posture. |
 | Tools | [`/tools/`](https://arctura.org/tools/) | Local-first browser utilities, beginning with the Signal Brief Builder. |
 | Products | [`/products/`](https://arctura.org/products/) | Public portfolio and product records. |
@@ -21,6 +22,12 @@ The project is intentionally lightweight. It is a static HTML, CSS, JavaScript, 
 | Arcturian Council | [`/arcturian-council/`](https://arctura.org/arcturian-council/) | A disclosed decision-support concept with stated limitations. |
 | Academy | [`/academy/`](https://arctura.org/academy/) | Learning tracks and topic pages. |
 | Signal Archives | [`/signal-archives/`](https://arctura.org/signal-archives/) | Long-form archive and reference material. |
+
+## Routing and the Field Index
+
+The root route (`/`) remains the narrative Observatory landing page. The dedicated [`/field/`](https://arctura.org/field/) route is the stable **site directory** for visitors who need a clear map of the public architecture rather than an immersive introduction.
+
+Directory routes use canonical trailing-slash URLs in navigation and the sitemap. [`vercel.json`](vercel.json) also defines clean aliases without trailing slashes—for example, both `/guardian/` and `/guardian` resolve to the Guardian page. Keep both the canonical route and its clean alias in mind whenever you add a new directory-based page.
 
 ## The Guardian of the Bear
 
@@ -52,6 +59,8 @@ arctura_org/
 ├── index.html                         # Primary Observatory landing page
 ├── family.css                          # Shared styles for Observatory-family routes
 ├── family.js                           # Shared registry renderer
+├── field/
+│   └── index.html                     # Stable site directory and route index
 ├── guardian/
 │   └── index.html                     # Guardian of the Bear route
 ├── tools/
