@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "0.1.0",
+  "title": "Arctura Family Registry",
+  "description": "A status-aware index of Arctura product, community, evidence, and governance surfaces.",
+  "updatedAt": "2026-08-18",
+  "items": [
+    {
+      "id": "observatory",
+      "kind": "network-home",
+      "title": "Arctura Observatory",
+      "url": "https://arctura.org/",
+      "status": "live",
+      "summary": "The public signal, evidence, constellation, and field index for the Arctura family.",
+      "audiences": ["researchers", "partners", "contributors"],
+      "tags": ["constellation", "evidence", "collective"],
+      "source": "https://github.com/virtualmase/arctura_org"
+    },
+    {
+      "id": "energy",
+      "kind": "product",
+      "title": "Arctura Energy",
+      "url": "https://arctura-energy.vercel.app/",
+      "status": "building",
+      "summary": "A wind-energy retrofit and validation concept focused on aerodynamic performance, asset protection, and field-ready deployment.",
+      "audiences": ["asset owners", "validation partners", "industrial collaborators"],
+      "tags": ["clean-tech", "wind", "validation"],
+      "source": "https://github.com/virtualmase/arctura-energy",
+      "boundary": "Public claims remain limited to source-backed development and validation framing until product ownership, results, and permissions are documented."
+    },
+    {
+      "id": "health",
+      "kind": "product",
+      "title": "Arctura Health",
+      "url": "https://arctura-health.vercel.app/",
+      "status": "live",
+      "summary": "A specialty-care referral-recovery workflow surface for finding stalled referrals, coordinating next actions, and tracking completed care.",
+      "audiences": ["specialty-care operators", "access teams", "healthcare leaders"],
+      "tags": ["care-operations", "referrals", "workflow"],
+      "source": "https://arctura-health.vercel.app/",
+      "boundary": "This registry records the public product surface only. Source-repository ownership, compliance claims, and integrations require separate verification."
+    },
+    {
+      "id": "frequency",
+      "kind": "experience",
+      "title": "Arctura Frequency",
+      "url": "https://arctura-vkvh.vercel.app/",
+      "status": "building",
+      "summary": "A non-clinical wellness and reflection experience using ritual, focus, and self-guidance language.",
+      "audiences": ["wellness explorers", "community members"],
+      "tags": ["wellness", "ritual", "reflection"],
+      "source": "https://github.com/virtualmase/arctura_",
+      "boundary": "Non-medical. No diagnostic, treatment, physiological, or outcome claim is implied."
+    },
+    {
+      "id": "biohacking-archive",
+      "kind": "archive",
+      "title": "Biohacking Frequency Tools",
+      "url": "https://arctura-ten.vercel.app/",
+      "status": "archived",
+      "summary": "An early frequency/biohacking concept retained as a historical design and messaging artifact.",
+      "audiences": ["archive readers"],
+      "tags": ["archive", "frequency", "early-concept"],
+      "source": "https://github.com/virtualmase/arctura-",
+      "boundary": "The public surface contains legacy language that requires review before promotion or commercial use."
+    },
+    {
+      "id": "protocol",
+      "kind": "program",
+      "title": "Arctura Protocol",
+      "url": "/protocol/",
+      "status": "building",
+      "summary": "An early-stage documentation and evidence surface for Lightning-to-EVM verification concepts and agent-payment infrastructure.",
+      "audiences": ["developers", "protocol researchers", "builders"],
+      "tags": ["bitcoin", "lightning", "verification", "agents"],
+      "source": "https://github.com/virtualmase/arctura_org",
+      "boundary": "Early-stage. Audit, security, contract-source, and deployment states must be explicit before any production claim."
+    },
+    {
+      "id": "tura-token",
+      "kind": "on-chain-artifact",
+      "title": "ARCTURA (TURA)",
+      "url": "https://basescan.org/token/0x53c792ae7fa13a4d4a34c4f3bdb308fd466b3719",
+      "status": "live",
+      "summary": "A Base ERC-20 token record added to the Observatory as an on-chain provenance artifact.",
+      "audiences": ["on-chain researchers", "community members"],
+      "tags": ["base", "erc-20", "provenance", "tura"],
+      "source": "https://basescan.org/token/0x53c792ae7fa13a4d4a34c4f3bdb308fd466b3719",
+      "observedAt": "2026-08-18",
+      "observedMetadata": {
+        "contract": "0x53c792ae7fa13a4d4a34c4f3bdb308fd466b3719",
+        "decimals": 18,
+        "maxTotalSupply": "20,999,999.999999999999997891 TURA",
+        "holders": 3,
+        "contractType": "ERC-20 proxy",
+        "implementation": "0xe5C5Df7E96bCAd5fbDb8250DbaCd1Ba79F124B8F"
+      },
+      "boundary": "This registry entry records public on-chain metadata observed on BaseScan. It is not an investment recommendation, market analysis, liquidity statement, utility promise, endorsement, or instruction to buy, sell, transfer, or hold TURA. The launch attribution to Clawlett is user-provided and has not been independently verified in this record."
+    },
+    {
+      "id": "autonomous-resource-management",
+      "kind": "program",
+      "title": "Autonomous Resource Management",
+      "url": "/autonomous-resource-management/",
+      "status": "conceptual",
+      "summary": "A proposed policy and audit layer for agent identity, mandate, permissions, resources, execution, and receipt records.",
+      "audiences": ["operators", "security teams", "enterprise builders"],
+      "tags": ["agent-identity", "permissions", "audit", "policy"],
+      "source": "https://arctura.org/",
+      "boundary": "No autonomous financial, medical, legal, or other high-impact action is implied. Human approval and policy gates remain required."
+    },
+    {
+      "id": "collective",
+      "kind": "community",
+      "title": "Arctura Collective",
+      "url": "/collective/",
+      "status": "building",
+      "summary": "A disclosed registry of contributors, disciplines, agents, mandates, and contribution paths.",
+      "audiences": ["contributors", "partners", "community"],
+      "tags": ["community", "governance", "contribution"],
+      "source": "https://github.com/virtualmase/arctura_org"
+    },
+    {
+      "id": "arcturian-council",
+      "kind": "service",
+      "title": "Arcturian Council",
+      "url": "/arcturian-council/",
+      "status": "conceptual",
+      "summary": "A disclosed, multi-perspective decision-support and scenario-framing service with sources, uncertainty labels, and human review.",
+      "audiences": ["stakeholders", "operators", "contributors"],
+      "tags": ["decision-support", "oracle", "governance", "scenario"],
+      "source": "https://github.com/virtualmase/arctura_org",
+      "boundary": "Not professional advice, not prophecy, and not an autonomous decision-maker."
+    }
+  ]
+}
