@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Arctura Tools: small, private-by-default browser tools for producing accountable working records.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://arctura.org/tools/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Arctura Tools">
+  <meta property="og:description" content="Private-by-default browser tools for accountable working records.">
+  <meta property="og:url" content="https://arctura.org/tools/">
+  <title>Arctura Tools</title>
+  <link rel="stylesheet" href="/family.css">
+  <script src="/tools/signal-brief.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="/"><span>Arctura</span> Observatory</a>
+      <div class="nav-links">
+        <a href="/guardian/">Guardian</a>
+        <a href="/products/">Products</a>
+        <a href="/case-studies/">Evidence</a>
+        <a href="/collective/">Collective</a>
+        <a href="/protocol/">Protocol</a>
+        <a href="/tools/" aria-current="page">Tools</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero tools-hero">
+      <div>
+        <p class="kicker">Arctura Tools / v0</p>
+        <h1>Make the record.</h1>
+        <p class="lede">Small, portable browser tools for framing work before prose or automation starts. Tools run locally in your browser and do not send entered information to Arctura.</p>
+      </div>
+      <aside class="hero-aside">
+        <p>Tooling posture</p>
+        <strong>Structure before fluency.</strong>
+        <p>Every tool should state its inputs, outputs, assumptions, and boundaries before it asks for trust.</p>
+      </aside>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="kicker">Starter tool / 01</p>
+          <h2>Signal Brief Builder</h2>
+          <p>Turn a complex question into a concise Markdown brief with a scope, evidence plan, explicit boundary, accountable owner, and review date.</p>
+        </div>
+        <div class="tool-grid" data-tool="signal-brief">
+          <form class="tool-form" data-brief-form>
+            <div class="field-row">
+              <label for="brief-title">Working title <span aria-hidden="true">*</span></label>
+              <input id="brief-title" name="title" type="text" required placeholder="e.g. Evaluate a community archive pilot">
+            </div>
+            <div class="field-row">
+              <label for="brief-question">Decision question <span aria-hidden="true">*</span></label>
+              <textarea id="brief-question" name="question" required rows="4" placeholder="What choice or scenario needs to be examined?"></textarea>
+            </div>
+            <div class="field-row">
+              <label for="brief-outcome">Useful outcome</label>
+              <textarea id="brief-outcome" name="outcome" rows="3" placeholder="What would make this brief useful?"></textarea>
+            </div>
+            <div class="field-row">
+              <label for="brief-evidence">Evidence to gather</label>
+              <textarea id="brief-evidence" name="evidence" rows="3" placeholder="List sources, data, or people to consult—one per line."></textarea>
+            </div>
+            <div class="field-row">
+              <label for="brief-boundary">Boundary</label>
+              <textarea id="brief-boundary" name="boundary" rows="3" placeholder="What should this brief not claim, decide, or do?"></textarea>
+            </div>
+            <div class="tool-two-up">
+              <div class="field-row">
+                <label for="brief-owner">Accountable owner</label>
+                <input id="brief-owner" name="owner" type="text" placeholder="Name or team">
+              </div>
+              <div class="field-row">
+                <label for="brief-review">Review date</label>
+                <input id="brief-review" name="reviewDate" type="date">
+              </div>
+            </div>
+            <div class="action-row">
+              <button class="button" type="submit">Build brief</button>
+              <button class="button button--ghost" type="button" data-reset-brief>Clear</button>
+            </div>
+            <p class="tool-privacy">Private by default: the form runs only in your browser. Generated records are downloaded directly to your device.</p>
+          </form>
+
+          <section class="tool-output" aria-labelledby="brief-output-title" aria-live="polite">
+            <div class="tool-output__head">
+              <div>
+                <p class="kicker">Preview</p>
+                <h3 id="brief-output-title">Your working record</h3>
+              </div>
+              <button class="button button--ghost" type="button" data-download-brief disabled>Download .md</button>
+            </div>
+            <pre data-brief-output>Complete the required fields and choose “Build brief” to create a portable Markdown record.</pre>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="kicker">Tool contract</p>
+          <h2>What this tool does—and does not do.</h2>
+        </div>
+        <div class="grid grid-3">
+          <article class="card"><h3>Inputs</h3><p>A working question, intended outcome, evidence plan, boundary, owner, and review date.</p></article>
+          <article class="card"><h3>Output</h3><p>A plain Markdown brief that can be committed, shared, or expanded in any text editor.</p></article>
+          <article class="card"><h3>Boundary</h3><p>The tool structures what you enter. It does not research, verify sources, make decisions, or provide professional advice.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-grid">
+      <p>Arctura · Small tools for durable records</p>
+      <div class="footer-links">
+        <a href="/guardian/">Guardian</a>
+        <a href="/tools/">Tools</a>
+        <a href="/academy/">Academy</a>
+        <a href="/support/">Support</a>
+        <a href="https://github.com/virtualmase/arctura_org" target="_blank" rel="noopener">Source</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
