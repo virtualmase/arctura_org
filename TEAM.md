@@ -4,7 +4,7 @@
 
 Arctura is operated by a disclosed team of disciplines. These are not claims that separate humans are present in the system. They are named operating functions with explicit mandates, deliverables, and evidence standards. The team exists to increase the rate at which useful, inspectable, durable signal enters the field.
 
-> **Mason commands the convergence point. The team turns that direction into evidence, systems, and signal.**
+> **The commander is the convergence point. The team turns that direction into evidence, systems, and signal.**
 
 ## Authority model
 
