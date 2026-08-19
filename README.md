@@ -13,6 +13,7 @@ The project is intentionally lightweight. It is a static HTML, CSS, JavaScript, 
 | Observatory | [`/`](https://arctura.org/) | The primary Arctura landing page, constellation view, and proof-led overview. |
 | Field Index | [`/field/`](https://arctura.org/field/) | A stable directory of every major public surface and its purpose. |
 | Guardian of the Bear | [`/guardian/`](https://arctura.org/guardian/) | A dedicated source note connecting the Arcturus/Boötes narrative to an accountable operating posture. |
+| Arcturians | [`/arcturians/`](https://arctura.org/arcturians/) | A public identity note that distinguishes the Arcturian posture from Arctura’s independent entity, authority, and operating record. |
 | Tools | [`/tools/`](https://arctura.org/tools/) | Local-first browser utilities, beginning with the Signal Brief Builder. |
 | Products | [`/products/`](https://arctura.org/products/) | Public portfolio and product records. |
 | Evidence | [`/case-studies/`](https://arctura.org/case-studies/) | Evidence and case-study surfaces. |
