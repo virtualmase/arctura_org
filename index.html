@@ -10,6 +10,8 @@
   <meta property="og:title" content="Arctura Foundation">
   <meta property="og:description" content="Learning for complex systems: engineering judgment, semantic ontology, and systems stewardship.">
   <meta property="og:url" content="https://arctura.org/">
+  <meta property="og:image" content="https://arctura.org/assets/foundation/foundation-learning-hero-1600.webp">
+  <meta property="og:image:alt" content="A learner studies an interconnected systems map in a quiet observatory library.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/family.css">
   <link rel="stylesheet" href="/site-navigation.css">
@@ -59,23 +61,27 @@
     <section class="home-hero" aria-labelledby="home-title">
       <div class="home-hero__inner">
         <p class="kicker">Arctura Foundation</p>
-        <h1 id="home-title">Learn to reason<br><em>across systems.</em></h1>
+        <h1 id="home-title">Learn to reason <em>across systems.</em></h1>
         <p class="home-hero__lede">Arctura Foundation develops rigorous, public learning for people working where technology, meaning, evidence, and uncertainty meet.</p>
         <div class="action-row">
           <a class="button" href="/learning/">Explore learning paths</a>
           <a class="button button--ghost" href="/observatory/">Visit the Observatory</a>
         </div>
       </div>
-      <aside class="home-hero__signal" aria-label="Arctura learning model">
-        <p class="home-hero__signal-kicker">Learning model</p>
-        <ol>
-          <li><strong>Frame</strong><span>Define the system, terms, constraints, and decision that matter.</span></li>
-          <li><strong>Model</strong><span>Represent entities, relationships, assumptions, and uncertainty.</span></li>
-          <li><strong>Test</strong><span>Compare the model with evidence, counterexamples, and consequences.</span></li>
-          <li><strong>Reflect</strong><span>Record what changed, what remains unknown, and what should happen next.</span></li>
-        </ol>
-      </aside>
+      <figure class="home-hero__art">
+        <picture>
+          <source media="(max-width: 780px)" srcset="/assets/foundation/foundation-learning-hero-960.webp">
+          <img src="/assets/foundation/foundation-learning-hero-1600.webp" width="1600" height="900" alt="A learner studies an interconnected systems map in a quiet observatory library." fetchpriority="high">
+        </picture>
+        <figcaption><span>Observe</span><span>Model</span><span>Test</span><span>Share</span></figcaption>
+      </figure>
     </section>
+
+    <div class="home-standard" aria-label="Foundation learning commitments">
+      <div><span>01</span><strong>Public by design</strong><small>Open paths and inspectable artifacts</small></div>
+      <div><span>02</span><strong>Evidence before certainty</strong><small>Sources, boundaries, and revision</small></div>
+      <div><span>03</span><strong>Built for transfer</strong><small>Methods that travel across domains</small></div>
+    </div>
 
     <section aria-labelledby="domains-title">
       <div class="section-inner">
@@ -85,9 +91,9 @@
           <p>Each domain stands on its own. Together they build the habits needed to reason about technical systems without losing meaning, evidence, or human responsibility.</p>
         </div>
         <div class="grid grid-3 home-paths">
-          <article class="card home-path"><p class="chip" data-state="building">Judgment</p><h3>Engineering judgment</h3><p>Make defensible decisions under incomplete information by working with constraints, tradeoffs, failure modes, evidence, and review.</p><a href="/learning/engineering-judgment/">Explore the path <span aria-hidden="true">→</span></a></article>
-          <article class="card home-path"><p class="chip" data-state="building">Meaning</p><h3>Semantic ontology</h3><p>Model concepts and relationships so people and machines can share meaning, challenge assumptions, and reuse knowledge.</p><a href="/learning/semantic-ontology/">Explore the path <span aria-hidden="true">→</span></a></article>
-          <article class="card home-path"><p class="chip" data-state="building">Coordination</p><h3>Systems stewardship</h3><p>Design useful work, review evidence, coordinate human and software contributors, and improve shared systems without losing accountability.</p><a href="/learning/systems-stewardship/">Explore the path <span aria-hidden="true">→</span></a></article>
+          <article class="card home-path home-path--judgment"><p class="home-path__number">Path 01</p><p class="chip" data-state="building">Judgment</p><h3>Engineering judgment</h3><p>Make defensible decisions under incomplete information by working with constraints, tradeoffs, failure modes, evidence, and review.</p><a href="/learning/engineering-judgment/">Explore the path <span aria-hidden="true">→</span></a></article>
+          <article class="card home-path home-path--meaning"><p class="home-path__number">Path 02</p><p class="chip" data-state="building">Meaning</p><h3>Semantic ontology</h3><p>Model concepts and relationships so people and machines can share meaning, challenge assumptions, and reuse knowledge.</p><a href="/learning/semantic-ontology/">Explore the path <span aria-hidden="true">→</span></a></article>
+          <article class="card home-path home-path--stewardship"><p class="home-path__number">Path 03</p><p class="chip" data-state="building">Coordination</p><h3>Systems stewardship</h3><p>Design useful work, review evidence, coordinate human and software contributors, and improve shared systems without losing accountability.</p><a href="/learning/systems-stewardship/">Explore the path <span aria-hidden="true">→</span></a></article>
         </div>
       </div>
     </section>
