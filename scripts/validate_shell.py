@@ -15,6 +15,7 @@ PAGES = sorted(
 
 errors: list[str] = []
 titles: dict[str, Path] = {}
+descriptions: dict[str, Path] = {}
 canonicals: dict[str, Path] = {}
 for page in PAGES:
     soup = BeautifulSoup(page.read_text(encoding="utf-8"), "html.parser")
@@ -43,18 +44,29 @@ for page in PAGES:
     else:
         titles[title] = page
 
-    description = soup.select_one('meta[name="description"]')
-    if not description or not description.get("content", "").strip():
-        errors.append(f"{relative}: missing meta description")
-
-    canonical = soup.select_one('link[rel="canonical"]')
-    canonical_url = canonical.get("href", "").strip() if canonical else ""
-    if not canonical_url.startswith("https://arctura.org/"):
-        errors.append(f"{relative}: missing or non-arctura.org canonical URL")
-    elif canonical_url in canonicals:
-        errors.append(f"{relative}: duplicate canonical also used by {canonicals[canonical_url].relative_to(ROOT)}")
+    description_elements = soup.select('meta[name="description"]')
+    if len(description_elements) != 1:
+        errors.append(f"{relative}: expected one meta description, found {len(description_elements)}")
     else:
-        canonicals[canonical_url] = page
+        description = description_elements[0].get("content", "").strip()
+        if not description:
+            errors.append(f"{relative}: empty meta description")
+        elif description in descriptions:
+            errors.append(f"{relative}: duplicate description also used by {descriptions[description].relative_to(ROOT)}")
+        else:
+            descriptions[description] = page
+
+    canonical_elements = soup.select('link[rel="canonical"]')
+    if len(canonical_elements) != 1:
+        errors.append(f"{relative}: expected one canonical link, found {len(canonical_elements)}")
+    else:
+        canonical_url = canonical_elements[0].get("href", "").strip()
+        if not canonical_url.startswith("https://arctura.org/"):
+            errors.append(f"{relative}: non-arctura.org canonical URL")
+        elif canonical_url in canonicals:
+            errors.append(f"{relative}: duplicate canonical also used by {canonicals[canonical_url].relative_to(ROOT)}")
+        else:
+            canonicals[canonical_url] = page
 
     if len(soup.select("h1")) != 1:
         errors.append(f"{relative}: expected one h1, found {len(soup.select('h1'))}")
