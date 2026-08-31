@@ -1,4 +1,4 @@
-Contact: mailto:security@arctura.org
+Contact: mailto:signal@arctura.org
 Expires: 2027-08-30T00:00:00.000Z
 Preferred-Languages: en
 Canonical: https://arctura.org/.well-known/security.txt

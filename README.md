@@ -1,8 +1,8 @@
-# Arctura Foundation
+# ARCTURA
 
-This repository publishes [arctura.org](https://arctura.org/), the developing
-Arctura Foundation education site. Its learning model focuses on engineering
-judgment, semantic ontology, and systems stewardship.
+This repository publishes [arctura.org](https://arctura.org/), a public
+education platform for engineering judgment, semantic ontology, and systems
+stewardship.
 
 The Arctura Observatory is a Foundation-sponsored applied-learning project.
 Its selected `.org` routes are transitional; the intended permanent home is
@@ -13,16 +13,20 @@ repository and operating surface.
 
 | Route | Reader task | State |
 |---|---|---|
-| `/` | Understand the Foundation and choose a learning domain | Developing institution |
-| `/learning/` | Compare the three learning paths | Curriculum catalog |
-| `/learning/engineering-judgment/` | Learn defensible decisions under constraint | Curriculum outline |
-| `/learning/semantic-ontology/` | Learn shared meaning and knowledge models | Curriculum outline |
-| `/learning/systems-stewardship/` | Learn accountable coordination and improvement | Curriculum outline |
+| `/` | Understand ARCTURA and choose a learning domain | Public entry |
+| `/learning/` | Compare the three learning paths | Active catalog |
+| `/learning/start/` | Complete a first 30-minute practice cycle | Active orientation |
+| `/learning/method/` | Inspect the learning cycle and review rubric | Public method |
+| `/learning/engineering-judgment/decision-record/` | Build a decision record | Guided practice |
+| `/learning/semantic-ontology/domain-model/` | Build a small domain model | Guided practice |
+| `/learning/systems-stewardship/review-cycle/` | Design a stewardship review cycle | Guided practice |
 | `/foundation/` | Inspect mission, status, and ecosystem boundaries | Public record |
 | `/observatory/` | Understand the sponsored project and migration | Transitional project |
 | `/tools/` | Create a local Signal Brief or Claim Record | Working Observatory tool |
 | `/case-studies/` | Inspect bounded evidence records | Working Observatory record |
 | `/legal/` | Inspect educational, institutional, privacy, and security boundaries | Public record |
+| `/editorial/` | Inspect sourcing, review, and correction practice | Public standard |
+| `/accessibility/` | Inspect accessibility target, implementation, and limits | Public commitment |
 
 Legacy Academy operator tiers, mythology archives, agent control-plane pages,
 and payment-bridge concepts were removed from the working tree. Git history
@@ -55,19 +59,28 @@ The Python validators require `beautifulsoup4` and `jsonschema`:
 ```bash
 python3 scripts/validate_content.py
 python3 scripts/validate_shell.py
+python3 scripts/validate_launch.py
 node --check tools/signal-brief.js
 node --check tools/claim-record.js
 node scripts/test_claim_record.js
 git diff --check
 ```
 
-Also parse `sitemap.xml`, `schema.json`, and `vercel.json`, inspect all internal
-links, and perform responsive, keyboard, and browser-console review before a
-production merge.
+`validate_launch.py` checks indexable-route coverage, sitemap images, launch
+content depth, curriculum state, crawler controls, and the custom 404. Perform
+responsive, keyboard, assistive-technology, and browser-console review in a
+preview before a production merge.
+
+## Public contact
+
+- `learn@arctura.org` — learning resources, accessibility barriers, and
+  alternative-format requests.
+- `signal@arctura.org` — corrections, public-record coordination, and
+  responsible security disclosure.
 
 ## Status boundaries
 
-The Foundation does not currently claim accreditation, degree authority,
+ARCTURA does not currently claim accreditation, degree authority,
 recognized certification, active cohorts, guaranteed learning outcomes,
 incorporated nonprofit status, or active grantmaking. Update public language
 only when a dated, inspectable record supports the change.

@@ -1,4 +1,4 @@
-# Arctura Foundation — Learning Architecture
+# ARCTURA — Learning Architecture
 
 Status: `active`
 Updated: 2026-08-30
@@ -9,7 +9,7 @@ site an agent authorization/payment/decision-support stack.
 
 ## Institutional model
 
-`arctura.org` is the public home of **Arctura Foundation**, a developing
+`arctura.org` is the public home of **ARCTURA**, a developing
 education organization for people working with complex technical systems.
 
 The **Arctura Observatory** is a Foundation-sponsored applied-learning and
@@ -67,9 +67,16 @@ Every learning unit should move through four stages:
 | `/` | Foundation entry and the three-domain learning model |
 | `/foundation/` | Mission, status, institutional commitments, and boundaries |
 | `/learning/` | Learning catalog and shared learning pattern |
+| `/learning/start/` | 30-minute orientation and first practice cycle |
+| `/learning/method/` | Concept, case, artifact, review, and shared rubric |
 | `/learning/engineering-judgment/` | Engineering judgment pathway |
+| `/learning/engineering-judgment/decision-record/` | Guided decision-record practice |
 | `/learning/semantic-ontology/` | Semantic ontology pathway |
+| `/learning/semantic-ontology/domain-model/` | Guided domain-model practice |
 | `/learning/systems-stewardship/` | Systems stewardship pathway |
+| `/learning/systems-stewardship/review-cycle/` | Guided stewardship review-cycle practice |
+| `/editorial/` | Claims, sourcing, authorship, review, and corrections standard |
+| `/accessibility/` | Accessibility target, current support, known limits, and feedback |
 | `/legal/` | Legal, educational, privacy, and security boundaries |
 
 ### Foundation-sponsored project

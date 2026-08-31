@@ -1,4 +1,4 @@
-# Arctura Foundation Publication Standard
+# ARCTURA Publication Standard
 
 ## Purpose
 
@@ -46,6 +46,7 @@ and crawlable links that do not depend on JavaScript.
 
 - validate curriculum JSON against its schema;
 - validate shared navigation and HTML invariants;
+- validate launch content depth, sitemap coverage, crawler controls, and 404;
 - check JavaScript syntax and tool tests;
 - check internal links and redirect destinations;
 - parse sitemap and JSON discovery files;

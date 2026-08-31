@@ -114,6 +114,8 @@ td strong { color: var(--paper); }
 .notice { padding: 1.1rem 1.2rem; border-left: 3px solid var(--amber); background: rgba(245,179,90,.1); color: #ebd5b8; }
 .notice strong { color: #ffe4bd; }
 
+.artifact-template { margin: 0; overflow-x: auto; white-space: pre-wrap; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--line); background: rgba(7,16,24,.78); color: #c6d5d4; font: .82rem/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
 .learning-visual { position: relative; margin: 0 0 2.5rem; padding: .55rem; border: 1px solid var(--line); background: rgba(16,36,49,.55); }
 .learning-visual img { display: block; width: 100%; height: auto; }
 .learning-visual figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem .25rem .2rem; color: var(--muted); font-size: .67rem; letter-spacing: .08em; text-transform: uppercase; }
