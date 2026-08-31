@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 from bs4 import BeautifulSoup
@@ -36,6 +37,13 @@ for page in PAGES:
         errors.append(f"{relative}: leftover injected-navigation markup")
     if soup.select("a a"):
         errors.append(f"{relative}: nested anchor detected")
+
+    public_copy = BeautifulSoup(str(soup), "html.parser")
+    for footer in public_copy.select("footer"):
+        footer.decompose()
+    visible_copy = public_copy.get_text(" ", strip=True)
+    if re.search(r"\bfoundation\b", visible_copy, flags=re.IGNORECASE):
+        errors.append(f"{relative}: use ARCTURA outside footer copy")
 
     title = soup.title.get_text(strip=True) if soup.title else ""
     if not title:
