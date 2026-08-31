@@ -1,5 +1,7 @@
 # ARCTURA
 
+Arctura's primary repository for open building documentation, historical urban surveys, and spatial analysis tools. Designed to make built-environment data freely accessible to residents, researchers, and urban planners on a public, open-source basis.
+
 This repository publishes [arctura.org](https://arctura.org/), a public
 education platform for engineering judgment, semantic ontology, and systems
 stewardship.
