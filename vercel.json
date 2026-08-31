@@ -1,11 +1,9 @@
 {
   "cleanUrls": true,
-  "redirects": [
-    { "source": "/collective", "destination": "/field/", "permanent": true },
-    { "source": "/collective/", "destination": "/field/", "permanent": true }
-  ],
   "rewrites": [
     { "source": "/field", "destination": "/field/index.html" },
+    { "source": "/collective", "destination": "/collective/index.html" },
+    { "source": "/legal", "destination": "/legal/index.html" },
     { "source": "/guardian", "destination": "/guardian/index.html" },
     { "source": "/tools", "destination": "/tools/index.html" },
     { "source": "/products", "destination": "/products/index.html" },
