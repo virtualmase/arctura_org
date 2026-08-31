@@ -1,9 +1,285 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semantic Ontology — Arctura Foundation</title><meta name="description" content="A developing Arctura Foundation learning path for modeling shared meaning across people, data, and software."><meta name="robots" content="index,follow"><link rel="canonical" href="https://arctura.org/learning/semantic-ontology/"><meta property="og:type" content="article"><meta property="og:title" content="Semantic Ontology — Arctura Foundation"><meta property="og:description" content="Model shared meaning across people, data, and software."><meta property="og:url" content="https://arctura.org/learning/semantic-ontology/"><link rel="stylesheet" href="/family.css"><link rel="stylesheet" href="/site-navigation.css"><script src="/site-navigation.js" defer></script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LearningResource","@id":"https://arctura.org/learning/semantic-ontology/#path","name":"Semantic Ontology","description":"A learning path for modeling shared meaning across people, data, and software.","url":"https://arctura.org/learning/semantic-ontology/","learningResourceType":"curriculum outline and practice pathway","educationalLevel":"Foundational","provider":{"@type":"EducationalOrganization","name":"Arctura Foundation","url":"https://arctura.org/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Arctura Foundation","item":"https://arctura.org/"},{"@type":"ListItem","position":2,"name":"Learning","item":"https://arctura.org/learning/"},{"@type":"ListItem","position":3,"name":"Semantic Ontology","item":"https://arctura.org/learning/semantic-ontology/"}]}]}</script></head><body>
-<a class="skip" href="#main">Skip to content</a><header class="site-shell"><div class="site-shell__inner"><a class="site-shell__brand" href="/" aria-label="Arctura Foundation home"><span class="site-shell__brand-mark" aria-hidden="true"></span><strong>Arctura</strong><em>Foundation</em></a><nav class="site-shell__nav" aria-label="Primary navigation"><a class="site-shell__link" href="/learning/" aria-current="page">Learning</a><a class="site-shell__link" href="/observatory/">Observatory</a><a class="site-shell__link" href="/foundation/">Foundation</a><div class="site-shell__menu-wrap"><button class="site-shell__toggle" type="button" data-shell-toggle aria-expanded="false" aria-controls="site-menu">Explore</button><div class="site-shell__menu" id="site-menu" data-shell-menu hidden><p class="site-shell__menu-title">Learning paths</p><div class="site-shell__menu-grid"><a href="/learning/engineering-judgment/">Engineering judgment</a><a href="/learning/semantic-ontology/">Semantic ontology</a><a href="/learning/systems-stewardship/">Systems stewardship</a><a href="/observatory/">Observatory</a><a href="/tools/">Learning tools</a><a href="/foundation/">Foundation</a></div></div></div><a class="site-shell__link site-shell__link--support" href="/learning/">All paths</a></nav></div></header>
-<figure class="learning-visual learning-visual--semantic"><picture><source media="(max-width: 780px)" srcset="/assets/foundation/semantic-ontology-map-960.webp"><img src="/assets/foundation/semantic-ontology-map-1600.webp" width="1600" height="900" alt="An abstract knowledge model connects source fragments, concepts, and relationships."></picture><figcaption><strong>Shared meaning, made inspectable</strong><span>Sources → concepts → relationships → review</span></figcaption></figure>
-<main id="main"><section class="hero"><div><p class="kicker">Learning path · 02</p><h1>Semantic ontology</h1><p class="lede">Learn to make meaning explicit by defining concepts, entities, relationships, states, and rules that people and software can interpret together.</p></div><aside class="hero-aside"><p>Path status</p><strong>Curriculum outline.</strong><p>The repository's existing content model is a worked example, not proof of a complete course or formal ontology standard.</p></aside></section>
-<section><div class="section-inner"><div class="section-heading"><p class="kicker">Outcome</p><h2>Build models that reveal assumptions.</h2><p>By the end of the path, a learner should be able to define a bounded domain, distinguish classes from instances, create controlled vocabulary, model relationships and states, test competency questions, and publish the model with its limits.</p></div><div class="grid grid-3"><article class="card"><h3>Define the domain</h3><p>Name the purpose, audience, scope, source language, and questions the model must answer.</p><small>Meaning has a boundary</small></article><article class="card"><h3>Structure the model</h3><p>Represent concepts, identifiers, relationships, constraints, lifecycle states, and provenance.</p><small>Make assumptions visible</small></article><article class="card"><h3>Test interpretation</h3><p>Use examples, counterexamples, queries, and stakeholder review to find ambiguity and omission.</p><small>Models require challenge</small></article></div></div></section>
-<section><div class="section-inner"><div class="section-heading"><p class="kicker">Sequence</p><h2>From language to a testable knowledge model.</h2></div><div class="flow"><article><h3>Vocabulary</h3><p>Collect terms, definitions, synonyms, exclusions, and source contexts.</p></article><article><h3>Entities and relations</h3><p>Model what exists in the domain and how the parts connect.</p></article><article><h3>States and provenance</h3><p>Represent change, confidence, authorship, evidence, and version history.</p></article><article><h3>Queries and review</h3><p>Test whether the model answers real questions without inventing certainty.</p></article></div></div></section>
-<section><div class="section-inner"><div class="section-heading"><p class="kicker">Practice artifact</p><h2>Produce a small, documented ontology.</h2><p>The capstone artifact includes a domain statement, glossary, concept map, machine-readable representation, competency questions, sample records, provenance notes, and a list of known gaps.</p></div><div class="action-row"><a class="button" href="/observatory/">Inspect the Observatory model</a><a class="button button--ghost" href="/learning/systems-stewardship/">Next: steward the system</a></div></div></section>
-<section><div class="section-inner"><div class="section-heading"><p class="kicker">Source shelf and correction</p><h2>Learn from open semantic-web standards.</h2><p>Begin with the W3C specifications for <a href="https://www.w3.org/TR/rdf11-concepts/">RDF 1.1 Concepts</a>, <a href="https://www.w3.org/TR/owl2-overview/">OWL 2 Overview</a>, and the <a href="https://www.w3.org/TR/skos-primer/">SKOS Primer</a>. They address different modeling needs; none is a universal answer for every domain.</p><p>Find an ambiguous definition or broken example? <a href="https://github.com/virtualmase/arctura_org/issues">Open a specific correction issue</a>.</p></div></div></section></main>
-<footer class="footer"><div class="footer-grid"><p>Arctura Foundation · Semantic ontology.</p><nav class="footer-links" aria-label="Footer navigation"><a href="/learning/">Learning</a><a href="/observatory/">Observatory</a><a href="/foundation/">Foundation</a></nav></div></footer></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Semantic Ontology — Arctura Foundation</title>
+    <meta
+      name="description"
+      content="A developing Arctura Foundation learning path for modeling shared meaning across people, data, and software."
+    />
+    <meta name="robots" content="index,follow" />
+    <link
+      rel="canonical"
+      href="https://arctura.org/learning/semantic-ontology/"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Semantic Ontology — Arctura Foundation"
+    />
+    <meta
+      property="og:description"
+      content="Model shared meaning across people, data, and software."
+    />
+    <meta
+      property="og:url"
+      content="https://arctura.org/learning/semantic-ontology/"
+    />
+    <meta property="og:image" content="https://arctura.org/assets/foundation/semantic-ontology-map-1600.webp" />
+    <meta property="og:image:alt" content="An abstract knowledge model connects sources, concepts, and relationships." />
+    <link rel="stylesheet" href="/family.css" />
+    <link rel="stylesheet" href="/site-navigation.css" />
+    <script src="/site-navigation.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LearningResource",
+            "@id": "https://arctura.org/learning/semantic-ontology/#path",
+            "name": "Semantic Ontology",
+            "description": "A learning path for modeling shared meaning across people, data, and software.",
+            "url": "https://arctura.org/learning/semantic-ontology/",
+            "learningResourceType": "curriculum outline and practice pathway",
+            "educationalLevel": "Foundational",
+            "provider": {
+              "@type": "EducationalOrganization",
+              "name": "Arctura Foundation",
+              "url": "https://arctura.org/"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Arctura Foundation",
+                "item": "https://arctura.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Learning",
+                "item": "https://arctura.org/learning/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Semantic Ontology",
+                "item": "https://arctura.org/learning/semantic-ontology/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-shell">
+      <div class="site-shell__inner">
+        <a
+          class="site-shell__brand"
+          href="/"
+          aria-label="Arctura Foundation home"
+          ><span class="site-shell__brand-mark" aria-hidden="true"></span
+          ><strong>Arctura</strong><em>Foundation</em></a
+        >
+        <nav class="site-shell__nav" aria-label="Primary navigation">
+          <a class="site-shell__link" href="/learning/" aria-current="page"
+            >Learning</a
+          ><a class="site-shell__link" href="/observatory/">Observatory</a
+          ><a class="site-shell__link" href="/foundation/">Foundation</a>
+          <div class="site-shell__menu-wrap">
+            <button
+              class="site-shell__toggle"
+              type="button"
+              data-shell-toggle
+              aria-expanded="false"
+              aria-controls="site-menu"
+            >
+              Explore
+            </button>
+            <div class="site-shell__menu" id="site-menu" data-shell-menu hidden>
+              <p class="site-shell__menu-title">Learning paths</p>
+              <div class="site-shell__menu-grid">
+                <a href="/learning/engineering-judgment/"
+                  >Engineering judgment</a
+                ><a href="/learning/semantic-ontology/">Semantic ontology</a
+                ><a href="/learning/systems-stewardship/">Systems stewardship</a
+                ><a href="/observatory/">Observatory</a
+                ><a href="/tools/">Learning tools</a
+                ><a href="/foundation/">Foundation</a>
+              </div>
+            </div>
+          </div>
+          <a
+            class="site-shell__link site-shell__link--support"
+            href="/learning/"
+            >All paths</a
+          >
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero">
+        <div>
+          <p class="kicker">Learning path · 02</p>
+          <h1>Semantic ontology</h1>
+          <p class="lede">
+            Learn to make meaning explicit by defining concepts, entities,
+            relationships, states, and rules that people and software can
+            interpret together.
+          </p>
+        </div>
+        <aside class="hero-aside">
+          <p>Path status</p>
+          <strong>Curriculum outline.</strong>
+          <p>
+            The repository's existing content model is a worked example, not
+            proof of a complete course or formal ontology standard.
+          </p>
+        </aside>
+      </section>
+      <figure class="page-visual">
+        <picture><source media="(max-width: 780px)" srcset="/assets/foundation/semantic-ontology-map-960.webp" /><img src="/assets/foundation/semantic-ontology-map-1600.webp" width="1600" height="900" alt="An abstract knowledge model connects source fragments, concepts, and relationships." fetchpriority="high" /></picture>
+        <figcaption><strong>Shared meaning, made inspectable</strong><span>Sources → concepts → relationships → review</span></figcaption>
+      </figure>
+      <section>
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="kicker">Outcome</p>
+            <h2>Build models that reveal assumptions.</h2>
+            <p>
+              By the end of the path, a learner should be able to define a
+              bounded domain, distinguish classes from instances, create
+              controlled vocabulary, model relationships and states, test
+              competency questions, and publish the model with its limits.
+            </p>
+          </div>
+          <div class="grid grid-3">
+            <article class="card">
+              <h3>Define the domain</h3>
+              <p>
+                Name the purpose, audience, scope, source language, and
+                questions the model must answer.
+              </p>
+              <small>Meaning has a boundary</small>
+            </article>
+            <article class="card">
+              <h3>Structure the model</h3>
+              <p>
+                Represent concepts, identifiers, relationships, constraints,
+                lifecycle states, and provenance.
+              </p>
+              <small>Make assumptions visible</small>
+            </article>
+            <article class="card">
+              <h3>Test interpretation</h3>
+              <p>
+                Use examples, counterexamples, queries, and stakeholder review
+                to find ambiguity and omission.
+              </p>
+              <small>Models require challenge</small>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="kicker">Sequence</p>
+            <h2>From language to a testable knowledge model.</h2>
+          </div>
+          <div class="flow">
+            <article>
+              <h3>Vocabulary</h3>
+              <p>
+                Collect terms, definitions, synonyms, exclusions, and source
+                contexts.
+              </p>
+            </article>
+            <article>
+              <h3>Entities and relations</h3>
+              <p>Model what exists in the domain and how the parts connect.</p>
+            </article>
+            <article>
+              <h3>States and provenance</h3>
+              <p>
+                Represent change, confidence, authorship, evidence, and version
+                history.
+              </p>
+            </article>
+            <article>
+              <h3>Queries and review</h3>
+              <p>
+                Test whether the model answers real questions without inventing
+                certainty.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="kicker">Practice artifact</p>
+            <h2>Produce a small, documented ontology.</h2>
+            <p>
+              The capstone artifact includes a domain statement, glossary,
+              concept map, machine-readable representation, competency
+              questions, sample records, provenance notes, and a list of known
+              gaps.
+            </p>
+          </div>
+          <div class="action-row">
+            <a class="button" href="/observatory/"
+              >Inspect the Observatory model</a
+            ><a
+              class="button button--ghost"
+              href="/learning/systems-stewardship/"
+              >Next: steward the system</a
+            >
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="kicker">Source shelf and correction</p>
+            <h2>Learn from open semantic-web standards.</h2>
+            <p>
+              Begin with the W3C specifications for
+              <a href="https://www.w3.org/TR/rdf11-concepts/"
+                >RDF 1.1 Concepts</a
+              >,
+              <a href="https://www.w3.org/TR/owl2-overview/">OWL 2 Overview</a>,
+              and the
+              <a href="https://www.w3.org/TR/skos-primer/">SKOS Primer</a>. They
+              address different modeling needs; none is a universal answer for
+              every domain.
+            </p>
+            <p>
+              Find an ambiguous definition or broken example?
+              <a href="https://github.com/virtualmase/arctura_org/issues"
+                >Open a specific correction issue</a
+              >.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-grid">
+        <p>Arctura Foundation · Semantic ontology.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="/learning/">Learning</a
+          ><a href="/observatory/">Observatory</a
+          ><a href="/foundation/">Foundation</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

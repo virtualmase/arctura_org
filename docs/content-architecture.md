@@ -112,6 +112,20 @@ A learning page is ready for active navigation only when it states:
 The sitemap, `llms.txt`, `schema.json`, README, and routing configuration must
 describe this architecture and must not preserve superseded positioning.
 
+### Image publication standard
+
+Every indexable page has one page-specific editorial image that supports its
+learning purpose without embedding claims or essential text. Publish a 1600 ×
+900 WebP and a 960 × 540 WebP variant with a descriptive, topic-specific
+filename. The HTML must use a responsive `picture`, intrinsic dimensions, and
+concise alt text that describes the visible scene rather than repeating the
+page title. Each page must also expose an absolute `og:image`, a matching
+`og:image:alt`, and one image entry in `sitemap.xml`.
+
+Keep meaningful text in HTML. Generated diagrams may suggest structure through
+shape and material, but must not contain pseudo-labels, logos, watermarks, or
+claims that cannot be inspected in the page content.
+
 ## Domain migration rule
 
 - `arctura.org` speaks for the Foundation and its education programs.
