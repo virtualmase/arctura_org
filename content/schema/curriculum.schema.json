@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arctura.org/content/schema/curriculum.schema.json",
+  "title": "Arctura Foundation Curriculum Catalog",
+  "type": "object",
+  "required": ["schemaVersion", "updatedAt", "organization", "paths", "projects", "ecosystem"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "updatedAt": { "type": "string", "format": "date" },
+    "organization": {
+      "type": "object",
+      "required": ["name", "status", "url", "educationalModel"],
+      "properties": {
+        "name": { "const": "Arctura Foundation" },
+        "status": { "enum": ["developing", "operating", "archived"] },
+        "url": { "type": "string", "format": "uri" },
+        "educationalModel": { "type": "array", "minItems": 4, "uniqueItems": true, "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "paths": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "url", "status", "readerQuestion", "outcome", "artifact", "modules"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "title": { "type": "string", "minLength": 3 },
+          "url": { "type": "string", "format": "uri" },
+          "status": { "enum": ["concept", "curriculum-outline", "pilot", "active", "archived"] },
+          "readerQuestion": { "type": "string", "minLength": 12 },
+          "outcome": { "type": "string", "minLength": 20 },
+          "artifact": { "type": "string", "minLength": 3 },
+          "modules": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "projects": { "type": "array", "items": { "$ref": "#/$defs/relatedEntity" } },
+    "ecosystem": { "type": "array", "items": { "$ref": "#/$defs/relatedEntity" } }
+  },
+  "$defs": {
+    "relatedEntity": {
+      "type": "object",
+      "required": ["id", "name", "relationship"],
+      "properties": {
+        "id": { "type": "string" }, "name": { "type": "string" }, "relationship": { "type": "string" },
+        "status": { "type": "string" }, "url": { "type": "string", "format": "uri" },
+        "currentUrl": { "type": "string", "format": "uri" }, "intendedUrl": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

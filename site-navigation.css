@@ -100,7 +100,7 @@ body { overflow-x: clip; }
   color: var(--shell-signal) !important;
 }
 
-.site-shell__menu-wrap { position: relative; }
+.site-shell__menu-wrap { position: relative; display: none; }
 .site-shell__menu {
   position: absolute;
   top: calc(100% + .55rem);
@@ -144,6 +144,7 @@ body { overflow-x: clip; }
   .site-shell__brand em { display: none; }
   .site-shell__nav > .site-shell__link { display: none; }
   .site-shell__nav > .site-shell__link--support { display: inline-flex; }
+  .site-shell__menu-wrap { display: block; }
   .site-shell__menu {
     position: fixed;
     top: 62px;

@@ -1,33 +1,54 @@
-# Arctura Webmaster and Content-DevOps Operating Rules
+# Arctura Foundation Publication Standard
 
-## Mandate
+## Purpose
 
-The Arctura webmaster and content-DevOps function maintains the public web surface, content registry, preview releases, deployment verification, provenance, stakeholder-facing records, and release history for the Arctura initiative.
+This repository publishes the Arctura Foundation education site and, during
+migration, selected routes for the Foundation-sponsored Arctura Observatory.
+Arctura Network is maintained separately.
 
 ## Release boundary
 
-All new features, content systems, visual experiments, integrations, and structural changes begin on a named preview branch. Production `main` is changed only through a reviewed pull request or an explicitly authorized release action. The current public domains remain attached to the existing project unless a domain change is explicitly requested.
+Changes begin on a named preview branch. Production `main` changes through a
+reviewed pull request or an explicitly authorized release. Domain redirects
+are migration actions: do not redirect an Observatory route to arctura.space
+until the equivalent destination exists and has been checked.
 
-## Content states
+## Learning states
 
-Every content object must declare one of the following states: `conceptual`, `building`, `tested`, `verified`, `live`, or `archived`. A poetic or lore-driven statement may be published as a signal, but it must not be presented as operational proof unless it resolves to a source and verification state.
+Use one of: `concept`, `curriculum-outline`, `pilot`, `active`, or `archived`.
+Do not describe an outline as a course delivery, a practice artifact as an
+assessment, or a completion record as a credential unless the public program
+and authority behind that claim exist.
 
-## Source policy
+## Required learning-page contract
 
-Artifacts should resolve to a repository, deployment, test report, provenance record, documentation page, archive entry, or other durable source. External links should include a human-readable label and should open with safe external-link attributes. Provenance links must not be replaced by vague account-homepage links.
+Every active lesson or path states its reader question, objective,
+prerequisites, sequence, practice artifact, review method, current state,
+learning boundary, source shelf, correction route, and next/previous path.
+Machine-readable metadata must match visible claims.
 
-## Content workflow
+## Evidence policy
 
-New content is drafted in Markdown with front matter, normalized into the shared content model, validated, indexed, rendered into the site, and tested in preview. The release record should include the branch, commit, checks, deployment URL, known limitations, and next review action.
+Separate observed facts, interpretations, proposals, and unknowns. Material
+facts should link to stable sources. A format validator proves format only. A
+self-audit is not independent assurance. Claims about learner outcomes,
+accreditation, security, accessibility, discovery, adoption, or institutional
+status require specific evidence and accountable review.
 
-## Public communications
+## Technical discovery
 
-The webmaster may research, draft, package, and preview public promotion. External posting, paid promotion, account changes, and other irreversible distribution actions remain confirmation-gated. Claims in promotional material must point back to the public artifact registry or source ledger.
+When a route is published, update internal links, `sitemap.xml`, `llms.txt`,
+structured data, the curriculum catalog when applicable, and redirects. Each
+page needs one canonical URL, a unique title and description, one main heading,
+and crawlable links that do not depend on JavaScript.
 
 ## Required release checks
 
-Before a production-impacting release, verify JSON and Markdown syntax, internal links, external-source labels, image paths, responsive behavior, accessibility of interactive controls, browser console errors, preview deployment state, and the exact commit represented by the deployment.
-
-## Operating record
-
-Each release should leave a durable record in the repository or project archive. The record should capture what changed, why it changed, what was verified, what remains conceptual, and what stakeholders should review next.
+- validate curriculum JSON against its schema;
+- validate shared navigation and HTML invariants;
+- check JavaScript syntax and tool tests;
+- check internal links and redirect destinations;
+- parse sitemap and JSON discovery files;
+- inspect responsive layout, keyboard navigation, focus behavior, and contrast;
+- inspect browser-console errors in a preview;
+- record the exact commit, checks, known limits, and correction route.

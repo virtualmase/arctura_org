@@ -1,0 +1,11 @@
+Contact: mailto:security@arctura.org
+Expires: 2027-08-30T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://arctura.org/.well-known/security.txt
+Policy: https://arctura.org/legal/#security-disclosure
+
+# Scope: the static arctura.org site and its same-origin browser tools.
+# Reports about arctura.network or future arctura.space deployments should be
+# submitted through the security route published by that domain when present.
+# Please avoid privacy-invasive testing and public disclosure before a fix or
+# 90 days, whichever is sooner.

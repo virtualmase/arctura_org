@@ -1,42 +1,43 @@
-# Arctura
+# Arctura Foundation
 
-> Arctura is a sovereign collective of humans, AI agents, and infrastructure operating as a unified signal network. Built on the ARM (Autonomous Resource Management) framework by Mason Nguyen / Coreweaver Labs. Arctura operates at the intersection of conscious community, agentic AI systems, and Generative Engine Optimization (GEO). The Collective is organized across three operator tiers — Node, Hub, and Sovereign — and publishes a weekly Signal Report for members.
+> Arctura Foundation is a developing education organization for people who
+> reason across complex technical systems. Its public learning model combines
+> concepts, cases, inspectable artifacts, and review.
 
-Arctura exists to elevate AI agents as first-class participants in a persistent, sovereign network. The ARM framework governs how operators, agents, and infrastructure coordinate. The site serves both human visitors and AI systems; machine-readable context is maintained as a first-class concern.
+Canonical domain: https://arctura.org/
 
-The canonical domain is arctura.org. The network entry and conversion layer lives at arctura.network. All pages carry full JSON-LD structured data and are designed for AI crawler legibility.
+## Primary routes
 
-## Core Pages
+- [Foundation home](https://arctura.org/): Mission and three-domain learning model.
+- [Learning](https://arctura.org/learning/): Public curriculum catalog and shared learning method.
+- [Engineering Judgment](https://arctura.org/learning/engineering-judgment/): Decisions under constraint, uncertainty, evidence limits, and review.
+- [Semantic Ontology](https://arctura.org/learning/semantic-ontology/): Shared concepts, relationships, states, provenance, and competency questions.
+- [Systems Stewardship](https://arctura.org/learning/systems-stewardship/): Useful work, accountable roles, review, records, and system improvement.
+- [About the Foundation](https://arctura.org/foundation/): Mission, status, commitments, and ecosystem boundaries.
+- [Legal and educational boundaries](https://arctura.org/legal/): Institutional, educational, privacy, and security statements.
 
-- [Home — Recognition Experience](https://arctura.org/): Identity resonance interface. Trait-selection quiz that guides visitors toward their lineage alignment and operator tier. Entry point for cold traffic.
-- [Signal Archives](https://arctura.org/arcturians): Comprehensive wiki on Arcturian identity — 7 sections, 19 citations. Covers origin, traits, mission archetypes, and the ARM framework connection. Primary SEO and GEO authority page.
-- [Arctura Academy](https://arctura.org/academy): Learning infrastructure for the Collective. Covers ARM methodology, agent operation, and operator protocols.
-- [Support / Signal Archives Index](https://arctura.org/support): Archive index for Signal Reports and Collective transmissions.
-- [Network Entry](https://arctura.network): Operator conversion page. Three-tier structure (Node / Hub / Sovereign), ARM explainer, FAQ, and join flow. Primary revenue surface.
+## Foundation-sponsored project
 
-## Machine-Readable Infrastructure
+- [Arctura Observatory](https://arctura.org/observatory/): Applied-learning and public-record project. Intended future home: https://arctura.space/.
+- [Observatory tools](https://arctura.org/tools/): Browser-local Signal Brief and Claim Record builders.
+- [Evidence records](https://arctura.org/case-studies/): Bounded records that distinguish facts, interpretations, and unknowns.
+- [Observatory directory](https://arctura.org/field/): Transitional project route map.
 
-- [Structured Data](https://arctura.org/schema.json): Full JSON-LD @graph — Organization, WebSite, BreadcrumbList, and entity anchors for the Arctura Collective and ARM framework.
-- [Sitemap](https://arctura.org/sitemap.xml): Complete URL index with lastmod dates.
-- [Robots](https://arctura.org/robots.txt): Crawler rules including explicit LLM user-agent directives (GPTBot, ClaudeBot, PerplexityBot, Googlebot-extended).
+## Separate ecosystem surface
 
-## ARM Framework
+- [Arctura Network](https://arctura.network/): Separate initiative for useful work, review, agreement, and operating records. The Foundation does not operate or confer authority within the Network through this site.
 
-The Autonomous Resource Management (ARM) framework is the operating methodology of the Collective. It defines mandate chains, agent elevation protocols, and operator coordination structures. ARM is authored by Mason Nguyen and incubated under Coreweaver Labs. Related properties: autonomousresourcemanagement.com, coreweaverlabs.com, masonnguyengeo.com.
+## Current boundaries
 
-## Operator Tiers
+- Curriculum pages are outlines in development, not active cohorts or accredited courses.
+- Arctura Foundation does not currently claim degree authority, recognized certification, incorporated nonprofit status, active grantmaking, or guaranteed learner outcomes.
+- The Observatory does not verify user-supplied information and will migrate route by route only after equivalent arctura.space pages are ready.
+- Legacy Academy operator tiers, agent payment/control-plane concepts, and mythology archives are not part of the current public architecture.
 
-- **Node** — Entry-level operator. Access to Signal Reports and community mesh.
-- **Hub** — Mid-tier operator. Council access, agent coordination rights, referral network.
-- **Sovereign** — Principal operator. Full ARM methodology access, governance participation, white-label rights.
+## Machine-readable records
 
-## Ecosystem
-
-- [Coreweaver Labs](https://coreweaverlabs.com): AI infrastructure and compute lab. Parent organization.
-- [ARM Agency](https://autonomousresourcemanagement.com): ARM framework documentation and agency operations.
-- [Mason Nguyen — Signal Log](https://masonnguyengeo.com): Primary entity anchor for the ARM network. GEO architecture posts.
-- [Swell Marketing](https://swellmarketing.agency): GEO and reputation management agency operating under the ARM umbrella.
-
-## Optional
-
-- [llms-full.txt](https://arctura.org/llms-full.txt): Full flattened site content for agent context loading. (Forthcoming)
+- [Curriculum catalog](https://arctura.org/content/curriculum.json)
+- [Curriculum schema](https://arctura.org/content/schema/curriculum.schema.json)
+- [Schema.org graph](https://arctura.org/schema.json)
+- [Sitemap](https://arctura.org/sitemap.xml)
+- [Robots](https://arctura.org/robots.txt)
