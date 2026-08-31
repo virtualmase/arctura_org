@@ -5,29 +5,48 @@
       "@type": "WebSite",
       "@id": "https://arctura.org/#website",
       "url": "https://arctura.org/",
-      "name": "Arctura Foundation",
+      "name": "ARCTURA",
       "description": "Public learning in engineering judgment, semantic ontology, and systems stewardship.",
       "inLanguage": "en",
-      "publisher": { "@id": "https://arctura.org/#foundation" }
+      "publisher": { "@id": "https://arctura.org/#organization" }
     },
     {
       "@type": "EducationalOrganization",
-      "@id": "https://arctura.org/#foundation",
-      "name": "Arctura Foundation",
+      "@id": "https://arctura.org/#organization",
+      "name": "ARCTURA",
       "url": "https://arctura.org/",
-      "description": "A developing education organization for people reasoning across complex technical systems.",
-      "knowsAbout": ["Engineering judgment", "Semantic ontology", "Systems stewardship"],
+      "description": "A public education organization for people reasoning across complex technical systems.",
+      "knowsAbout": [
+        "Engineering judgment",
+        "Semantic ontology",
+        "Systems stewardship"
+      ],
       "subjectOf": { "@id": "https://arctura.org/#learning-paths" }
     },
     {
       "@type": "ItemList",
       "@id": "https://arctura.org/#learning-paths",
-      "name": "Arctura Foundation learning paths",
+      "name": "ARCTURA learning paths",
       "numberOfItems": 3,
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Engineering Judgment", "url": "https://arctura.org/learning/engineering-judgment/" },
-        { "@type": "ListItem", "position": 2, "name": "Semantic Ontology", "url": "https://arctura.org/learning/semantic-ontology/" },
-        { "@type": "ListItem", "position": 3, "name": "Systems Stewardship", "url": "https://arctura.org/learning/systems-stewardship/" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Engineering Judgment",
+          "url": "https://arctura.org/learning/engineering-judgment/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Semantic Ontology",
+          "url": "https://arctura.org/learning/semantic-ontology/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Systems Stewardship",
+          "url": "https://arctura.org/learning/systems-stewardship/"
+        }
       ]
     },
     {
@@ -35,8 +54,8 @@
       "@id": "https://arctura.org/observatory/#project",
       "name": "Arctura Observatory",
       "url": "https://arctura.org/observatory/",
-      "description": "A Foundation-sponsored applied-learning and public-record project preparing to migrate to arctura.space.",
-      "sponsor": { "@id": "https://arctura.org/#foundation" }
+      "description": "An ARCTURA-sponsored applied-learning and public-record project preparing to migrate to arctura.space.",
+      "sponsor": { "@id": "https://arctura.org/#organization" }
     }
   ]
 }

@@ -2,28 +2,95 @@
   "cleanUrls": true,
   "redirects": [
     { "source": "/academy", "destination": "/learning/", "permanent": true },
-    { "source": "/academy/:path*", "destination": "/learning/", "permanent": true },
-    { "source": "/protocol", "destination": "/learning/systems-stewardship/", "permanent": true },
-    { "source": "/autonomous-resource-management", "destination": "/learning/systems-stewardship/", "permanent": true },
-    { "source": "/arcturian-council", "destination": "/learning/engineering-judgment/", "permanent": true },
-    { "source": "/collective", "destination": "/foundation/", "permanent": true },
-    { "source": "/products", "destination": "/observatory/", "permanent": true },
-    { "source": "/arcturians", "destination": "/foundation/", "permanent": true },
-    { "source": "/guardian", "destination": "/observatory/", "permanent": true },
-    { "source": "/signal-archives", "destination": "/observatory/", "permanent": true },
+    {
+      "source": "/academy/:path*",
+      "destination": "/learning/",
+      "permanent": true
+    },
+    {
+      "source": "/protocol",
+      "destination": "/learning/systems-stewardship/",
+      "permanent": true
+    },
+    {
+      "source": "/autonomous-resource-management",
+      "destination": "/learning/systems-stewardship/",
+      "permanent": true
+    },
+    {
+      "source": "/arcturian-council",
+      "destination": "/learning/engineering-judgment/",
+      "permanent": true
+    },
+    {
+      "source": "/collective",
+      "destination": "/foundation/",
+      "permanent": true
+    },
+    {
+      "source": "/products",
+      "destination": "/observatory/",
+      "permanent": true
+    },
+    {
+      "source": "/arcturians",
+      "destination": "/foundation/",
+      "permanent": true
+    },
+    {
+      "source": "/guardian",
+      "destination": "/observatory/",
+      "permanent": true
+    },
+    {
+      "source": "/signal-archives",
+      "destination": "/observatory/",
+      "permanent": true
+    },
     { "source": "/support", "destination": "/foundation/", "permanent": true }
   ],
   "rewrites": [
     { "source": "/foundation", "destination": "/foundation/index.html" },
     { "source": "/learning", "destination": "/learning/index.html" },
-    { "source": "/learning/engineering-judgment", "destination": "/learning/engineering-judgment/index.html" },
-    { "source": "/learning/semantic-ontology", "destination": "/learning/semantic-ontology/index.html" },
-    { "source": "/learning/systems-stewardship", "destination": "/learning/systems-stewardship/index.html" },
+    {
+      "source": "/learning/start",
+      "destination": "/learning/start/index.html"
+    },
+    {
+      "source": "/learning/method",
+      "destination": "/learning/method/index.html"
+    },
+    {
+      "source": "/learning/engineering-judgment",
+      "destination": "/learning/engineering-judgment/index.html"
+    },
+    {
+      "source": "/learning/engineering-judgment/decision-record",
+      "destination": "/learning/engineering-judgment/decision-record/index.html"
+    },
+    {
+      "source": "/learning/semantic-ontology",
+      "destination": "/learning/semantic-ontology/index.html"
+    },
+    {
+      "source": "/learning/semantic-ontology/domain-model",
+      "destination": "/learning/semantic-ontology/domain-model/index.html"
+    },
+    {
+      "source": "/learning/systems-stewardship",
+      "destination": "/learning/systems-stewardship/index.html"
+    },
+    {
+      "source": "/learning/systems-stewardship/review-cycle",
+      "destination": "/learning/systems-stewardship/review-cycle/index.html"
+    },
     { "source": "/observatory", "destination": "/observatory/index.html" },
     { "source": "/field", "destination": "/field/index.html" },
     { "source": "/tools", "destination": "/tools/index.html" },
     { "source": "/case-studies", "destination": "/case-studies/index.html" },
-    { "source": "/legal", "destination": "/legal/index.html" }
+    { "source": "/legal", "destination": "/legal/index.html" },
+    { "source": "/editorial", "destination": "/editorial/index.html" },
+    { "source": "/accessibility", "destination": "/accessibility/index.html" }
   ],
   "headers": [
     {
@@ -31,10 +98,18 @@
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
-        { "key": "X-Robots-Tag", "value": "index, follow" }
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     }
   ]

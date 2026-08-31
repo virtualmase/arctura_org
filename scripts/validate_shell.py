@@ -104,8 +104,8 @@ for page in PAGES:
         errors.append(f"{relative}: expected at least one responsive picture")
     for picture in pictures:
         image = picture.select_one("img")
-        source = picture.select_one('source[srcset$=".webp"]')
-        if not image or not source:
+        source = picture.select_one("source[srcset]")
+        if not image or not source or not source.get("srcset", "").strip().endswith(".webp"):
             errors.append(f"{relative}: picture requires an img and WebP source")
             continue
         image_src = image.get("src", "").strip()

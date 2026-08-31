@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "updatedAt": "2026-08-30",
   "organization": {
-    "name": "Arctura Foundation",
-    "status": "developing",
+    "name": "ARCTURA",
+    "status": "operating",
     "url": "https://arctura.org/",
     "educationalModel": ["concept", "case", "artifact", "review"]
   },
@@ -12,31 +12,49 @@
       "id": "engineering-judgment",
       "title": "Engineering Judgment",
       "url": "https://arctura.org/learning/engineering-judgment/",
-      "status": "curriculum-outline",
+      "status": "active",
       "readerQuestion": "How do I make a defensible technical decision under constraint and uncertainty?",
       "outcome": "Frame a bounded technical decision, compare options, identify failure modes, justify a choice, and define review triggers.",
       "artifact": "Engineering decision record",
-      "modules": ["System and stakeholders", "Constraints and options", "Risk and evidence", "Decision and revision"]
+      "modules": [
+        "System and stakeholders",
+        "Constraints and options",
+        "Risk and evidence",
+        "Decision and revision"
+      ],
+      "firstPractice": "https://arctura.org/learning/engineering-judgment/decision-record/"
     },
     {
       "id": "semantic-ontology",
       "title": "Semantic Ontology",
       "url": "https://arctura.org/learning/semantic-ontology/",
-      "status": "curriculum-outline",
+      "status": "active",
       "readerQuestion": "How do I create a shared model of meaning that people and software can inspect?",
       "outcome": "Define a bounded domain, model concepts and relationships, test competency questions, and publish known limits.",
       "artifact": "Documented small ontology",
-      "modules": ["Vocabulary", "Entities and relations", "States and provenance", "Queries and review"]
+      "modules": [
+        "Vocabulary",
+        "Entities and relations",
+        "States and provenance",
+        "Queries and review"
+      ],
+      "firstPractice": "https://arctura.org/learning/semantic-ontology/domain-model/"
     },
     {
       "id": "systems-stewardship",
       "title": "Systems Stewardship",
       "url": "https://arctura.org/learning/systems-stewardship/",
-      "status": "curriculum-outline",
+      "status": "active",
       "readerQuestion": "How do I coordinate useful work and help a shared system improve responsibly?",
       "outcome": "Specify work, assign accountable roles, review evidence, govern change, and evaluate system learning.",
       "artifact": "Systems stewardship plan",
-      "modules": ["Work design", "Contribution", "Review and decision", "Record and improve"]
+      "modules": [
+        "Work design",
+        "Contribution",
+        "Review and decision",
+        "Record and improve"
+      ],
+      "firstPractice": "https://arctura.org/learning/systems-stewardship/review-cycle/"
     }
   ],
   "projects": [
