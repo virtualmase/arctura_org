@@ -2,7 +2,9 @@
 """Validate the stable shared navigation shell across Arctura public HTML pages."""
 from __future__ import annotations
 
+import json
 from pathlib import Path
+from urllib.parse import unquote, urlparse
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +14,8 @@ PAGES = sorted(
 )
 
 errors: list[str] = []
+titles: dict[str, Path] = {}
+canonicals: dict[str, Path] = {}
 for page in PAGES:
     soup = BeautifulSoup(page.read_text(encoding="utf-8"), "html.parser")
     relative = page.relative_to(ROOT)
@@ -30,6 +34,56 @@ for page in PAGES:
         errors.append(f"{relative}: leftover injected-navigation markup")
     if soup.select("a a"):
         errors.append(f"{relative}: nested anchor detected")
+
+    title = soup.title.get_text(strip=True) if soup.title else ""
+    if not title:
+        errors.append(f"{relative}: missing document title")
+    elif title in titles:
+        errors.append(f"{relative}: duplicate title also used by {titles[title].relative_to(ROOT)}")
+    else:
+        titles[title] = page
+
+    description = soup.select_one('meta[name="description"]')
+    if not description or not description.get("content", "").strip():
+        errors.append(f"{relative}: missing meta description")
+
+    canonical = soup.select_one('link[rel="canonical"]')
+    canonical_url = canonical.get("href", "").strip() if canonical else ""
+    if not canonical_url.startswith("https://arctura.org/"):
+        errors.append(f"{relative}: missing or non-arctura.org canonical URL")
+    elif canonical_url in canonicals:
+        errors.append(f"{relative}: duplicate canonical also used by {canonicals[canonical_url].relative_to(ROOT)}")
+    else:
+        canonicals[canonical_url] = page
+
+    if len(soup.select("h1")) != 1:
+        errors.append(f"{relative}: expected one h1, found {len(soup.select('h1'))}")
+
+    for block in soup.select('script[type="application/ld+json"]'):
+        try:
+            json.loads(block.string or block.get_text())
+        except json.JSONDecodeError as error:
+            errors.append(f"{relative}: invalid JSON-LD ({error.msg})")
+
+    ids = {element.get("id") for element in soup.select("[id]")}
+    for anchor in soup.select("a[href]"):
+        href = anchor.get("href", "").strip()
+        parsed = urlparse(href)
+        if not href or parsed.scheme in {"http", "https", "mailto", "tel"} or href.startswith("//"):
+            continue
+        if href.startswith("#"):
+            if href != "#" and unquote(href[1:]) not in ids:
+                errors.append(f"{relative}: missing local fragment target {href}")
+            continue
+        target_path = unquote(parsed.path)
+        if target_path.startswith("/"):
+            candidate = ROOT / target_path.lstrip("/")
+        else:
+            candidate = page.parent / target_path
+        if target_path.endswith("/") or not candidate.suffix:
+            candidate = candidate / "index.html"
+        if not candidate.exists():
+            errors.append(f"{relative}: broken internal link {href}")
 
 if errors:
     print("Static shell validation failed:")

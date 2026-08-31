@@ -1,42 +1,43 @@
-# Arctura
+# Arctura Foundation
 
-> Arctura publishes public records, practical tools, and clear boundaries
-> for accountable agent infrastructure: decision support (Council), agent
-> authorization (ARMS), and payment verification (Protocol). Each surface
-> states its own current state and limits before its capabilities.
+> Arctura Foundation is a developing education organization for people who
+> reason across complex technical systems. Its public learning model combines
+> concepts, cases, inspectable artifacts, and review.
 
-The canonical domain is arctura.org. arctura.network is the intended live
-instance of the composed stack described below; treat any claim of that
-split as provisional until stated on-site.
+Canonical domain: https://arctura.org/
 
-## Core Pages
+## Primary routes
 
-- [Home](https://arctura.org/): Public entry point. Working model: Record, Boundary, Tool, Review.
-- [Field Index](https://arctura.org/field/): Directory of all public surfaces and their states.
-- [ARMS](https://arctura.org/autonomous-resource-management/): Agent authorization — identity, mandate, permission, approval gate, receipt, audit. Conceptual.
-- [Protocol](https://arctura.org/protocol/): Lightning-to-EVM payment verification. Early-stage, building. Not production-ready; no completed independent security review.
-- [Arcturian Council](https://arctura.org/arcturian-council/): Disclosed AI decision-support service. Named functions (Pauli, Planck, Lorentz) are AI functions, not personnel. Not professional advice.
-- [Collective](https://arctura.org/collective/): How Council, ARMS, and Protocol compose into one mandate record. Record format, not shipped infrastructure.
-- [Case Studies](https://arctura.org/case-studies/): Evidence-oriented records.
-- [Tools](https://arctura.org/tools/): Local-first browser utilities.
-- [Support](https://arctura.org/support/): Contribution pathways.
+- [Foundation home](https://arctura.org/): Mission and three-domain learning model.
+- [Learning](https://arctura.org/learning/): Public curriculum catalog and shared learning method.
+- [Engineering Judgment](https://arctura.org/learning/engineering-judgment/): Decisions under constraint, uncertainty, evidence limits, and review.
+- [Semantic Ontology](https://arctura.org/learning/semantic-ontology/): Shared concepts, relationships, states, provenance, and competency questions.
+- [Systems Stewardship](https://arctura.org/learning/systems-stewardship/): Useful work, accountable roles, review, records, and system improvement.
+- [About the Foundation](https://arctura.org/foundation/): Mission, status, commitments, and ecosystem boundaries.
+- [Legal and educational boundaries](https://arctura.org/legal/): Institutional, educational, privacy, and security statements.
 
-## Archive (not current record)
+## Foundation-sponsored project
 
-- [Academy](https://arctura.org/academy/): Earlier learning tracks, retained as reference only.
-- [Signal Archives](https://arctura.org/signal-archives/): Earlier long-form material, retained as reference only.
-- [Guardian](https://arctura.org/guardian/) / [Arcturians](https://arctura.org/arcturians/): Source-note and identity-orientation content. Explicitly not membership, authority, or affiliation.
+- [Arctura Observatory](https://arctura.org/observatory/): Applied-learning and public-record project. Intended future home: https://arctura.space/.
+- [Observatory tools](https://arctura.org/tools/): Browser-local Signal Brief and Claim Record builders.
+- [Evidence records](https://arctura.org/case-studies/): Bounded records that distinguish facts, interpretations, and unknowns.
+- [Observatory directory](https://arctura.org/field/): Transitional project route map.
 
-## Machine-Readable Infrastructure
+## Separate ecosystem surface
 
-- [Structured Data](https://arctura.org/schema.json): JSON-LD entity graph.
-- [Sitemap](https://arctura.org/sitemap.xml): Live routes only.
-- [Robots](https://arctura.org/robots.txt): Standard crawler access.
+- [Arctura Network](https://arctura.network/): Separate initiative for useful work, review, agreement, and operating records. The Foundation does not operate or confer authority within the Network through this site.
 
-## Boundary
+## Current boundaries
 
-Arctura does not offer investment advice, payment guarantees, custody,
-automated trading, or professional (medical/legal/tax) advice through any
-surface described above. Protocol has not completed an independent
-security review. ARMS and Collective describe conceptual/proposed systems,
-not deployed authority.
+- Curriculum pages are outlines in development, not active cohorts or accredited courses.
+- Arctura Foundation does not currently claim degree authority, recognized certification, incorporated nonprofit status, active grantmaking, or guaranteed learner outcomes.
+- The Observatory does not verify user-supplied information and will migrate route by route only after equivalent arctura.space pages are ready.
+- Legacy Academy operator tiers, agent payment/control-plane concepts, and mythology archives are not part of the current public architecture.
+
+## Machine-readable records
+
+- [Curriculum catalog](https://arctura.org/content/curriculum.json)
+- [Curriculum schema](https://arctura.org/content/schema/curriculum.schema.json)
+- [Schema.org graph](https://arctura.org/schema.json)
+- [Sitemap](https://arctura.org/sitemap.xml)
+- [Robots](https://arctura.org/robots.txt)

@@ -4,12 +4,8 @@ Preferred-Languages: en
 Canonical: https://arctura.org/.well-known/security.txt
 Policy: https://arctura.org/legal/#security-disclosure
 
-# Scope
-# This covers arctura.org and any deployed Arctura Protocol contracts.
-# Protocol has not completed an independent security review. Reports
-# concerning the Protocol verification contract (Arctura.sol) are the
-# highest priority.
-
-# Please do not:
-# - test against mainnet with funds beyond what you can afford to lose
-# - publicly disclose before a fix or 90 days, whichever is sooner
+# Scope: the static arctura.org site and its same-origin browser tools.
+# Reports about arctura.network or future arctura.space deployments should be
+# submitted through the security route published by that domain when present.
+# Please avoid privacy-invasive testing and public disclosure before a fix or
+# 90 days, whichever is sooner.

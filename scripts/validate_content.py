@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Arctura structured content against the canonical JSON Schema."""
+"""Validate the Arctura Foundation curriculum catalog."""
 from __future__ import annotations
 
 import json
@@ -8,8 +8,8 @@ from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[1]
-SCHEMA_PATH = ROOT / "content" / "schema" / "arctura-content.schema.json"
-CONTENT_PATH = ROOT / "content" / "arctura.json"
+SCHEMA_PATH = ROOT / "content" / "schema" / "curriculum.schema.json"
+CONTENT_PATH = ROOT / "content" / "curriculum.json"
 
 
 def load_json(path: Path) -> object:
@@ -27,7 +27,7 @@ def main() -> int:
             location = "/".join(str(part) for part in error.path) or "<root>"
             print(f"INVALID {location}: {error.message}")
         return 1
-    print("VALID content/arctura.json conforms to content/schema/arctura-content.schema.json")
+    print("VALID content/curriculum.json conforms to content/schema/curriculum.schema.json")
     return 0
 
 

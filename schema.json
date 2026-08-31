@@ -5,65 +5,38 @@
       "@type": "WebSite",
       "@id": "https://arctura.org/#website",
       "url": "https://arctura.org/",
-      "name": "Arctura",
-      "description": "Arctura publishes public records, practical tools, and clear boundaries for accountable agent infrastructure.",
+      "name": "Arctura Foundation",
+      "description": "Public learning in engineering judgment, semantic ontology, and systems stewardship.",
       "inLanguage": "en",
-      "publisher": { "@id": "https://arctura.org/#arctura" }
+      "publisher": { "@id": "https://arctura.org/#foundation" }
     },
     {
-      "@type": "WebPage",
-      "@id": "https://arctura.org/#webpage",
+      "@type": "EducationalOrganization",
+      "@id": "https://arctura.org/#foundation",
+      "name": "Arctura Foundation",
       "url": "https://arctura.org/",
-      "name": "Arctura",
-      "description": "Public records, practical tools, and visible boundaries for agent decision-support, authorization, and payment verification.",
-      "inLanguage": "en",
-      "isPartOf": { "@id": "https://arctura.org/#website" },
-      "about": { "@id": "https://arctura.org/#arctura" },
-      "publisher": { "@id": "https://arctura.org/#arctura" },
-      "dateModified": "2026-08-30"
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://arctura.org/#arctura",
-      "name": "Arctura",
-      "url": "https://arctura.org",
-      "description": "Arctura publishes public records, practical tools, and clear boundaries for accountable agent infrastructure: decision support, agent authorization, and payment verification.",
-      "knowsAbout": [
-        "Agent authorization and mandate systems",
-        "Payment verification infrastructure",
-        "AI-assisted decision support",
-        "Accountable audit and receipt records"
-      ]
+      "description": "A developing education organization for people reasoning across complex technical systems.",
+      "knowsAbout": ["Engineering judgment", "Semantic ontology", "Systems stewardship"],
+      "subjectOf": { "@id": "https://arctura.org/#learning-paths" }
     },
     {
       "@type": "ItemList",
-      "@id": "https://arctura.org/#stack-layers",
-      "name": "Arctura Stack Layers",
-      "description": "How Council, ARMS, and Protocol compose into one mandate record.",
+      "@id": "https://arctura.org/#learning-paths",
+      "name": "Arctura Foundation learning paths",
       "numberOfItems": 3,
       "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Council",
-          "description": "Decision support. Frames a question into a sourced brief with a required human approver.",
-          "url": "https://arctura.org/arcturian-council/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "ARMS",
-          "description": "Agent authorization. Turns a decision into a bounded mandate with permissions and an approval gate.",
-          "url": "https://arctura.org/autonomous-resource-management/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Protocol",
-          "description": "Payment verification. Checks a submitted proof against published rules and emits a confirmation event.",
-          "url": "https://arctura.org/protocol/"
-        }
+        { "@type": "ListItem", "position": 1, "name": "Engineering Judgment", "url": "https://arctura.org/learning/engineering-judgment/" },
+        { "@type": "ListItem", "position": 2, "name": "Semantic Ontology", "url": "https://arctura.org/learning/semantic-ontology/" },
+        { "@type": "ListItem", "position": 3, "name": "Systems Stewardship", "url": "https://arctura.org/learning/systems-stewardship/" }
       ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://arctura.org/observatory/#project",
+      "name": "Arctura Observatory",
+      "url": "https://arctura.org/observatory/",
+      "description": "A Foundation-sponsored applied-learning and public-record project preparing to migrate to arctura.space.",
+      "sponsor": { "@id": "https://arctura.org/#foundation" }
     }
   ]
 }
