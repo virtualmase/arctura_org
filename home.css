@@ -82,8 +82,8 @@ body.home-page {
 .home-response p:not(.kicker) { max-width: 56ch; color: var(--muted); }
 
 @media (max-width: 780px) {
-  .home-hero { min-height: auto; grid-template-columns: 1fr; gap: 1.5rem; padding: 4.75rem 0 4rem; }
-  .home-hero h1 { font-size: clamp(3.6rem, 16vw, 6.4rem); }
+  .home-hero { min-height: auto; grid-template-columns: 1fr; gap: 2rem; padding: clamp(3.5rem, 12vw, 4.75rem) 0 3.5rem; }
+  .home-hero h1 { font-size: clamp(3.35rem, 15vw, 6.4rem); line-height: .94; }
   .home-hero__art { min-height: clamp(22rem, 90vw, 34rem); }
   .home-standard { grid-template-columns: 1fr; border-bottom: 1px solid var(--line); }
   .home-standard div { border-right: 0; border-bottom: 1px solid var(--line); }
@@ -91,6 +91,17 @@ body.home-page {
   .home-context { grid-template-columns: 1fr; gap: 2rem; }
   .home-context__links a { grid-template-columns: 1fr; gap: .3rem; }
   .home-response__inner { display: grid; align-items: start; }
+}
+
+@media (max-width: 480px) {
+  .home-hero { gap: 1.5rem; padding: 3rem 0; }
+  .home-hero h1 { font-size: clamp(3rem, 15vw, 4.25rem); }
+  .home-hero__lede { margin-top: 1.25rem; font-size: 1.04rem; }
+  .home-hero__art { min-height: min(26rem, 112vw); }
+  .home-hero__art figcaption { right: 1rem; bottom: 1rem; left: 1rem; flex-direction: column; line-height: 1.45; }
+  .home-standard div { padding: 1.1rem; }
+  .home-paths .home-path { min-height: 16rem; }
+  .home-response__inner .button { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
