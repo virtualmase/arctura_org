@@ -70,7 +70,7 @@ body { overflow-x: clip; }
 .site-shell__link,
 .site-shell__toggle {
   display: inline-flex;
-  min-height: 40px;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
@@ -139,7 +139,8 @@ body { overflow-x: clip; }
 
 @media (max-width: 780px) {
   :root { --shell-content: min(100% - 32px, 1160px); }
-  .site-shell__inner { min-height: 62px; }
+  .site-shell { min-height: 64px; }
+  .site-shell__inner { min-height: 64px; }
   .site-shell__brand { font-size: .7rem !important; letter-spacing: .11em; }
   .site-shell__brand em { display: none; }
   .site-shell__nav > .site-shell__link { display: none; }
@@ -147,23 +148,25 @@ body { overflow-x: clip; }
   .site-shell__menu-wrap { display: block; }
   .site-shell__menu {
     position: fixed;
-    top: 62px;
+    top: 64px;
     right: 0;
     left: 0;
     width: 100%;
-    max-height: calc(100dvh - 62px);
-    padding: 1rem max(1rem, calc((100% - 1160px) / 2));
+    max-height: calc(100dvh - 64px);
+    padding: 1rem max(1rem, calc((100% - 1160px) / 2)) max(1.5rem, env(safe-area-inset-bottom));
     overflow-y: auto;
     border-right: 0;
     border-left: 0;
     background: var(--shell-ink);
   }
   .site-shell__menu-grid { grid-template-columns: 1fr; }
+  .site-shell__menu a { display: flex; min-height: 48px; align-items: center; padding: .8rem .75rem; }
 }
 
 @media (max-width: 440px) {
+  :root { --shell-content: min(100% - 24px, 1160px); }
   .site-shell__link--support { display: none !important; }
-  .site-shell__toggle { padding-right: 0; }
+  .site-shell__toggle { min-width: 4.25rem; padding-right: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
